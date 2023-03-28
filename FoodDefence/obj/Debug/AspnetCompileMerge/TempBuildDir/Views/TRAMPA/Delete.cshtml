@@ -1,0 +1,55 @@
+﻿@model FoodDefence.Models.TRAMPA
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="callout callout-primary">
+
+    <h4><i class="fa fa-trash"></i> ¿Esta seguro de eliminar este tipo de trampa?</h4>
+    <hr />
+
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Tipo
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TRAMPA_TIPO.descripcion)
+            </dd>
+
+            <dt>
+                Estado
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TRAMPA_ESTADO.descripcion)
+            </dd>
+            <dt>
+                Número
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.numero)
+            </dd>
+            <dt>
+                Observaciones
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.observaciones)
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <h2>&emsp;</h2>
+            <div class="form-actions no-color">
+                <input type="submit" value="Eliminar" class="btn btn-outline-danger" />
+                @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-outline-primary" })
+            </div>
+        }
+    </div>
+
+</div>

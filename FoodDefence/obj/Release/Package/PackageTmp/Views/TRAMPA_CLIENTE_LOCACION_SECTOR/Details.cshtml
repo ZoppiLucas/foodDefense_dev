@@ -1,0 +1,59 @@
+﻿@model FoodDefence.Models.TRAMPA_CLIENTE_LOCACION_SECTOR
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TRAMPA_CLIENTE_LOCACION_SECTOR</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaDesde)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaDesde)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaHasta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaHasta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.observacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENTE_LOCACION_SECTOR.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENTE_LOCACION_SECTOR.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TRAMPA.observaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TRAMPA.observaciones)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

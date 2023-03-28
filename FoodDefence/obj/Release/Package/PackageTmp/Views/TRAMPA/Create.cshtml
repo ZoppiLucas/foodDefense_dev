@@ -1,0 +1,78 @@
+﻿@model FoodDefence.Models.TRAMPA
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="callout callout-primary">
+
+    <h4><i class="fa fa-bug"></i> Nueva Trampa</h4>
+    <br />
+      
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                Tipo
+                <div class="col-md-10">
+                    @Html.DropDownList("idTrampaTipo", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.idTrampaTipo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                Estado
+                <div class="col-md-10">
+                    @Html.DropDownList("idTrampaEstado", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.idTrampaEstado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                Número
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.numero, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.numero, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                Observaciones
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.observaciones, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.observaciones, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-outline-success" /> |
+                @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-outline-primary" })
+            </div>
+
+            <div id="validaciones" class="alert alert-danger" role="alert">
+                <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                @ViewBag.ValidacionesTrampa
+            </div>
+        </div>
+    }
+
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+    <script>
+    var Ingreso = '@ViewBag.ValidacionesTrampa'
+
+    $(document).ready(function () {
+        if(Ingreso!='')
+        {
+            $("#validaciones").show();
+            $("#validaciones").delay(8000).hide(600);
+        }
+        else
+        {
+            $("#validaciones").hide();
+        }
+    });
+    </script>

@@ -1,0 +1,71 @@
+﻿@model FoodDefence.Models.USUARIO
+
+@{
+    Layout = null;
+}
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    <link href="@Url.Content("~/Content/signin.css")" rel="stylesheet" type="text/css" />
+</head>
+<body class="signin-text">
+    @using (Html.BeginForm("Ingreso", "Ingresar", FormMethod.Post, new { @class = "form-signin" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="card">
+            <h5 class="card-header bg-white"><img  src="@Url.Content("~/Content/Img/logo.png")" alt="" width="220"></h5>
+            <div class="card-body">
+                <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <label for="inputEmail" class="sr-only">Correo electrónico</label>
+                @Html.EditorFor(model => model.mail, new { htmlAttributes = new { @class = "form-control", @type = "email", @id = "inputEmail", placeholder = "Correo electrónico", required = "required", autofocus = "" } })
+                @Html.ValidationMessageFor(model => model.mail, "", new { @class = "text-danger" })
+
+                <br />
+                <label for="inputUser" class="sr-only">Nombre de usuario</label>
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", @id = "inputUser", placeholder = "Nombre de usuario", required = "required" } })
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                <br />
+
+                <label for="inputPassword" class="sr-only">Contraseña</label>
+                @Html.PasswordFor(model => model.clave, new { @class = "form-control", @type = "password", @id = "inputPassword", placeholder = "Contraseña", required = "required" })
+                @Html.ValidationMessageFor(model => model.clave, "", new { @class = "text-danger" })
+                <br />
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+
+            </div>
+        </div>
+
+        <div id="noIngreso" class="alert alert-danger" role="alert">
+            <button class="close" data-dismiss="alert"><span>&times;</span></button>
+            Se ha ingresado algún dato erroneamente.
+        </div>
+
+    }
+</body>
+
+<script>
+    var Ingreso = '@ViewBag.Ingreso'
+
+    $(document).ready(function () {
+        if(Ingreso!='')
+        {
+            $("#noIngreso").show();
+            $("#noIngreso").delay(8000).hide(600);
+        }
+        else
+        {
+            $("#noIngreso").hide();
+        }
+    });
+</script>

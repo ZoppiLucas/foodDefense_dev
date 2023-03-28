@@ -1,0 +1,77 @@
+﻿@model FoodDefence.Models.CONTROL_PLAGA
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="callout callout-primary">
+
+    <h4><i class="fa fa-id-card"></i> Detalles de Tarea de Control </h4>
+    @using (Html.BeginForm())
+
+    {
+        @Html.AntiForgeryToken()
+        <br />
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="font-weight-bold">Cliente</p>
+                        @Html.ViewBag.razonSocial
+                    </div>
+                    <div class="col-md-2">
+                        <p class="font-weight-bold">Localidad</p>
+                        @Html.DisplayFor(model => model.CLIENTE_LOCACION.descripcion)
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="font-weight-bold">Tipo Trampa</p>
+                        @Html.DisplayFor(model => model.TRAMPA_TIPO.descripcion)
+                    </div>
+                    <div class="col-md-2">
+                        <p class="font-weight-bold">Campo</p>
+                        @Html.DisplayFor(model => model.campoCondicion)
+                    </div>
+                    <div class="col-md-2">
+                        <p class="font-weight-bold">Operador</p>
+                        @Html.DisplayFor(model => model.operadorCondicion)
+                    </div>
+                    <div class="col-md-2">
+                        <p class="font-weight-bold">Valor</p>
+                        @Html.DisplayFor(model => model.valorCondicion)
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div>
+                <table class="table table-bordered table-sm">
+                    <tr> <th class="priority-1"> Acciones </th> </tr>
+
+                    @foreach (var item in ViewBag.tareasDetalles)                    
+                    {
+                        <tr>
+                            <td class="priority-1">
+                                @item.descripcion
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+            <br />
+            <div class="form-group">
+                @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-outline-primary" })
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+
+

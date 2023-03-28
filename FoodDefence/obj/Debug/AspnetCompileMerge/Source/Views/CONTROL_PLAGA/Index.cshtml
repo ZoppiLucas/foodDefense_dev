@@ -1,0 +1,74 @@
+﻿@model IEnumerable<FoodDefence.Models.CONTROL_PLAGA>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="callout callout-primary">
+    <h4><i class="fa fa-map-marker"></i> Acciones Posibles</h4>
+    <br />
+
+    <p>
+        @Html.ActionLink("Crear Acciones", "Create", "CONTROL_PLAGA", null, new { @class = "btn btn-outline-primary" })
+    </p>
+
+    <div class="table-responsive-sm">
+        <table class="table-sm">
+            <tr>
+                <td width="40%">Cliente Locación</td>
+                <td width="40%">Tipo Trampa</td>
+                <td width="10%">Campo</td>
+                <td width="10%"></td>
+            </tr>
+            <tr>
+                <td width="40%">
+                    @Html.DropDownList("idClienteLocacion", null, "Elija una Locacion", htmlAttributes: new { @class = "form-control", id = "cmbLocacion" }) </td>
+                <td width="40%">
+                    @Html.DropDownList("idTrampaTipo", null, "Elija un tipo", htmlAttributes: new { @class = "form-control", id = "cmbTrampaTipo" }) </td>
+                <td width="10%">
+                    @Html.EditorFor(model => Model.FirstOrDefault().campoCondicion, new { htmlAttributes = new { @class = "form-control", id = "txtCampo" } })</td>
+                <td width="10%">
+                    <button type="button" id="btnBuscar" class="btn btn-outline-secondary" onclick="btnBuscar_onclic()">Buscar</button>
+                </td>
+            </tr>
+            
+        </table>
+    </div>
+
+    <div id="divTabla">
+
+    </div>
+
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        limpiar();
+    });
+
+    function limpiar() {
+        $("#cmbLocacion").val('');
+        $('#cmbTrampaTipo').val('');
+        $('#txtCampo').val('');        
+    }
+    function btnBuscar_onclic() {
+        var lClienteLocacion= $('#cmbLocacion').val();
+        var lTipoTrampa = $('#cmbTrampaTipo').val();
+        var lCampo = $('#txtCampo').val();        
+
+        $('#btnBuscar').html('<span class="spinner-border spinner-border-sm mr-2 text-secondary" role="status" aria-hidden="true"></span>Buscar').addClass('disabled');
+        $("#btnBuscar").attr("disabled", true);
+        $.ajax({
+                url: '@Url.Action("ListadoControlPlaga", "CONTROL_PLAGA")'
+                , data: {
+                      pClienteLocacion: lClienteLocacion
+                    , pTipoTrampa: lTipoTrampa
+                    , pCampo: lCampo}
+            , success: function (data) { $("#divTabla").html(data);
+                                        limpiar();
+                                        }
+        });
+    }
+</script>

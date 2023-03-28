@@ -1,0 +1,1120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FoodDefense_DevModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idTrampaTipo" Type="int" Nullable="false" />
+    <Property Name="campo" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CLIENTE">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idDocumentoTipo" Type="int" Nullable="false" />
+    <Property Name="numeroDocumento" Type="bigint" Nullable="false" />
+    <Property Name="razonSocial" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="habitlitadoPortal" Type="bit" Nullable="false" />
+    <Property Name="usuarioPortal" Type="varchar" MaxLength="50" />
+    <Property Name="clavePortal" Type="varchar" MaxLength="500" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CLIENTE_CONTACTO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idCliente" Type="int" Nullable="false" />
+    <Property Name="idContactoTipo" Type="int" Nullable="false" />
+    <Property Name="valor" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="observaciones" Type="varchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="CLIENTE_LOCACION">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idCliente" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="idProvincia" Type="int" Nullable="false" />
+    <Property Name="localidad" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="calle" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="numero" Type="int" />
+    <Property Name="piso" Type="int" />
+    <Property Name="departamento" Type="varchar" MaxLength="5" />
+    <Property Name="observaciones" Type="varchar" MaxLength="3000" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="cantidadDiasCebaderas" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CLIENTE_LOCACION_RESPONSABLE">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idClienteLocacion" Type="int" Nullable="false" />
+    <Property Name="apellido" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="habilitadoPortal" Type="bit" Nullable="false" />
+    <Property Name="usuarioPortal" Type="varchar" MaxLength="50" />
+    <Property Name="clavePortal" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="CLIENTE_LOCACION_RESPONSABLE_CONTACTO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idClienteLocacionResponsable" Type="int" Nullable="false" />
+    <Property Name="idContactoTipo" Type="int" Nullable="false" />
+    <Property Name="valor" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="observaciones" Type="varchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="CLIENTE_LOCACION_SECTOR">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idClienteLocacion" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CONTACTO_TIPO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CONTROL_PLAGA">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idClienteLocacion" Type="int" Nullable="false" />
+    <Property Name="idTipoTrampa" Type="int" Nullable="false" />
+    <Property Name="campoCondicion" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="operadorCondicion" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="valorCondicion" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CONTROL_PLAGA_DETALLE">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idControlPlaga" Type="int" />
+    <Property Name="idTarea" Type="int" />
+  </EntityType>
+  <EntityType Name="DOCUMENTO_TIPO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EMPLEADO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idDocumentoTipo" Type="int" Nullable="false" />
+    <Property Name="numeroDocumento" Type="bigint" Nullable="false" />
+    <Property Name="apellido" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="baja" Type="bit" />
+  </EntityType>
+  <EntityType Name="EMPLEADO_CONTACTO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idEmpleado" Type="int" Nullable="false" />
+    <Property Name="idContactoTipo" Type="int" Nullable="false" />
+    <Property Name="valor" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="observaciones" Type="varchar" MaxLength="2000" />
+    <Property Name="conexionApp" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GRAFICOS">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idTrampaTipo" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="otroFormatoEjeX" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MENU">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="menu" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="padre" Type="int" />
+  </EntityType>
+  <EntityType Name="MENU_USUARIO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idUsuario" Type="int" Nullable="false" />
+    <Property Name="idMenu" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ORDEN_TRABAJO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idOrdenTrabajoEstado" Type="int" Nullable="false" />
+    <Property Name="idClienteLocacion" Type="int" Nullable="false" />
+    <Property Name="fechaCargaOrden" Type="datetime" Nullable="false" />
+    <Property Name="fechaDeTrabajo" Type="datetime" Nullable="false" />
+    <Property Name="idEmpleado" Type="int" />
+  </EntityType>
+  <EntityType Name="ORDEN_TRABAJO_DETALLE">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idOrdenTrabajo" Type="int" Nullable="false" />
+    <Property Name="idTrampaClienteLocacionSector" Type="int" Nullable="false" />
+    <Property Name="idEstado" Type="int" />
+    <Property Name="idAccion" Type="int" />
+    <Property Name="moscas" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="mosquitas" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="polillas" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="mariposas" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="minusculos" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="cantidad" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="observaciones" Type="varchar" MaxLength="2000" />
+    <Property Name="cargado" Type="bit" />
+    <Property Name="roedor" Type="int" />
+    <Property Name="insecto" Type="int" />
+    <Property Name="cucaGermanica" Type="int" />
+    <Property Name="cucaAmericana" Type="int" />
+  </EntityType>
+  <EntityType Name="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idOrdenTrabajoDetalle" Type="int" />
+    <Property Name="idTarea" Type="int" />
+    <Property Name="realizado" Type="bit" />
+  </EntityType>
+  <EntityType Name="ORDEN_TRABAJO_DETALLE_ESTADO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idOrdenTrabajoDetalle" Type="int" Nullable="false" />
+    <Property Name="idEstado" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ORDEN_TRABAJO_ESTADO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PROVINCIA">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TAREA">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idTipoTrampa" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="2500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TRAMPA">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idTrampaTipo" Type="int" Nullable="false" />
+    <Property Name="idTrampaEstado" Type="int" Nullable="false" />
+    <Property Name="numero" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="observaciones" Type="varchar" MaxLength="3000" />
+  </EntityType>
+  <EntityType Name="TRAMPA_CLIENTE_LOCACION_SECTOR">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idClienteLocacionSector" Type="int" Nullable="false" />
+    <Property Name="idTrampa" Type="int" Nullable="false" />
+    <Property Name="fechaDesde" Type="datetime" Nullable="false" />
+    <Property Name="fechaHasta" Type="datetime" />
+    <Property Name="observacion" Type="varchar" MaxLength="3000" />
+  </EntityType>
+  <EntityType Name="TRAMPA_CONTROL_ACCION">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idTrampaTipo" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="abreviatura" Type="varchar" MaxLength="5" />
+    <Property Name="orden" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="TRAMPA_CONTROL_ESTADO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idTrampaTipo" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="abreviatura" Type="varchar" MaxLength="5" />
+    <Property Name="orden" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="TRAMPA_ESTADO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TRAMPA_TIPO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="multiSel" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="clave" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="mail" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="idUsuarioTipo" Type="int" />
+    <Property Name="idEmpleado" Type="int" />
+    <Property Name="idCliente" Type="int" />
+  </EntityType>
+  <EntityType Name="USUARIO_TIPO">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__USUARIO__idEmple__55BFB948">
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="0..1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLEADO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="idEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USUARIO__idUsuar__54CB950F">
+    <End Role="USUARIO_TIPO" Type="Self.USUARIO_TIPO" Multiplicity="0..1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO_TIPO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="idUsuarioTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA_TRAMPA_TIPO">
+    <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+    <End Role="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" Type="Self.CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRAMPA_TIPO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA">
+        <PropertyRef Name="idTrampaTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENTE_CONTACTO_CLIENTE">
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+    <End Role="CLIENTE_CONTACTO" Type="Self.CLIENTE_CONTACTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CLIENTE_CONTACTO">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENTE_CONTACTO_CONTACTO_TIPO">
+    <End Role="CONTACTO_TIPO" Type="Self.CONTACTO_TIPO" Multiplicity="1" />
+    <End Role="CLIENTE_CONTACTO" Type="Self.CLIENTE_CONTACTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTACTO_TIPO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CLIENTE_CONTACTO">
+        <PropertyRef Name="idContactoTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENTE_DOCUMENTO_TIPO">
+    <End Role="DOCUMENTO_TIPO" Type="Self.DOCUMENTO_TIPO" Multiplicity="1" />
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTO_TIPO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CLIENTE">
+        <PropertyRef Name="idDocumentoTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENTE_LOCACION_CLIENTE">
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+    <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CLIENTE_LOCACION">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENTE_LOCACION_PROVINCIA">
+    <End Role="PROVINCIA" Type="Self.PROVINCIA" Multiplicity="1" />
+    <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVINCIA">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CLIENTE_LOCACION">
+        <PropertyRef Name="idProvincia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENTE_LOCACION_RESPONSABLE_CLIENTE_LOCACION">
+    <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="1" />
+    <End Role="CLIENTE_LOCACION_RESPONSABLE" Type="Self.CLIENTE_LOCACION_RESPONSABLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE_LOCACION">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CLIENTE_LOCACION_RESPONSABLE">
+        <PropertyRef Name="idClienteLocacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CLIENTE_LOCACION_RESPONSABLE">
+    <End Role="CLIENTE_LOCACION_RESPONSABLE" Type="Self.CLIENTE_LOCACION_RESPONSABLE" Multiplicity="1" />
+    <End Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" Type="Self.CLIENTE_LOCACION_RESPONSABLE_CONTACTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE_LOCACION_RESPONSABLE">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO">
+        <PropertyRef Name="idClienteLocacionResponsable" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CONTACTO_TIPO">
+    <End Role="CONTACTO_TIPO" Type="Self.CONTACTO_TIPO" Multiplicity="1" />
+    <End Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" Type="Self.CLIENTE_LOCACION_RESPONSABLE_CONTACTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTACTO_TIPO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO">
+        <PropertyRef Name="idContactoTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION">
+    <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="1" />
+    <End Role="CLIENTE_LOCACION_SECTOR" Type="Self.CLIENTE_LOCACION_SECTOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE_LOCACION">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CLIENTE_LOCACION_SECTOR">
+        <PropertyRef Name="idClienteLocacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTROL_PLAGA">
+    <End Role="CONTROL_PLAGA" Type="Self.CONTROL_PLAGA" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CONTROL_PLAGA_DETALLE" Type="Self.CONTROL_PLAGA_DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTROL_PLAGA">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CONTROL_PLAGA_DETALLE">
+        <PropertyRef Name="idControlPlaga" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTROL_PLAGA_CLIENTE_LOCACION">
+    <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="1" />
+    <End Role="CONTROL_PLAGA" Type="Self.CONTROL_PLAGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE_LOCACION">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CONTROL_PLAGA">
+        <PropertyRef Name="idClienteLocacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTROL_PLAGA_TRAMPA_TIPO">
+    <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+    <End Role="CONTROL_PLAGA" Type="Self.CONTROL_PLAGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRAMPA_TIPO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CONTROL_PLAGA">
+        <PropertyRef Name="idTipoTrampa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLEADO_CONTACTO_CONTACTO_TIPO">
+    <End Role="CONTACTO_TIPO" Type="Self.CONTACTO_TIPO" Multiplicity="1" />
+    <End Role="EMPLEADO_CONTACTO" Type="Self.EMPLEADO_CONTACTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTACTO_TIPO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="EMPLEADO_CONTACTO">
+        <PropertyRef Name="idContactoTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLEADO_CONTACTO_EMPLEADO">
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+    <End Role="EMPLEADO_CONTACTO" Type="Self.EMPLEADO_CONTACTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLEADO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="EMPLEADO_CONTACTO">
+        <PropertyRef Name="idEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLEADO_DOCUMENTO_TIPO">
+    <End Role="DOCUMENTO_TIPO" Type="Self.DOCUMENTO_TIPO" Multiplicity="1" />
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTO_TIPO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="EMPLEADO">
+        <PropertyRef Name="idDocumentoTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GRAFICOS_TRAMPA_TIPO">
+    <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+    <End Role="GRAFICOS" Type="Self.GRAFICOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRAMPA_TIPO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GRAFICOS">
+        <PropertyRef Name="idTrampaTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MENU_MENU">
+    <End Role="MENU" Type="Self.MENU" Multiplicity="0..1" />
+    <End Role="MENU1" Type="Self.MENU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENU">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MENU1">
+        <PropertyRef Name="padre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MENU_USUARIO_MENU">
+    <End Role="MENU" Type="Self.MENU" Multiplicity="1" />
+    <End Role="MENU_USUARIO" Type="Self.MENU_USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MENU">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MENU_USUARIO">
+        <PropertyRef Name="idMenu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MENU_USUARIO_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="MENU_USUARIO" Type="Self.MENU_USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MENU_USUARIO">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_TRABAJO_DETALLE">
+    <End Role="ORDEN_TRABAJO_DETALLE" Type="Self.ORDEN_TRABAJO_DETALLE" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Type="Self.ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDEN_TRABAJO_DETALLE">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA">
+        <PropertyRef Name="idOrdenTrabajoDetalle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_TRABAJO_DETALLE_ESTADO_ORDEN_TRABAJO_DETALLE">
+    <End Role="ORDEN_TRABAJO_DETALLE" Type="Self.ORDEN_TRABAJO_DETALLE" Multiplicity="1" />
+    <End Role="ORDEN_TRABAJO_DETALLE_ESTADO" Type="Self.ORDEN_TRABAJO_DETALLE_ESTADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDEN_TRABAJO_DETALLE">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ORDEN_TRABAJO_DETALLE_ESTADO">
+        <PropertyRef Name="idOrdenTrabajoDetalle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_TRABAJO_DETALLE_ESTADO_TRAMPA_CONTROL_ESTADO">
+    <End Role="TRAMPA_CONTROL_ESTADO" Type="Self.TRAMPA_CONTROL_ESTADO" Multiplicity="1" />
+    <End Role="ORDEN_TRABAJO_DETALLE_ESTADO" Type="Self.ORDEN_TRABAJO_DETALLE_ESTADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRAMPA_CONTROL_ESTADO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ORDEN_TRABAJO_DETALLE_ESTADO">
+        <PropertyRef Name="idEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_TRABAJO_DETALLE_ORDEN_TRABAJO">
+    <End Role="ORDEN_TRABAJO" Type="Self.ORDEN_TRABAJO" Multiplicity="1" />
+    <End Role="ORDEN_TRABAJO_DETALLE" Type="Self.ORDEN_TRABAJO_DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDEN_TRABAJO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ORDEN_TRABAJO_DETALLE">
+        <PropertyRef Name="idOrdenTrabajo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CLIENTE_LOCACION_SECTOR">
+    <End Role="TRAMPA_CLIENTE_LOCACION_SECTOR" Type="Self.TRAMPA_CLIENTE_LOCACION_SECTOR" Multiplicity="1" />
+    <End Role="ORDEN_TRABAJO_DETALLE" Type="Self.ORDEN_TRABAJO_DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRAMPA_CLIENTE_LOCACION_SECTOR">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ORDEN_TRABAJO_DETALLE">
+        <PropertyRef Name="idTrampaClienteLocacionSector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ACCION">
+    <End Role="TRAMPA_CONTROL_ACCION" Type="Self.TRAMPA_CONTROL_ACCION" Multiplicity="0..1" />
+    <End Role="ORDEN_TRABAJO_DETALLE" Type="Self.ORDEN_TRABAJO_DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRAMPA_CONTROL_ACCION">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ORDEN_TRABAJO_DETALLE">
+        <PropertyRef Name="idAccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO">
+    <End Role="TRAMPA_CONTROL_ESTADO" Type="Self.TRAMPA_CONTROL_ESTADO" Multiplicity="0..1" />
+    <End Role="ORDEN_TRABAJO_DETALLE" Type="Self.ORDEN_TRABAJO_DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRAMPA_CONTROL_ESTADO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ORDEN_TRABAJO_DETALLE">
+        <PropertyRef Name="idEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_TRABAJO_EMPLEADO">
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="0..1" />
+    <End Role="ORDEN_TRABAJO" Type="Self.ORDEN_TRABAJO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLEADO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ORDEN_TRABAJO">
+        <PropertyRef Name="idEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_TRABAJO_ORDEN_TRABAJO">
+    <End Role="ORDEN_TRABAJO_ESTADO" Type="Self.ORDEN_TRABAJO_ESTADO" Multiplicity="1" />
+    <End Role="ORDEN_TRABAJO" Type="Self.ORDEN_TRABAJO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDEN_TRABAJO_ESTADO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ORDEN_TRABAJO">
+        <PropertyRef Name="idOrdenTrabajoEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDEN_TRABAJO_ORDEN_TRABAJO1">
+    <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="1" />
+    <End Role="ORDEN_TRABAJO" Type="Self.ORDEN_TRABAJO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE_LOCACION">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ORDEN_TRABAJO">
+        <PropertyRef Name="idClienteLocacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TAREA">
+    <End Role="TAREA" Type="Self.TAREA" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CONTROL_PLAGA_DETALLE" Type="Self.CONTROL_PLAGA_DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAREA">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CONTROL_PLAGA_DETALLE">
+        <PropertyRef Name="idTarea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TAREA_DETALLE">
+    <End Role="TAREA" Type="Self.TAREA" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Type="Self.ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAREA">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA">
+        <PropertyRef Name="idTarea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TAREA_TRAMPA_TIPO">
+    <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+    <End Role="TAREA" Type="Self.TAREA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRAMPA_TIPO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TAREA">
+        <PropertyRef Name="idTipoTrampa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRAMPA_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION_SECTOR">
+    <End Role="CLIENTE_LOCACION_SECTOR" Type="Self.CLIENTE_LOCACION_SECTOR" Multiplicity="1" />
+    <End Role="TRAMPA_CLIENTE_LOCACION_SECTOR" Type="Self.TRAMPA_CLIENTE_LOCACION_SECTOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE_LOCACION_SECTOR">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TRAMPA_CLIENTE_LOCACION_SECTOR">
+        <PropertyRef Name="idClienteLocacionSector" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRAMPA_CLIENTE_LOCACION_SECTOR_TRAMPA">
+    <End Role="TRAMPA" Type="Self.TRAMPA" Multiplicity="1" />
+    <End Role="TRAMPA_CLIENTE_LOCACION_SECTOR" Type="Self.TRAMPA_CLIENTE_LOCACION_SECTOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRAMPA">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TRAMPA_CLIENTE_LOCACION_SECTOR">
+        <PropertyRef Name="idTrampa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRAMPA_CONTROL_ACCION_TRAMPA_TIPO1">
+    <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+    <End Role="TRAMPA_CONTROL_ACCION" Type="Self.TRAMPA_CONTROL_ACCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRAMPA_TIPO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TRAMPA_CONTROL_ACCION">
+        <PropertyRef Name="idTrampaTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRAMPA_CONTROL_ESTADO_TRAMPA_TIPO">
+    <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+    <End Role="TRAMPA_CONTROL_ESTADO" Type="Self.TRAMPA_CONTROL_ESTADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRAMPA_TIPO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TRAMPA_CONTROL_ESTADO">
+        <PropertyRef Name="idTrampaTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRAMPA_TRAMPA_ESTADO">
+    <End Role="TRAMPA_ESTADO" Type="Self.TRAMPA_ESTADO" Multiplicity="1" />
+    <End Role="TRAMPA" Type="Self.TRAMPA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRAMPA_ESTADO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TRAMPA">
+        <PropertyRef Name="idTrampaEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRAMPA_TRAMPA_TIPO">
+    <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+    <End Role="TRAMPA" Type="Self.TRAMPA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRAMPA_TIPO">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TRAMPA">
+        <PropertyRef Name="idTrampaTipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIO_CLIENTE">
+    <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLIENTE">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_Fechas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FechaIni" Type="datetime" Mode="In" />
+    <Parameter Name="FechaFin" Type="datetime" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Fecha" Type="datetime" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="st_AutocompleteTrampas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="numero" Type="varchar" Mode="In" />
+    <Parameter Name="idTrampaTipo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="st_control_cantidad_requerida_estado_trampa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idTrampaClienteLocacionSector" Type="int" Mode="In" />
+    <Parameter Name="idAccion" Type="int" Mode="In" />
+    <Parameter Name="idEstado" Type="int" Mode="In" />
+    <Parameter Name="moscas" Type="int" Mode="In" />
+    <Parameter Name="mosquitas" Type="int" Mode="In" />
+    <Parameter Name="polillas" Type="int" Mode="In" />
+    <Parameter Name="mariposas" Type="int" Mode="In" />
+    <Parameter Name="minusculos" Type="int" Mode="In" />
+    <Parameter Name="cantidad" Type="int" Mode="In" />
+    <Parameter Name="roedor" Type="int" Mode="In" />
+    <Parameter Name="insecto" Type="int" Mode="In" />
+    <Parameter Name="cucaGermanica" Type="int" Mode="In" />
+    <Parameter Name="cucaAmericana" Type="int" Mode="In" />
+    <Parameter Name="observaciones" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="st_getCamposControlPlaga" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pIdTipoTrampa" Type="int" Mode="In" />
+  </Function>
+  <Function Name="st_getDatosExportacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pCliente" Type="int" Mode="In" />
+    <Parameter Name="pLocacion" Type="int" Mode="In" />
+    <Parameter Name="pPeriodo" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="st_getDatosGraficos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pGraficos" Type="varchar" Mode="In" />
+    <Parameter Name="pPeriodo" Type="datetime" Mode="In" />
+    <Parameter Name="pClienteLocacion" Type="int" Mode="In" />
+  </Function>
+  <Function Name="st_getDetalleTrampasOrdenTrabajo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idOrdenTrabajo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="st_getEmpListTask" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idEmpleado" Type="int" Mode="In" />
+    <Parameter Name="fechaDeTrabajo" Type="date" Mode="In" />
+  </Function>
+  <Function Name="st_getLastTrampaApp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idOrdenTrabajoDetalle" Type="int" Mode="In" />
+  </Function>
+  <Function Name="st_GetListAccionesTareas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idOrdenTrabajo" Type="int" Mode="In" />
+    <Parameter Name="idTipoTrampa" Type="int" Mode="In" />
+    <Parameter Name="idOrdenTrabajoDetalle" Type="int" Mode="In" />
+  </Function>
+  <Function Name="st_GetListaControlPlaga" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Cliente" Type="varchar" Mode="In" />
+    <Parameter Name="CliLoca" Type="varchar" Mode="In" />
+    <Parameter Name="TipoTrampa" Type="int" Mode="In" />
+    <Parameter Name="CamCond" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="st_getListadoTrampaClienteLocacionSector" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cliente" Type="varchar" Mode="In" />
+    <Parameter Name="locacion" Type="varchar" Mode="In" />
+    <Parameter Name="sector" Type="varchar" Mode="In" />
+    <Parameter Name="numero" Type="varchar" Mode="In" />
+    <Parameter Name="tipotrampa" Type="int" Mode="In" />
+  </Function>
+  <Function Name="st_getOrdenesTrabajo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cliente" Type="varchar" Mode="In" />
+    <Parameter Name="empleado" Type="varchar" Mode="In" />
+    <Parameter Name="fDesde" Type="date" Mode="In" />
+    <Parameter Name="fHasta" Type="date" Mode="In" />
+    <Parameter Name="estado" Type="int" Mode="In" />
+  </Function>
+  <Function Name="st_getTrampaApp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idClienteLocacion" Type="int" Mode="In" />
+    <Parameter Name="idTrampaTipo" Type="int" Mode="In" />
+    <Parameter Name="numeroTrampa" Type="varchar" Mode="In" />
+    <Parameter Name="idEmpleado" Type="int" Mode="In" />
+  </Function>
+  <Function Name="st_getTrampasOrdenTrabajo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tipoBusqueda" Type="char" Mode="In" />
+    <Parameter Name="idClienteLocacion" Type="int" Mode="In" />
+    <Parameter Name="idClienteLocacionSector" Type="int" Mode="In" />
+    <Parameter Name="idTrampaTipo" Type="int" Mode="In" />
+    <Parameter Name="pTrampadesde" Type="varchar" Mode="In" />
+    <Parameter Name="pTrampaHasta" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="st_validarTrampaCargaApp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idTrampaClienteLocacionSector" Type="int" Mode="In" />
+    <Parameter Name="idEmpleado" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="FoodDefense_DevModelStoreContainer">
+    <EntitySet Name="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" EntityType="Self.CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLIENTE_CONTACTO" EntityType="Self.CLIENTE_CONTACTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLIENTE_LOCACION" EntityType="Self.CLIENTE_LOCACION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLIENTE_LOCACION_RESPONSABLE" EntityType="Self.CLIENTE_LOCACION_RESPONSABLE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" EntityType="Self.CLIENTE_LOCACION_RESPONSABLE_CONTACTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLIENTE_LOCACION_SECTOR" EntityType="Self.CLIENTE_LOCACION_SECTOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CONTACTO_TIPO" EntityType="Self.CONTACTO_TIPO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CONTROL_PLAGA" EntityType="Self.CONTROL_PLAGA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CONTROL_PLAGA_DETALLE" EntityType="Self.CONTROL_PLAGA_DETALLE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOCUMENTO_TIPO" EntityType="Self.DOCUMENTO_TIPO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLEADO_CONTACTO" EntityType="Self.EMPLEADO_CONTACTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GRAFICOS" EntityType="Self.GRAFICOS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MENU" EntityType="Self.MENU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MENU_USUARIO" EntityType="Self.MENU_USUARIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDEN_TRABAJO" EntityType="Self.ORDEN_TRABAJO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDEN_TRABAJO_DETALLE" EntityType="Self.ORDEN_TRABAJO_DETALLE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" EntityType="Self.ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDEN_TRABAJO_DETALLE_ESTADO" EntityType="Self.ORDEN_TRABAJO_DETALLE_ESTADO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDEN_TRABAJO_ESTADO" EntityType="Self.ORDEN_TRABAJO_ESTADO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROVINCIA" EntityType="Self.PROVINCIA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TAREA" EntityType="Self.TAREA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TRAMPA" EntityType="Self.TRAMPA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TRAMPA_CLIENTE_LOCACION_SECTOR" EntityType="Self.TRAMPA_CLIENTE_LOCACION_SECTOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TRAMPA_CONTROL_ACCION" EntityType="Self.TRAMPA_CONTROL_ACCION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TRAMPA_CONTROL_ESTADO" EntityType="Self.TRAMPA_CONTROL_ESTADO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TRAMPA_ESTADO" EntityType="Self.TRAMPA_ESTADO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TRAMPA_TIPO" EntityType="Self.TRAMPA_TIPO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USUARIO_TIPO" EntityType="Self.USUARIO_TIPO" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__USUARIO__idEmple__55BFB948" Association="Self.FK__USUARIO__idEmple__55BFB948">
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USUARIO__idUsuar__54CB950F" Association="Self.FK__USUARIO__idUsuar__54CB950F">
+      <End Role="USUARIO_TIPO" EntitySet="USUARIO_TIPO" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA_TRAMPA_TIPO" Association="Self.FK_CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA_TRAMPA_TIPO">
+      <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+      <End Role="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" EntitySet="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENTE_CONTACTO_CLIENTE" Association="Self.FK_CLIENTE_CONTACTO_CLIENTE">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="CLIENTE_CONTACTO" EntitySet="CLIENTE_CONTACTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENTE_CONTACTO_CONTACTO_TIPO" Association="Self.FK_CLIENTE_CONTACTO_CONTACTO_TIPO">
+      <End Role="CONTACTO_TIPO" EntitySet="CONTACTO_TIPO" />
+      <End Role="CLIENTE_CONTACTO" EntitySet="CLIENTE_CONTACTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENTE_DOCUMENTO_TIPO" Association="Self.FK_CLIENTE_DOCUMENTO_TIPO">
+      <End Role="DOCUMENTO_TIPO" EntitySet="DOCUMENTO_TIPO" />
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENTE_LOCACION_CLIENTE" Association="Self.FK_CLIENTE_LOCACION_CLIENTE">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENTE_LOCACION_PROVINCIA" Association="Self.FK_CLIENTE_LOCACION_PROVINCIA">
+      <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+      <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENTE_LOCACION_RESPONSABLE_CLIENTE_LOCACION" Association="Self.FK_CLIENTE_LOCACION_RESPONSABLE_CLIENTE_LOCACION">
+      <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+      <End Role="CLIENTE_LOCACION_RESPONSABLE" EntitySet="CLIENTE_LOCACION_RESPONSABLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CLIENTE_LOCACION_RESPONSABLE" Association="Self.FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CLIENTE_LOCACION_RESPONSABLE">
+      <End Role="CLIENTE_LOCACION_RESPONSABLE" EntitySet="CLIENTE_LOCACION_RESPONSABLE" />
+      <End Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" EntitySet="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CONTACTO_TIPO" Association="Self.FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CONTACTO_TIPO">
+      <End Role="CONTACTO_TIPO" EntitySet="CONTACTO_TIPO" />
+      <End Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" EntitySet="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION" Association="Self.FK_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION">
+      <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+      <End Role="CLIENTE_LOCACION_SECTOR" EntitySet="CLIENTE_LOCACION_SECTOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTROL_PLAGA" Association="Self.FK_CONTROL_PLAGA">
+      <End Role="CONTROL_PLAGA" EntitySet="CONTROL_PLAGA" />
+      <End Role="CONTROL_PLAGA_DETALLE" EntitySet="CONTROL_PLAGA_DETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTROL_PLAGA_CLIENTE_LOCACION" Association="Self.FK_CONTROL_PLAGA_CLIENTE_LOCACION">
+      <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+      <End Role="CONTROL_PLAGA" EntitySet="CONTROL_PLAGA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTROL_PLAGA_TRAMPA_TIPO" Association="Self.FK_CONTROL_PLAGA_TRAMPA_TIPO">
+      <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+      <End Role="CONTROL_PLAGA" EntitySet="CONTROL_PLAGA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLEADO_CONTACTO_CONTACTO_TIPO" Association="Self.FK_EMPLEADO_CONTACTO_CONTACTO_TIPO">
+      <End Role="CONTACTO_TIPO" EntitySet="CONTACTO_TIPO" />
+      <End Role="EMPLEADO_CONTACTO" EntitySet="EMPLEADO_CONTACTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLEADO_CONTACTO_EMPLEADO" Association="Self.FK_EMPLEADO_CONTACTO_EMPLEADO">
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+      <End Role="EMPLEADO_CONTACTO" EntitySet="EMPLEADO_CONTACTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLEADO_DOCUMENTO_TIPO" Association="Self.FK_EMPLEADO_DOCUMENTO_TIPO">
+      <End Role="DOCUMENTO_TIPO" EntitySet="DOCUMENTO_TIPO" />
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GRAFICOS_TRAMPA_TIPO" Association="Self.FK_GRAFICOS_TRAMPA_TIPO">
+      <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+      <End Role="GRAFICOS" EntitySet="GRAFICOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MENU_MENU" Association="Self.FK_MENU_MENU">
+      <End Role="MENU" EntitySet="MENU" />
+      <End Role="MENU1" EntitySet="MENU" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MENU_USUARIO_MENU" Association="Self.FK_MENU_USUARIO_MENU">
+      <End Role="MENU" EntitySet="MENU" />
+      <End Role="MENU_USUARIO" EntitySet="MENU_USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MENU_USUARIO_USUARIO" Association="Self.FK_MENU_USUARIO_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="MENU_USUARIO" EntitySet="MENU_USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE" Association="Self.FK_ORDEN_TRABAJO_DETALLE">
+      <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+      <End Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" EntitySet="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_ESTADO_ORDEN_TRABAJO_DETALLE" Association="Self.FK_ORDEN_TRABAJO_DETALLE_ESTADO_ORDEN_TRABAJO_DETALLE">
+      <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+      <End Role="ORDEN_TRABAJO_DETALLE_ESTADO" EntitySet="ORDEN_TRABAJO_DETALLE_ESTADO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_ESTADO_TRAMPA_CONTROL_ESTADO" Association="Self.FK_ORDEN_TRABAJO_DETALLE_ESTADO_TRAMPA_CONTROL_ESTADO">
+      <End Role="TRAMPA_CONTROL_ESTADO" EntitySet="TRAMPA_CONTROL_ESTADO" />
+      <End Role="ORDEN_TRABAJO_DETALLE_ESTADO" EntitySet="ORDEN_TRABAJO_DETALLE_ESTADO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_ORDEN_TRABAJO" Association="Self.FK_ORDEN_TRABAJO_DETALLE_ORDEN_TRABAJO">
+      <End Role="ORDEN_TRABAJO" EntitySet="ORDEN_TRABAJO" />
+      <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CLIENTE_LOCACION_SECTOR" Association="Self.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CLIENTE_LOCACION_SECTOR">
+      <End Role="TRAMPA_CLIENTE_LOCACION_SECTOR" EntitySet="TRAMPA_CLIENTE_LOCACION_SECTOR" />
+      <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ACCION" Association="Self.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ACCION">
+      <End Role="TRAMPA_CONTROL_ACCION" EntitySet="TRAMPA_CONTROL_ACCION" />
+      <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO" Association="Self.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO">
+      <End Role="TRAMPA_CONTROL_ESTADO" EntitySet="TRAMPA_CONTROL_ESTADO" />
+      <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_TRABAJO_EMPLEADO" Association="Self.FK_ORDEN_TRABAJO_EMPLEADO">
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+      <End Role="ORDEN_TRABAJO" EntitySet="ORDEN_TRABAJO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_TRABAJO_ORDEN_TRABAJO" Association="Self.FK_ORDEN_TRABAJO_ORDEN_TRABAJO">
+      <End Role="ORDEN_TRABAJO_ESTADO" EntitySet="ORDEN_TRABAJO_ESTADO" />
+      <End Role="ORDEN_TRABAJO" EntitySet="ORDEN_TRABAJO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDEN_TRABAJO_ORDEN_TRABAJO1" Association="Self.FK_ORDEN_TRABAJO_ORDEN_TRABAJO1">
+      <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+      <End Role="ORDEN_TRABAJO" EntitySet="ORDEN_TRABAJO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TAREA" Association="Self.FK_TAREA">
+      <End Role="TAREA" EntitySet="TAREA" />
+      <End Role="CONTROL_PLAGA_DETALLE" EntitySet="CONTROL_PLAGA_DETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TAREA_DETALLE" Association="Self.FK_TAREA_DETALLE">
+      <End Role="TAREA" EntitySet="TAREA" />
+      <End Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" EntitySet="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TAREA_TRAMPA_TIPO" Association="Self.FK_TAREA_TRAMPA_TIPO">
+      <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+      <End Role="TAREA" EntitySet="TAREA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRAMPA_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION_SECTOR" Association="Self.FK_TRAMPA_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION_SECTOR">
+      <End Role="CLIENTE_LOCACION_SECTOR" EntitySet="CLIENTE_LOCACION_SECTOR" />
+      <End Role="TRAMPA_CLIENTE_LOCACION_SECTOR" EntitySet="TRAMPA_CLIENTE_LOCACION_SECTOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRAMPA_CLIENTE_LOCACION_SECTOR_TRAMPA" Association="Self.FK_TRAMPA_CLIENTE_LOCACION_SECTOR_TRAMPA">
+      <End Role="TRAMPA" EntitySet="TRAMPA" />
+      <End Role="TRAMPA_CLIENTE_LOCACION_SECTOR" EntitySet="TRAMPA_CLIENTE_LOCACION_SECTOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRAMPA_CONTROL_ACCION_TRAMPA_TIPO1" Association="Self.FK_TRAMPA_CONTROL_ACCION_TRAMPA_TIPO1">
+      <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+      <End Role="TRAMPA_CONTROL_ACCION" EntitySet="TRAMPA_CONTROL_ACCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRAMPA_CONTROL_ESTADO_TRAMPA_TIPO" Association="Self.FK_TRAMPA_CONTROL_ESTADO_TRAMPA_TIPO">
+      <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+      <End Role="TRAMPA_CONTROL_ESTADO" EntitySet="TRAMPA_CONTROL_ESTADO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRAMPA_TRAMPA_ESTADO" Association="Self.FK_TRAMPA_TRAMPA_ESTADO">
+      <End Role="TRAMPA_ESTADO" EntitySet="TRAMPA_ESTADO" />
+      <End Role="TRAMPA" EntitySet="TRAMPA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRAMPA_TRAMPA_TIPO" Association="Self.FK_TRAMPA_TRAMPA_TIPO">
+      <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+      <End Role="TRAMPA" EntitySet="TRAMPA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIO_CLIENTE" Association="Self.FK_USUARIO_CLIENTE">
+      <End Role="CLIENTE" EntitySet="CLIENTE" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

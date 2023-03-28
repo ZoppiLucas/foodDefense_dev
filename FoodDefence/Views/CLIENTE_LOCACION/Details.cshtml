@@ -1,0 +1,237 @@
+﻿@model FoodDefence.Models.CLIENTE_LOCACION
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="callout callout-primary">
+    <h4><i class="fa fa-map-marker"></i>Locación</h4>
+    <br />
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formDetailsClienteLocacion" }))
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <p class="font-weight-bold">Cliente</p>
+                <div>
+                    @Html.Display("ClienteNombre", (string)ViewBag.ClienteNombre)
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <p class="font-weight-bold">Locación</p>
+                <div>
+                    @Html.DisplayFor(model => model.descripcion)
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <p class="font-weight-bold">Cantidad de días cebaderas</p>
+                <div>
+                    @Html.DisplayFor(model => model.cantidadDiasCebaderas)
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <p class="font-weight-bold">Provincia</p>
+                <div class="">
+                    @Html.Display("ProvinciaNombre", (string)ViewBag.ProvinciaNombre)
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <p class="font-weight-bold">Localidad</p>
+                <div class="">
+                    @Html.DisplayFor(model => model.localidad)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group col-md-3">
+                <p class="font-weight-bold">Calle</p>
+                <div class="">
+                    @Html.DisplayFor(model => model.calle)
+                </div>
+            </div>
+
+            <div class="form-group col-md-3">
+                <p class="font-weight-bold">Número</p>
+                <div>
+                    @Html.DisplayFor(model => model.numero)
+                </div>
+            </div>
+
+            <div class="form-group col-md-3">
+                <p class="font-weight-bold">Piso</p>
+                <div>
+                    @Html.DisplayFor(model => model.piso)
+                </div>
+            </div>
+
+            <div class="form-group col-md-3">
+                <p class="font-weight-bold">Departamento</p>
+                <div>
+                    @Html.DisplayFor(model => model.departamento)
+                </div>
+            </div>
+        </div>
+        <div id="divResponsable" class="form-row">
+            <div class="form-group col-md-12">
+                <p class="font-weight-bold">Responsables</p>
+                <div id="div_tblDatosResponsable" class="mt-2">
+                    <table id="tblDatosResponsable"></table>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <p class="font-weight-bold">Observaciones</p>
+                <div>
+                    @Html.DisplayFor(model => model.observaciones)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-outline-primary ml-2", @id = "btnVolver" })
+        </div>
+    </div>
+    }
+</div>
+
+
+<!-- Modal Responsables -->
+<div class="modal fade" data-backdrop="static" id="ResponsableModal" data-url='@Url.Action("Responsable")' role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Responsable</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="ResponsableModalBody" class="modal-body">
+                Espere por favor......
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+<!-- Bootstrap Modal Confirm -->
+<div class="modal" tabindex="-1" role="dialog" id="modalConfirmLocacion">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-p"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="modal-btn-si" class="btn btn-primary">Si</button>
+                <button type="button" id="modal-btn-no" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="modalAlert" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                <h4 class="modal-title">Atención</h4>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        var datos = @(Html.Raw(Json.Encode(ViewBag.lstResponsables)));
+        agregarResponsableAhtml(datos);
+
+    });
+
+    
+    function verResponsable(id) {
+        var url = '@Url.Action("ResponsableDetails")' + '/' + id
+
+        $.get(url, function(data) {
+            $('#ResponsableModalBody').html(data);
+            $('#ResponsableModal').modal('show');
+        });
+    }
+
+
+
+    function agregarResponsableAhtml(lstResponsables) {
+        $('#tblDatosResponsable').remove();
+        $('#DatosContacto').remove();
+        $('#divResponsable').hide();
+        if (lstResponsables.length > 0) {                        
+            $('#divResponsable').show();
+            $('#div_tblDatosResponsable').append(
+                ' <table id="tblDatosResponsable" class="table table-sm" align="center"> '
+                + '<thead> '
+                + ' <tr class="d-flex">'
+                + ' <th scope="col" class="col-4">' + 'Apellido' + ' </th>'
+                + ' <th scope="col" class="col-4">' + 'Nombre' + ' </th>'
+                + ' <th scope="col" class="col-4">' + ' ' + ' </th>'
+                + ' </thead>'
+                + ' </table> ');
+
+            let listaResponsables = "";
+
+            for (var i = 0; i < lstResponsables.length; i++) {
+                //html
+                listaResponsables = listaResponsables + '<tr class="d-flex"> ' +
+                    '<td class="col-4">' + lstResponsables[i].apellido + '</td> ' +
+                    '<td class="col-4">' + lstResponsables[i].nombre + '</td>' +
+                    '<td class="col-4">' + '<button  type="button" class="btn btn-outline-primary btn-sm ml-1" onClick="verResponsable(' + i + ')" id="btn_ver_' + i + '"' + '>Ver</button>' + '</td>' +
+                    '</tr>';
+            }
+
+            $('#tblDatosResponsable').append('<tbody>' + listaResponsables + '</tbody>');
+
+
+        }
+    }
+
+
+    function ocultarModalConfirm() {
+        $('#modalConfirmLocacion').modal('hide');
+    }
+    $('#modalConfirmLocacion' + ' #modal-btn-no').on('click', function () {
+        ocultarModalConfirm();
+    });
+
+
+
+</script>

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<FoodDefence.Models.TRAMPA_CLIENTE_LOCACION_SECTOR>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="callout callout-primary">
+    <h4><i class="fa fa-random"></i> Trampas asociadas</h4>
+    <br />
+
+
+    <p>
+        @Html.ActionLink("Asociar trampa", "Create", "TRAMPA_CLIENTE_LOCACION_SECTOR", null, new { @class = "btn btn-outline-primary" })
+    </p>
+
+    <div class="table-responsive-sm">
+        <table class="table-sm">
+            <tr>
+                <td>
+                    Cliente
+                </td>
+                <td>
+                    Locación
+                </td>
+                <td>
+                    Sector
+                </td>
+                <td>
+                    Tipo trampa
+                </td>
+                <td>
+                    Número
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => Model.FirstOrDefault().CLIENTE_LOCACION_SECTOR.CLIENTE_LOCACION.CLIENTE.razonSocial, new { htmlAttributes = new { @class = "form-control", id = "txtCliente" } })
+                </td>
+                <td>
+                    @Html.EditorFor(model => Model.FirstOrDefault().CLIENTE_LOCACION_SECTOR.CLIENTE_LOCACION.descripcion, new { htmlAttributes = new { @class = "form-control", id = "txtLocacion" } })
+                </td>
+                <td>
+                    @Html.EditorFor(model => Model.FirstOrDefault().CLIENTE_LOCACION_SECTOR.descripcion, new { htmlAttributes = new { @class = "form-control", id = "txtSector" } })
+                </td>
+                <td>
+                    @Html.DropDownList("idTrampaTipo", null, "Todos", htmlAttributes: new { @class = "form-control", id = "cmbTipoTrampa" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => Model.FirstOrDefault().TRAMPA.numero, new { htmlAttributes = new { @class = "form-control", id = "txtNumero" } })
+                </td>
+                <td>
+                    <input type="button" id="btnBuscar" class="btn btn-outline-secondary" onclick="btnBuscar_onclic()" value="Buscar" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="divTabla">
+
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+        limpiar();
+    });
+
+    function limpiar() {
+        $("#txtCliente").val('');
+        $('#txtLocacion').val('');
+        $('#txtSector').val('');
+        $('#cmbTipoTrampa').find('option:contains("' + "Todos" + '")').prop('selected', true);
+        $('#txtNumero').val('');
+    }
+    function btnBuscar_onclic() {
+        var lCliente= $('#txtCliente').val();
+        var lLocacion = $('#txtLocacion').val();
+        var lSector = $('#txtSector').val();
+        var lTipoTrampa = $('#cmbTipoTrampa').val();
+        var lNumero = $('#txtNumero').val();
+
+        $.ajax({
+                url: '@Url.Action("ListadoTrampaClienteLocacionSector", "TRAMPA_CLIENTE_LOCACION_SECTOR")'
+                , data: {
+                        pCliente: lCliente
+                        , pLocacion: lLocacion
+                        , pSector: lSector
+                        , pTipotrampa: lTipoTrampa
+                        , pNumero: lNumero}
+            , success: function (data) { $("#divTabla").html(data);
+                                        limpiar();
+                                        }
+        });
+    }
+</script>
+

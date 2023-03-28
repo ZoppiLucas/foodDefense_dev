@@ -1,0 +1,129 @@
+﻿@model FoodDefence.Models.CONTROL_PLAGA
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="@Url.Content("~/Scripts/jquery-ui.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
+
+<div class="callout callout-primary">
+    <h4><i class="fa fa-map-marker"></i> Nuevas Acciones por Locación</h4>
+    <br />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    Cliente Locación
+                    <div class="col-md-10">
+                        @Html.DropDownList("idClienteLocacion", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.idClienteLocacion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    Tipo Trampa
+                    <div class="col-md-10">
+                        @Html.DropDownList("idTipoTrampa", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.idTipoTrampa, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3">
+                    Campo Condición
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.campoCondicion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.operadorCondicion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    Operador
+                    <div class="col-md-20">
+                        @Html.DropDownList("operadorCondicion", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3">
+                    Valor
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.valorCondicion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.valorCondicion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-10">
+                    Tareas
+                    <div id="divIdTarea">
+                        @Html.ListBox("idTarea", ViewBag.idTarea as MultiSelectList,
+                                        htmlAttributes: new { @class = "form-control", @id = "idTarea", required = "required", @data_wait = "modal-control", @style = "display:none" })
+                        @Html.ValidationMessageFor(model => model.operadorCondicion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" id="btnGuardar" class="btn btn-outline-success">Guardar</button>
+                @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-outline-primary ml-2", @id = "btnVolver" })
+            </div>
+
+            <div id="validaciones" class="alert alert-danger" role="alert">
+                <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                @ViewBag.ValidacionesControlPlaga
+            </div>
+        </div>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    var Ingreso = '@ViewBag.ValidacionesControlPlaga'
+    var cboTipoTrampa = document.getElementById("idTipoTrampa");
+    cboTipoTrampa.addEventListener("change", actTarea);
+
+    $(document).ready(function () {
+
+        //controles
+        if (Ingreso != '') {
+            $("#validaciones").show();
+        }
+        else {
+            $("#validaciones").hide();
+        }
+
+        actMultiCombo();
+        //$("#idTarea").chosen();
+
+    });
+
+    function actTarea() {
+        $.ajax({
+                url: '@Url.Action("actTarea", "CONTROL_PLAGA")'
+                , data: {
+                    pIdTrampaTipo: cboTipoTrampa.value
+                }
+            , success: function (data) {
+                    $("#divIdTarea").html(data);
+                    actMultiCombo();
+                }
+        });
+    }
+    
+    function actMultiCombo() {
+        $("#idTarea").multiselect({
+            includeSelectAllOption: true,            
+            selectAllText: '¡Marcar todo!',
+            delimiterText: ' - ',
+        });
+    }
+
+</script>

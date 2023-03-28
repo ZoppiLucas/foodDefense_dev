@@ -1,0 +1,1005 @@
+﻿@model FoodDefence.Models.ORDEN_TRABAJO
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="@Url.Content("~/Scripts/jquery-ui.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
+
+<div class="callout callout-primary">
+
+    <h4><i class="fa fa-file-text"></i> Orden de Trabajo</h4>
+    <br />
+
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formCreateOrden" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    Fecha de carga
+                    <div>
+                        @Html.TextBox("txtFechaCarga", Model.fechaCargaOrden, "{0:dd/MM/yyyy}", new { @class = "form-control", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.fechaCargaOrden, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.fechaCargaOrden)
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    Fecha de realización de trabajo
+                    <div>
+                        @Html.EditorFor(model => model.fechaDeTrabajo, new { htmlAttributes = new { @class = "form-control", @id = "txtFechaDeTrabajo" } })
+                        @Html.ValidationMessageFor(model => model.fechaDeTrabajo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    Técnico
+                    <div>
+                        @Html.DropDownList("idEmpleado", null, "Sin declarar Técnico", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.idEmpleado, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    Cliente
+                    <div>
+                        @Html.DropDownList("idCliente", null, "Seleccione un cliente", htmlAttributes: new { @class = "form-control", @id = "cmbCliente" })
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    Locación
+                    <div>
+                        @Html.DropDownList("cmbClienteLocacion", Enumerable.Empty<SelectListItem>(), "Primero seleccione un cliente", htmlAttributes: new { @class = "form-control", @required = "required" })
+                        @Html.ValidationMessageFor(model => model.idClienteLocacion, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.idClienteLocacion, new { @id = "idClienteLocacion" })
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div id="divTrampasAcontrolar" style="display:none">
+                <div class="form-row">
+                    Trampas a controlar
+                </div>
+                <div class="form-row mb-2">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-primary border-white active">
+                            <input type="radio" name="options" id="option1" onclick="configurarOpciones('T')" autocomplete="off"> Todas
+                        </label>
+                        <label class="btn btn-primary border-white">
+                            <input type="radio" name="options" id="option2" onclick="configurarOpciones('S')" autocomplete="off"> Por Sector
+                        </label>
+                        <label class="btn btn-primary border-white">
+                            <input type="radio" name="options" id="option3" onclick="configurarOpciones('I')" autocomplete="off"> Por Tipo Trampa
+                        </label>
+                        <label class="btn btn-primary border-white">
+                            <input type="radio" name="options" id="option4" onclick="configurarOpciones('N')" autocomplete="off"> Por Trampa
+                        </label>
+                        <label class="btn btn-primary border-white">
+                            <input type="radio" name="options" id="option7" onclick="configurarOpciones('R')" autocomplete="off"> Por Rango de Trampas
+                        </label>
+                        <label class="btn btn-primary border-white">
+                            <input type="radio" name="options" id="option5" onclick="configurarOpciones('C')" autocomplete="off"> Por Cebos Consumidos
+                        </label>
+                        <label class="btn btn-danger border-white">
+                            <input type="radio" name="options" id="option6" onclick="borrarTodoConfirm()" autocomplete="off"> Borrar Todo
+                        </label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div id="divTodas" style="display:none" class="form-group col-md-6">
+                        <label></label>
+                        <div class="alert alert-warning" role="alert">
+                            Se agregaran automáticamente todas las trampas de la locación
+                        </div>
+                    </div>
+                    <div id="divCebadera" style="display:none" class="form-group col-md-7">
+                        <label></label>
+                        <div class="alert alert-warning" role="alert">
+                            Se agregaran automáticamente todas las trampas por cebaderas consumidas
+                        </div>
+                    </div>
+                    <div id="divSector" style="display:none" class="form-group col-md-3">
+                        Sector
+                        <div>
+                            @Html.DropDownList("cmbClienteLocacionSector", Enumerable.Empty<SelectListItem>(), htmlAttributes: new { @class = "form-control", @id = "cmbClienteLocacionSector" })
+                        </div>
+                    </div>
+                    <div id="divTipoTrama" style="display:none" class="form-group col-md-3">
+                        Tipo de Trampa
+                        <div>
+                            @Html.DropDownList("cmbTipoTrampa", Enumerable.Empty<SelectListItem>(), "Primero seleccione un sector", htmlAttributes: new { @class = "form-control", @id = "cmbTipoTrampa" })
+                        </div>
+                    </div>
+                    <div id="divTrampa" style="display:none" class="form-group col-md-4">
+                        Trampa
+                        <div>
+                            <input type="text" name="txtNumeroTrampa" id="txtNumeroTrampa" value="" class="form-control" placeholder="Número de Trampa" />
+                            <input type="hidden" name="idTrampaClienteLocacionSector" id="idTrampaClienteLocacionSector" />
+                            <input type="hidden" name="idTrampaClienteLocacionSector_descripcion" id="idTrampaClienteLocacionSector_descripcion" />
+                        </div>
+                    </div>
+                    <div id="divRangoTrampaD" style="display:none" class="form-group col-md-3">
+                        Trampa desde
+                        <div>
+                            <input type="text" name="txtNumeroTrampaD" id="txtNumeroTrampaD" value="" class="form-control" placeholder="Número de Trampa" />
+                            <input type="hidden" name="idTrampaClienteLocacionSectorD" id="idTrampaClienteLocacionSectorD" />
+                            <input type="hidden" name="idTrampaClienteLocacionSector_descripcionD" id="idTrampaClienteLocacionSector_descripcionD" />
+                        </div>
+                    </div>
+                    <div id="divRangoTrampaH" style="display:none" class="form-group col-md-3">
+                        Trampa hasta
+                        <div>
+                            <input type="text" name="txtNumeroTrampaH" id="txtNumeroTrampaH" value="" class="form-control" placeholder="Número de Trampa" />
+                            <input type="hidden" name="idTrampaClienteLocacionSectorH" id="idTrampaClienteLocacionSectorH" />
+                            <input type="hidden" name="idTrampaClienteLocacionSector_descripcionH" id="idTrampaClienteLocacionSector_descripcionH" />
+                        </div>
+                    </div>
+                    <div id="divAgregar" style="display:none" class="form-group col-md-1">
+                        <label></label>
+                        <button type="button" id="btnAgregar" onclick="agregarTrampa();" class="btn btn-outline-primary">Agregar</button>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div id="div_tblDatosTrampas" class="col-md-12" >
+                        <table id="tblDatosTrampas"></table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="button" id="btnGuardar" class="btn btn-outline-success">Guardar</button>
+                @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-outline-primary ml-2", @id = "btnVolver" })
+            </div>
+
+            <div id="validaciones" class="alert alert-danger" role="alert">
+                <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                @ViewBag.ValidacionesOrdenTrabajo
+            </div>
+        </div>
+    }
+
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="modalAlert" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                <h4 class="modal-title">Atención</h4>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap Modal Confirm -->
+<div class="modal" tabindex="-1" role="dialog" id="modalConfirm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-p"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="modal-btn-si" class="btn btn-primary">Si</button>
+                <button type="button" id="modal-btn-no" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- snackbars -->
+<div id="snackbarSuccess"></div>
+<div id="snackbarAlert"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    var Ingreso = '@ViewBag.ValidacionesOrdenTrabajo';
+    var agregarTrampaOpciones = '';
+    var valid;
+    var validFind;
+    var cantTrampas;
+
+    $(document).ready(function () {
+        //controles
+        if (Ingreso != '') {
+            $("#validaciones").show();
+        }
+        else {
+            $("#validaciones").hide();
+        }
+
+        $("#txtFechaDeTrabajo").rules("remove");
+        $('#txtFechaDeTrabajo').rules('add', {
+            required: true   // set a new rule
+        });
+
+        $(function () {
+            $('#txtFechaDeTrabajo').datetimepicker({
+                format: 'DD/MM/YYYY',
+                locale: 'es'
+            });
+            $('#txtFechaDeTrabajo').data("DateTimePicker").minDate(moment("01/10/2020", "DD/MM/YYYY"));
+        });
+        var lstTrampaCargadas = '@ViewBag.lstTrampaCargadas';
+        cantTrampas = 0;
+        if (lstTrampaCargadas == "S") { 
+            var datos = @(Html.Raw(Json.Encode(ViewBag.lstTrampa)));
+            cargarTrampas(datos, 'S');            
+            $('#cmbClienteLocacion').attr("disabled", true);
+            $('#cmbCliente').attr("disabled", true);
+            $('#divTrampasAcontrolar').show();
+        }
+    });
+
+    $("#txtNumeroTrampa").bind("keypress", function (e) {
+        if (e.keyCode == 13) {
+            return false;
+        }
+    });
+
+    $("#txtNumeroTrampaD").bind("keypress", function (e) {
+        if (e.keyCode == 13) {
+            return false;
+        }
+    });
+
+    $("#txtNumeroTrampaH").bind("keypress", function (e) {
+        if (e.keyCode == 13) {
+            return false;
+        }
+    });
+
+    $("#btnGuardar").click(function () {        
+        var f1 = new Date($("#txtFechaDeTrabajo").val());
+        var f2 = new Date(moment().format("DD/MM/YYYY"));
+        if (f1 <= f2) {
+            $('#modalConfirm' + ' #modal-p').html("La fecha de realización de trabajo es menor o igual al dia de hoy. ¿Desea continuar?");
+            $('#modalConfirm' + ' #modal-btn-si').off("click");
+            $('#modalConfirm' + ' #modal-btn-si').on('click', function () {
+                ocultarModalConfirm();
+                $("#formCreateOrden").submit();
+            });
+            $('#modalConfirm').modal('show');
+        }
+        else {
+            $("#formCreateOrden").submit();
+        }
+    });
+
+    function GetDate(date) {
+        var parts = date.split('/');
+        return new Date(parts[2], parts[1], parts[0],0,0,0,0);
+    };
+
+    $("#formCreateOrden").submit(function (event) {
+
+        if ($(this).valid()) {            
+            $('#btnGuardar').html('<span class="spinner-border spinner-border-sm mr-2 text-success" role="status" aria-hidden="true"></span>Guardando...').addClass('disabled');
+            $("#btnGuardar").attr("disabled", true);
+            $("#btnVolver").attr("disabled", true);
+            $("#btnVolver").addClass('disabled');
+        }
+    });
+
+    $('#cmbCliente').change(function () {
+            $("#cmbCliente option[value='']").remove();
+            cargarComboLocacion();
+        });
+
+    $('#cmbClienteLocacion').change(function () {
+        $("#cmbClienteLocacion option[value='']").remove();
+        $('#idClienteLocacion').val($("#cmbClienteLocacion").val());
+        $('#divTrampasAcontrolar').show();
+    });
+
+    $('#cmbClienteLocacionSector').change(function () {
+        if (agregarTrampaOpciones == 'S') { 
+            $("#cmbClienteLocacionSector option[value='']").remove();
+        }
+    });
+
+    $('#cmbTipoTrampa').change(function () {
+        $("#cmbTipoTrampa option[value='']").remove();        
+    });
+
+    function cargarComboLocacion() {
+        var lcliente = $('#cmbCliente').val();
+        $.ajax({
+            url: '@Url.Action("ComboClienteLocacion", "CLIENTE_LOCACION_SECTOR")'
+            , type:"GET"
+            , dataType: 'json'
+            , data: {pCliente: lcliente}
+            , success: function (data) {
+                $('#cmbClienteLocacion').empty();
+                $('#cmbClienteLocacion').append("<option value=''>Seleccione una locación</option>");
+                $.each(data, function (index, row) {
+                    $('#cmbClienteLocacion').append("<option value='" + row.id + "'>" + row.descripcion + "</option>");
+                });
+            }
+        });
+    }
+
+    function cargarComboLocacionSector() {
+        var lLocacion = $('#cmbClienteLocacion').val();
+        $.ajax({
+            url: '@Url.Action("ComboClienteLocacionSector", "TRAMPA_CLIENTE_LOCACION_SECTOR")'
+            , type:"GET"
+            , dataType: 'json'
+            , data: {pLocacion: lLocacion}
+            , success: function (data) {
+                if (agregarTrampaOpciones == 'I') {
+                    $('#cmbClienteLocacionSector').empty();
+                    $('#cmbClienteLocacionSector').append("<option value='0'>Todos</option>");
+                }
+                else {
+                    $('#cmbClienteLocacionSector').empty();
+                    $('#cmbClienteLocacionSector').append("<option value=''>Seleccione un sector</option>");
+                }
+                
+                $.each(data, function (index, row) {
+                    $('#cmbClienteLocacionSector').append("<option value='" + row.id + "'>" + row.descripcion + "</option>");
+                });
+                $("#divSector").show();
+                if (agregarTrampaOpciones === 'I') {
+                    cargarComboTipoTrampa();
+                }
+            }
+        });
+    }
+
+    function cargarComboTipoTrampa() {
+        $.ajax({
+            url: '@Url.Action("ComboTipoTrampa")'
+            , success: function (data) {
+                $('#cmbTipoTrampa').empty();
+                $('#cmbTipoTrampa').append("<option value=''>Seleccione un tipo de trampa</option>");
+                $.each(data, function (index, row) {
+                    $('#cmbTipoTrampa').append("<option value='" + row.id + "'>" + row.descripcion + "</option>");
+                });
+                $("#divTipoTrama").show();
+            }
+        });
+    }
+
+    function configurarOpciones(value) {
+
+        $("#divSector").hide();
+        $("#divTodas").hide();
+        $("#divTipoTrama").hide();
+        $("#divTrampa").hide();
+        $("#divRangoTrampaD").hide();
+        $("#divRangoTrampaH").hide();
+        $("#divCebadera").hide();
+        $("#divAgregar").show();
+        limpiarNumeroTrampa();
+        limpiarNumeroTrampaD();
+        limpiarNumeroTrampaH();
+
+        $('#cmbClienteLocacion').attr("disabled", true);
+        $('#cmbCliente').attr("disabled", true);
+
+        switch (value) {
+            case 'T':
+                agregarTrampaOpciones = 'T';
+                $("#divTodas").show();
+                break;
+            case 'S':
+                agregarTrampaOpciones = 'S';
+                cargarComboLocacionSector();
+                break;
+            case 'I':
+                agregarTrampaOpciones = 'I';
+                cargarComboLocacionSector();
+                break;
+            case 'C':
+                agregarTrampaOpciones = 'C';
+                $("#divCebadera").show();
+                break;
+            case 'N':
+                agregarTrampaOpciones = 'N';         
+                $("#divTrampa").show();
+                $("#txtNumeroTrampa").focus();                
+                break;
+            case 'R':
+                agregarTrampaOpciones = 'R';
+                $("#divRangoTrampaD").show();
+                $("#divRangoTrampaH").show();
+                $("#txtNumeroTrampaD").focus();
+                break;
+        }
+    }
+
+    var autocompleteNumeroTrampa = "";
+    var autocompleteNumeroTrampaDatos = 0;
+    $("#txtNumeroTrampa").autocomplete({
+        source: function (request, response) {
+
+            var lNumero = $('#txtNumeroTrampa').val();
+            var lLocacion = $('#cmbClienteLocacion').val();
+            $.ajax({
+                url: '@Url.Action("buscarTrampas")',
+                dataType: "json",
+                data: {
+                    featureClass: "P",
+                    style: "full",
+                    pLocacion: lLocacion,
+                    pNumero: lNumero
+                },
+                success: function (data) {
+                  //  $("#txtNumeroTrampa").removeClass("ui-autocomplete-loading");
+                        if (data != '') {
+                            validFind = true;
+                            autocompleteNumeroTrampa = data;
+                            autocompleteNumeroTrampaDatos = 1;
+                            response($.map(data, function (data) {
+                                return {
+                                    label: data.descripcion,
+                                    value: data.numero,
+                                    id: data.idTrampaClienteLocacionSector,
+                                    descripcion: data.descripcion
+                                }
+                            }));
+                        }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+        },
+        minLength: 2,
+        autoFocus: true,
+        select: function (event, ui) {
+            $("#idTrampaClienteLocacionSector").val(ui.item.id);
+            $("#idTrampaClienteLocacionSector_descripcion").val(ui.item.descripcion);
+
+            valid = true;
+            autocompleteNumeroTrampaDatos = 0;
+        },
+        close: function (e) {
+            if (validFind) {
+                if (!valid) $(this).val('');
+            }
+        },
+        open: function (e) {
+            valid = false;
+        }
+    }).autocomplete("instance")._renderItem = function (ul, item) {
+        return $("<li>")
+            .append('<span class="autoTitle">' + item.value + '</span>  <span  class="autoDesc">' + item.label + '</span>')
+            .appendTo(ul);
+    };
+
+    $("#txtNumeroTrampa").keydown(function (event) {
+        $('#txtNumeroTrampa').autocomplete('option', 'minLength', 2);
+        if (event.keyCode == 40 && autocompleteNumeroTrampaDatos == 0) {
+            $('#txtNumeroTrampa').val('');
+            $('#txtNumeroTrampa').autocomplete('option', 'minLength', 0);
+            $('#txtNumeroTrampa').autocomplete('search', '');
+        }
+    });
+
+    $("#txtNumeroTrampa").change(function () {
+        var existe = false;
+        for (var i = 0; i < autocompleteNumeroTrampa.length; i++) {
+            if (autocompleteNumeroTrampa[i].numero == $(this).val()) {
+                existe = true;
+                return false;
+            }
+        }
+        if (!existe) {
+            limpiarNumeroTrampa();
+        }
+    });
+
+
+    function limpiarNumeroTrampa() {
+        $('#txtNumeroTrampa').val('');
+        $('#idTrampaClienteLocacionSector').val(0);
+        $("#idTrampaClienteLocacionSector_descripcion").val('');
+    }
+
+    
+    //par el rango de trampas
+    //DESDE
+    var autocompleteNumeroTrampaD = "";
+    var autocompleteNumeroTrampaDatosD = 0;
+    $("#txtNumeroTrampaD").autocomplete({
+        source: function (request, response) {
+
+            var lNumero = $('#txtNumeroTrampaD').val();
+            var lLocacion = $('#cmbClienteLocacion').val();
+            $.ajax({
+                url: '@Url.Action("buscarTrampas")',
+                dataType: "json",
+                data: {
+                    featureClass: "P",
+                    style: "full",
+                    pLocacion: lLocacion,
+                    pNumero: lNumero
+                },
+                success: function (data) {
+                  //  $("#txtNumeroTrampaD").removeClass("ui-autocomplete-loading");
+                        if (data != '') {
+                            validFind = true;
+                            autocompleteNumeroTrampaD = data;
+                            autocompleteNumeroTrampaDatosD = 1;
+                            response($.map(data, function (data) {
+                                return {
+                                    label: data.descripcion,
+                                    value: data.numero,
+                                    id: data.idTrampaClienteLocacionSector,
+                                    descripcion: data.descripcion
+                                }
+                            }));
+                        }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+        },
+        minLength: 2,
+        autoFocus: true,
+        select: function (event, ui) {
+            $("#idTrampaClienteLocacionSectorD").val(ui.item.id);
+            $("#idTrampaClienteLocacionSector_descripcionD").val(ui.item.descripcion);
+
+            valid = true;
+            autocompleteNumeroTrampaDatos = 0;
+        },
+        close: function (e) {
+            if (validFind) {
+                if (!valid) $(this).val('');
+            }
+        },
+        open: function (e) {
+            valid = false;
+        }
+    }).autocomplete("instance")._renderItem = function (ul, item) {
+        return $("<li>")
+            .append('<span class="autoTitle">' + item.value + '</span>  <span  class="autoDesc">' + item.label + '</span>')
+            .appendTo(ul);
+    };
+
+    $("#txtNumeroTrampaD").keydown(function (event) {
+        $('#txtNumeroTrampaD').autocomplete('option', 'minLength', 2);
+        if (event.keyCode == 40 && autocompleteNumeroTrampaDatosD == 0) {
+            $('#txtNumeroTrampaD').val('');
+            $('#txtNumeroTrampaD').autocomplete('option', 'minLength', 0);
+            $('#txtNumeroTrampaD').autocomplete('search', '');
+        }
+    });
+
+    $("#txtNumeroTrampaD").change(function () {
+        var existe = false;
+        for (var i = 0; i < autocompleteNumeroTrampaD.length; i++) {
+            if (autocompleteNumeroTrampaD[i].numero == $(this).val()) {
+                existe = true;
+                return false;
+            }
+        }
+        if (!existe) {
+            limpiarNumeroTrampaD();
+        }
+    });
+
+
+    function limpiarNumeroTrampaD() {
+        $('#txtNumeroTrampaD').val('');
+        $('#idTrampaClienteLocacionSectorD').val(0);
+        $("#idTrampaClienteLocacionSector_descripcionD").val('');
+    }
+
+    //Hasta
+    var autocompleteNumeroTrampaH = "";
+    var autocompleteNumeroTrampaDatosH = 0;
+    $("#txtNumeroTrampaH").autocomplete({
+        source: function (request, response) {
+
+            var lNumero = $('#txtNumeroTrampaH').val();
+            var lLocacion = $('#cmbClienteLocacion').val();
+            $.ajax({
+                url: '@Url.Action("buscarTrampas")',
+                dataType: "json",
+                data: {
+                    featureClass: "P",
+                    style: "full",
+                    pLocacion: lLocacion,
+                    pNumero: lNumero
+                },
+                success: function (data) {
+                  //  $("#txtNumeroTrampaD").removeClass("ui-autocomplete-loading");
+                        if (data != '') {
+                            validFind = true;
+                            autocompleteNumeroTrampaH = data;
+                            autocompleteNumeroTrampaDatosH = 1;
+                            response($.map(data, function (data) {
+                                return {
+                                    label: data.descripcion,
+                                    value: data.numero,
+                                    id: data.idTrampaClienteLocacionSector,
+                                    descripcion: data.descripcion
+                                }
+                            }));
+                        }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                }
+            });
+        },
+        minLength: 2,
+        autoFocus: true,
+        select: function (event, ui) {
+            $("#idTrampaClienteLocacionSectorH").val(ui.item.id);
+            $("#idTrampaClienteLocacionSector_descripcionH").val(ui.item.descripcion);
+
+            valid = true;
+            autocompleteNumeroTrampaDatos = 0;
+        },
+        close: function (e) {
+            if (validFind) {
+                if (!valid) $(this).val('');
+            }
+        },
+        open: function (e) {
+            valid = false;
+        }
+    }).autocomplete("instance")._renderItem = function (ul, item) {
+        return $("<li>")
+            .append('<span class="autoTitle">' + item.value + '</span>  <span  class="autoDesc">' + item.label + '</span>')
+            .appendTo(ul);
+    };
+
+    $("#txtNumeroTrampaH").keydown(function (event) {
+        $('#txtNumeroTrampaH').autocomplete('option', 'minLength', 2);
+        if (event.keyCode == 40 && autocompleteNumeroTrampaDatosD == 0) {
+            $('#txtNumeroTrampaH').val('');
+            $('#txtNumeroTrampaH').autocomplete('option', 'minLength', 0);
+            $('#txtNumeroTrampaH').autocomplete('search', '');
+        }
+    });
+
+    $("#txtNumeroTrampaH").change(function () {
+        var existe = false;
+        for (var i = 0; i < autocompleteNumeroTrampaH.length; i++) {
+            if (autocompleteNumeroTrampaH[i].numero == $(this).val()) {
+                existe = true;
+                return false;
+            }
+        }
+        if (!existe) {
+            limpiarNumeroTrampaH();
+        }
+    });
+
+
+    function limpiarNumeroTrampaH() {
+        $('#txtNumeroTrampaH').val('');
+        $('#idTrampaClienteLocacionSectorH').val(0);
+        $("#idTrampaClienteLocacionSector_descripcionH").val('');
+    }
+
+    function agregarTrampa() {
+
+        switch (agregarTrampaOpciones) {
+            case 'T':
+                agregarTrampaXtodas();
+                break;
+            case 'S':
+                agregarTrampaXsector();
+                break;
+            case 'I':
+                agregarTrampaXtipo();
+                break;
+            case 'C':
+                agregarTrampaXcebadera();
+                break;
+            case 'N':
+                agregarTrampaXnumero();
+                break;
+            case 'R':
+                agregarTrampaXRango();
+                break;
+            default:
+        }
+
+    }
+
+    function agregarTrampaXnumero() {
+                
+        let txtNumeroTrampa = $('#txtNumeroTrampa').val();
+        let idTrampaClienteLocacionSector = $('#idTrampaClienteLocacionSector').val();
+        let idTrampaClienteLocacionSector_descripcion = $('#idTrampaClienteLocacionSector_descripcion').val();
+        if (txtNumeroTrampa == '' || idTrampaClienteLocacionSector === 0 || idTrampaClienteLocacionSector == '' || idTrampaClienteLocacionSector == '0') {
+            $("#modalMessage").html("Ingrese un valor correcto en número de trampa");
+            $('#modalAlert').modal("show");
+            return null;
+        }
+
+        $.ajax({
+            url: '@Url.Action("agregarTrampaXnumero")'
+            , type:"GET"
+            , dataType: 'json'
+            , data: {
+                idTrampaClienteLocacionSector: idTrampaClienteLocacionSector,
+                idTrampaClienteLocacionSector_descripcion: idTrampaClienteLocacionSector_descripcion,
+                numero: txtNumeroTrampa
+            }
+            , success: function (data) {
+                if (data == 'ERROR') {
+                    $("#modalMessage").html("La trampa es incorrecta o ya se encuentra ingresada");
+                    $('#modalAlert').modal("show");
+                    return null;
+                }
+                limpiarNumeroTrampa();
+                cargarTrampas(data, 'N');                
+                $("#txtNumeroTrampa").focus();
+            }
+            , error: function (xhr, ajaxOptions, thrownError) {
+                $("#modalMessage").html("Error al agregar trampa");
+                $('#modalAlert').modal("show");
+            }
+        });
+
+    }
+
+    function agregarTrampaX(lTrampaOpciones, lLocacion, lLocacionSector, lTipo, lTrampaDesde, lTrampaHasta ) {
+                $.ajax({
+            url: '@Url.Action("agregarTrampaX")'
+            , type:"GET"
+            , dataType: 'json'
+            , data: {
+                pTrampaOpciones: lTrampaOpciones,
+                pLocacion: lLocacion,
+                pLocacionSector: lLocacionSector,
+                pTipo: lTipo,
+                pTrampaDesde: lTrampaDesde,
+                pTrampaHasta: lTrampaHasta
+            }
+            , success: function (data) {
+                if (data == 'ERROR') {
+                    $("#modalMessage").html("La trampa es incorrecta o ya se encuentra ingresada");
+                    $('#modalAlert').modal("show");
+                    return null;
+                }
+                limpiarNumeroTrampa();
+                limpiarNumeroTrampaD();
+                limpiarNumeroTrampaH();
+                cargarTrampas(data, 'N');
+            }
+            , error: function (xhr, ajaxOptions, thrownError) {
+                $("#modalMessage").html("Error al agregar trampa");
+                $('#modalAlert').modal("show");
+            }
+        });
+    }
+
+    function agregarTrampaXtipo() {
+        let lLocacionSector = $('#cmbClienteLocacionSector').val();
+        var lLocacion = $('#cmbClienteLocacion').val();
+        var lTipo = $('#cmbTipoTrampa').val();
+        if (lTipo == '') {
+            $("#modalMessage").html("Ingrese un tipo de trampa");
+            $('#modalAlert').modal("show");
+            return null;
+        }
+
+        agregarTrampaX('I', lLocacion, lLocacionSector, lTipo, "", "");
+    }
+
+    function agregarTrampaXsector() {
+        let lLocacionSector = $('#cmbClienteLocacionSector').val();
+        if (lLocacionSector == '') {
+            $("#modalMessage").html("Ingrese un sector");
+            $('#modalAlert').modal("show");
+            return null;
+        }
+        agregarTrampaX('S', 0, lLocacionSector, 0, "", "");
+    }
+
+    function agregarTrampaXtodas() {
+        var lLocacion = $('#cmbClienteLocacion').val();
+        agregarTrampaX('T', lLocacion, 0, 0, "", "");
+    }
+
+    function agregarTrampaXcebadera() {
+        var lLocacion = $('#cmbClienteLocacion').val();
+        agregarTrampaX('C', lLocacion, 0, 0, "", "");
+    }
+
+    function agregarTrampaXRango() {
+        var lLocacion = $('#cmbClienteLocacion').val();
+        let lTrampaDesde = $('#txtNumeroTrampaD').val();
+        var lTrampaHasta = $('#txtNumeroTrampaH').val();
+        agregarTrampaX('R', lLocacion, 0, 0, lTrampaDesde, lTrampaHasta);
+    }
+
+    function cargarTrampas(data, eliminarTrampa) {
+        $('#tblDatosTrampas').remove();
+        $('#DatosContacto').remove();
+        if (data.length > 0) {
+            $('#div_tblDatosTrampas').append(
+                ' <table id="tblDatosTrampas" class="table table-sm overflow-auto" style="height: 250px;" align="center"> '
+                + '<thead> '
+                + ' <tr class="d-flex">'
+                + ' <th scope="col" class="col-11">' + ' Descripcion' + ' </th>'
+                + ' <th scope="col" class="col-1">' + ' ' + ' </th>'
+                + ' </thead>'
+                + ' </table> ');
+
+            let listaInfo = "";
+            let nuevasTrampas_Cant = 0;
+
+            for (var i = 0; i < data.length; i++) {
+                //nuevas trampas
+                if (data[i].nueva == 'S')
+                    nuevasTrampas_Cant++;
+
+                //html
+                let descripcion = data[i].descripcion + ': Nº <span class="badge badge-primary">' + data[i].numero + '</span>';
+                listaInfo = listaInfo + '<tr class="d-flex"> ' +
+                    '<td class="col-11" style="word-wrap: break-word;">' + descripcion + '</td>' +
+                    '<td class="col-1">'
+                    + '<input class="form-check-input" type="checkbox" id="chkQuitar_' + i + '" name="' + i + '"  onclick="controlCantCheck(this)"><label class="form-check-label" for="flexCheckDefault"></label>'
+                    + '<button  type="button" class="btn btn-outline-danger btn-sm" onClick="quitarTrampaConfirm(' + i + ')" id="btn_quitar_' + i + '"' + '>Eliminar</button>' + '</td>' +
+                    '</tr>';
+            }
+
+            $('#tblDatosTrampas').append('<tbody>' + listaInfo + '</tbody>');
+            if (eliminarTrampa == "N") {
+                mostrarNuevasTrampas(nuevasTrampas_Cant);
+            }
+        }
+        else {
+            if (eliminarTrampa == "N") {
+                $('#snackbarAlert').html('No se encontraron trampas');
+                snackbarAlertShow();
+            }
+        }
+    }
+
+    function mostrarNuevasTrampas(nuevasTrampas_Cant) {
+        if (nuevasTrampas_Cant > 0) {
+            if (nuevasTrampas_Cant == 1)
+                $('#snackbarSuccess').html('<b>' + nuevasTrampas_Cant + '</b>' + ' trampa agregada');
+            else
+                $('#snackbarSuccess').html('<b>' + nuevasTrampas_Cant + '</b>' + ' trampas agregadas');
+            snackbarSuccessShow();
+        }
+        else {
+            $('#snackbarAlert').html('No se agregaron nuevas trampas');
+            snackbarAlertShow();
+        }
+    }
+
+    function snackbarSuccessShow() {
+        var x = document.getElementById("snackbarSuccess");
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);        
+    }
+
+    function snackbarAlertShow() {
+        var x = document.getElementById("snackbarAlert");
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);        
+    }
+
+    function quitarTrampaConfirm(trampaIndex) {
+
+        $('#modalConfirm' + ' #modal-p').html("¿Desea eliminar la trampa?");
+        $('#modalConfirm' + ' #modal-btn-si').off("click");
+        $('#modalConfirm' + ' #modal-btn-si').on('click', function () {
+
+            //quitarTrampa(trampaIndex);
+
+            tab = document.getElementById('tblDatosTrampas');
+            for (i = tab.getElementsByTagName('input').length - 1; i >= 0; i--) {
+                chk = tab.getElementsByTagName('input')[i];
+                if (chk.checked)
+                    quitarTrampa(chk.name);
+            }
+        });
+        $('#modalConfirm').modal('show');
+    }
+
+    function ocultarModalConfirm() {
+        $('#modalConfirm').modal('hide');
+    }
+    $('#modalConfirm' + ' #modal-btn-no').on('click', function () {
+        ocultarModalConfirm();
+    });
+
+    function quitarTrampa(trampaIndex) {
+        let dataResponse = { trampaIndex: trampaIndex };
+
+            $.ajax({
+                url: '@Url.Action("DeleteTrampaOrdenTrabajo")',
+                data: JSON.stringify(dataResponse),
+                type: 'POST',
+                contentType: 'application/json;',
+                dataType: 'json',
+                success: function (data) {
+                    if (data == 'ERROR') {
+                        ocultarModalConfirm();
+                        $("#modalMessage").html("Ocurrió un error al eliminar la trampa");
+                        $('#modalAlert').modal("show");
+                        return null;
+                    }
+                    limpiarNumeroTrampa();
+                    limpiarNumeroTrampaD();
+                    limpiarNumeroTrampaH();
+                    cargarTrampas(data, 'S');
+                    ocultarModalConfirm();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    ocultarModalConfirm();
+                    $("#modalMessage").html("Error al eliminar trampa");
+                    $('#modalAlert').modal("show");
+                }
+            });
+    }
+
+    function borrarTodoConfirm() {
+        $('#modalConfirm' + ' #modal-p').html("¿Desea eliminar todas las trampas?");
+        $('#modalConfirm' + ' #modal-btn-si').off("click");
+        $('#modalConfirm' + ' #modal-btn-si').on('click', function () {
+            borrarTodo();
+        });
+        $('#modalConfirm').modal('show');
+    }
+
+    function borrarTodo() {
+                    $.ajax({
+                url: '@Url.Action("DeleteAllTrampaOrdenTrabajo")',                
+                type: 'POST',
+                contentType: 'application/json;',
+                dataType: 'json',
+                success: function (data) {
+                    if (data == 'SIN_DATOS') {
+                        ocultarModalConfirm();
+                        $("#modalMessage").html("No hay trampas para eliminar");
+                        $('#modalAlert').modal("show");
+                        return null;
+                    }
+                    limpiarNumeroTrampa();
+                    limpiarNumeroTrampaD();
+                    limpiarNumeroTrampaH();
+                    cargarTrampas(data, 'S');
+                    ocultarModalConfirm();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    ocultarModalConfirm();
+                    $("#modalMessage").html("Error al eliminar trampa");
+                    $('#modalAlert').modal("show");
+                }
+            });
+    }
+
+    function controlCantCheck(cb) {
+        if (cb.checked) {
+            cantTrampas++;
+        }
+        else {
+            cantTrampas--;
+        }
+    }
+
+</script>

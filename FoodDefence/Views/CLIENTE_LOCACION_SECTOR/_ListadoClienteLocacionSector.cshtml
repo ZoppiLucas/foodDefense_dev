@@ -1,0 +1,41 @@
+﻿@model IEnumerable<FoodDefence.Models.CLIENTE_LOCACION_SECTOR>
+
+<div >
+    <table class="table table-bordered table-sm">
+        <tr>
+            <th class="priority-1">
+                Cliente
+            </th>
+            <th class="priority-1">
+                Locación
+            </th>
+            <th class="priority-1">
+                Sector
+            </th>
+            <th class="priority-1"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="priority-1">
+                    @Html.DisplayFor(modelItem => item.CLIENTE_LOCACION.CLIENTE.razonSocial)
+                </td>
+                <td class="priority-1">
+                    @Html.DisplayFor(modelItem => item.CLIENTE_LOCACION.descripcion)
+                </td>
+                <td class="priority-1">
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td class="priority-1">
+                    @Html.ActionLink("Editar", "Edit", "CLIENTE_LOCACION_SECTOR", new { id = item.id }, new { @class = "btn btn-outline-dark" })
+                    @if (item.baja == false)
+                    {
+                        @Html.ActionLink("Eliminar", "Delete", "CLIENTE_LOCACION_SECTOR", new { id = item.id }, new { @class = "btn btn-outline-danger" })
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

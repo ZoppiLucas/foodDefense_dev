@@ -1,0 +1,50 @@
+﻿@model FoodDefence.Models.ORDEN_TRABAJO
+
+
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="callout callout-primary">
+
+    <h4><i class="fa fa-trash"></i> ¿Esta seguro de anular esta orden de trabajo?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Fecha de Carga
+        </dt>
+        <dd>
+            @string.Format("{0:dd/MM/yyyy}", @Model.fechaCargaOrden)            
+        </dd>
+        <dt>
+            Fecha De Trabajo
+        </dt>
+        <dd>
+            @string.Format("{0:dd/MM/yyyy}", @Model.fechaDeTrabajo)            
+        </dd>
+        <dt>
+            Cliente
+        </dt>
+        <dd>
+            @ViewBag.Cliente
+        </dd>
+        <dt>
+            Locacion
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CLIENTE_LOCACION.descripcion)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <h2>&emsp;</h2>
+        <div class="form-actions no-color">
+            <input type="submit" value="Anular" class="btn btn-outline-danger" />
+            @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-outline-primary" })
+        </div>
+    }
+</div>

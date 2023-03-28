@@ -1,0 +1,104 @@
+﻿@model IEnumerable<FoodDefence.Models.OrdenesTrabajo_Result>
+
+
+
+<div>
+    <table class="table table-bordered table-sm">
+        <tr class="d-flex">
+            <th class="priority-1 col-md-1">
+                #
+            </th>
+            <th class="priority-1 col-md-2">
+                Cliente
+            </th>
+            <th class="priority-1 col-md-2">
+                Locación
+            </th>
+            <th class="priority-2 col-md-2">
+                Fecha Carga
+            </th>
+            <th class="priority-2 col-md-2">
+                Fecha Trabajo
+            </th>
+            <th class="priority-3 col-md-1">
+                Estado
+            </th>
+            <th class="priority-3 col-md-1" title="Trampas a Controlar" data-toggle="tooltip">
+                Trampas
+            </th>
+            <th class="priority-1 col-md-1"></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr class="d-flex">
+            <td class="priority-1 col-md-1">
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td class="priority-1 col-md-2">
+                @Html.DisplayFor(modelItem => item.cliente)
+            </td>
+            <td class="priority-1 col-md-2">
+                @Html.DisplayFor(modelItem => item.locacion)
+            </td>
+            <td class="priority-2 col-md-2">
+                @string.Format("{0:dd/MM/yyyy}", @item.fechaCargaOrden)
+            </td>
+            <td class="priority-3 col-md-2">
+                @string.Format("{0:dd/MM/yyyy}", @item.fechaDeTrabajo)
+            </td>
+            <td class="priority-3 col-md-1">
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td class="priority-3 col-md-1 text-center">
+                @if (item.cantTrampas > 0)
+                {
+                    <span title="Trampas a Controlar" data-toggle="tooltip" class="badge badge-pill badge-primary">@Html.DisplayFor(modelItem => item.cantTrampas)</span>
+                }
+                else
+                {
+                    <span title="Trampas a Controlar" data-toggle="tooltip" class="badge badge-pill badge-warning">@Html.DisplayFor(modelItem => item.cantTrampas)</span>
+                }
+            </td>
+            <td class="priority-1 col-md-1">
+
+                <div class="btn-group btn-group-primary">
+                    <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Aciones
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+
+
+                        @if (item.idOrdenTrabajoEstado == 3)
+                        {
+                            @Html.ActionLink("Ver", "DetailsCarga", "ORDEN_TRABAJO", new { id = item.id }, new { @class = "dropdown-item" })
+                        }
+                        else{
+                            @Html.ActionLink("Ver", "Details", "ORDEN_TRABAJO", new { id = item.id }, new { @class = "dropdown-item" })
+                        }
+                        @if (item.idOrdenTrabajoEstado != 3 && item.idOrdenTrabajoEstado != 4)
+                        {
+                            @Html.ActionLink("Anular", "Delete", "ORDEN_TRABAJO", new { id = item.id }, new { @class = "dropdown-item" })
+                        }
+                        @if (item.idOrdenTrabajoEstado == 1)
+                        {
+                            @Html.ActionLink("Editar", "Edit", "ORDEN_TRABAJO", new { id = item.id }, new { @class = "dropdown-item" })
+                        }
+                        @if (item.idOrdenTrabajoEstado == 1 && item.cantTrampas > 0)
+                        {
+                            @Html.ActionLink("Aprobar", "Approve", "ORDEN_TRABAJO", new { id = item.id }, new { @class = "dropdown-item" })
+                        }
+                    </div>
+                </div>
+
+
+            </td>
+        </tr>
+        }
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>

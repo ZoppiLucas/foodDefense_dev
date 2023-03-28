@@ -1,0 +1,60 @@
+﻿@model IEnumerable<FoodDefence.Models.CLIENTE_LOCACION>
+
+<div >
+    <table class="table table-bordered table-sm">
+        <tr>
+            <th class="priority-1">Cliente</th>
+            <th class="priority-1">Locación</th>
+            <th class="priority-3">Provincia</th>
+            <th class="priority-2">Dirección</th>
+            <th class="priority-1"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="priority-1">                    
+                    @Html.DisplayFor(modelItem => item.CLIENTE.razonSocial)
+                </td>
+                <td class="priority-1">
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                    @if (item.baja == true)
+                    {
+                        <span class="badge badge-pill badge-danger">Inactiva</span>
+                    }
+                </td>
+                <td class="priority-3">
+                    @Html.DisplayFor(modelItem => item.PROVINCIA.descripcion)
+                </td>
+                <td class="priority-2">
+                    @Html.DisplayFor(modelItem => item.localidad) -
+                    @Html.DisplayFor(modelItem => item.calle) -
+                    @Html.DisplayFor(modelItem => item.numero)
+                </td>
+                <td class="priority-1">
+                    @Html.ActionLink("Ver", "Details", "CLIENTE_LOCACION", new { id = item.id }, new { @class = "btn btn-outline-dark" })
+
+                    @if (item.baja == false)
+                    {
+                        @Html.ActionLink("Editar", "Edit", "CLIENTE_LOCACION", new { id = item.id }, new { @class = "btn btn-outline-dark" })
+                        @Html.ActionLink("Eliminar", "Delete", "CLIENTE_LOCACION", new { id = item.id }, new { @class = "btn btn-outline-danger ml-1" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Reactivar", "Reactivar", "CLIENTE_LOCACION", new { id = item.id }, new { @class = "btn btn-outline-primary" })
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+<script type="text/javascript">
+    var Ingreso = '@ViewBag.ValidacionesLocacion'
+
+    $(document).ready(function () {
+        $("#btnBuscar").html('Buscar').removeClass('disabled');
+        $("#btnBuscar").attr('disabled', false);        
+    });
+    </script>

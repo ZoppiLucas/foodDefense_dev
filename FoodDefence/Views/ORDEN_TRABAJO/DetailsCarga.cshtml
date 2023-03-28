@@ -1,0 +1,409 @@
+﻿@model FoodDefence.Models.ORDEN_TRABAJO
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="@Url.Content("~/ViewsResources/orden_trabajo.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/jquery.PrintArea.js")" type="text/javascript"></script>
+
+<div class="callout callout-primary">
+    <div id="impresion">
+        <h4> Detalle de Trabajo #@Model.id</h4>
+        <br />
+
+
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formCargaTrabajo" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.id, new { @id = "hd_idOrdenTrabajo" })
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <b>Fecha de carga</b>
+                        <div>
+                            @string.Format("{0:dd/MM/yyyy}", @Model.fechaCargaOrden)
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <b>Fecha de realización de trabajo</b>
+                        <div>
+                            @string.Format("{0:dd/MM/yyyy}", @Model.fechaDeTrabajo)
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <b>Técnico</b>
+                        <div>
+                            @ViewBag.Empleado
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <b>Cliente</b>
+                        <div>
+                            @ViewBag.Cliente
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <b>Locación</b>
+                        <div>
+                            @Html.DisplayFor(model => model.CLIENTE_LOCACION.descripcion)
+                            @Html.HiddenFor(model => model.CLIENTE_LOCACION.id, new { @id = "cmbClienteLocacion" })
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <div class="form-row">
+                        <b>Trampas</b>
+                    </div>
+                    <div style="display:none" id="waitTrampa" class="form-row">
+                        <div class="d-flex align-items-center col-md-4">
+                            <strong>Cargando trampas...</strong>
+                            <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div id="div_tblDatosTrampas" class="col-md-12">
+                            <div id="tblDatosTrampas"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="form-group mt-3" id="divBotones">
+        @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-outline-primary", @id = "btnVolver", @data_wait = "btn" })
+        <button type="button" class="btn btn-outline-primary" id="imprimir1">Imprimir</button>
+        @*<button type="button" class="btn btn-outline-primary" id="imprimir2">Imprimir2</button>*@        
+        @Html.ActionLink("Detalle de Abreviaciones", "DetailsAbreviaciones", new { id = (int)@Model.id }, new { @class = "btn btn-outline-primary",  @data_wait = "btn" })
+    </div>
+</div>
+
+<button class="btn btn-primary scroll-top" data-scroll="up" type="button">
+    <i class="fa fa-chevron-up"></i>
+</button>
+<!-- Modal Carga Trabajo -->
+<div class="modal fade" data-backdrop="static" id="VerTrabajoModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Carga de trabajo</h5>
+                <button type="button" class="close" data-dismiss="modal" data-wait="modal-btn" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="VerTrabajoModalBody" class="modal-body">
+                Espere por favor......
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap Modal Confirm -->
+<div class="modal" tabindex="-1" role="dialog" id="modalConfirm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modalConfirmMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="modalConfirm-btn-si" class="btn btn-primary">Si</button>
+                <button type="button" id="modalConfirm-btn-no" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="modalAlert" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                <h4 class="modal-title">Atención</h4>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    modoPrint = "N";
+
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                if (modoPrint == "N") {
+                    $('.scroll-top').fadeIn();
+                }
+            } else {
+                $('.scroll-top').fadeOut();
+            }
+        });
+
+        $('.scroll-top').click(function () {
+            $("html, body").animate({
+                scrollTop: 0
+            }, 100);
+            return false;
+        });
+
+         $('[data-toggle="tooltip"]').tooltip()
+         cargarTrampas();
+
+    });
+
+    $("#formCargaTrabajo").bind("keypress", function (e) {
+        if (e.keyCode == 13) {
+        return false;
+        }
+     });
+
+
+    function cargarTrampas() {
+        var idOrdenTrabajo = $('#hd_idOrdenTrabajo').val();
+        $('#tblDatosTrampas').remove();
+        $('#divXtrampa').hide();
+
+        $.ajax({
+            url: '@Url.Action("getTrampas")'
+            , type:"GET"
+            , dataType: 'json'
+            , data: { idOrdenTrabajo: idOrdenTrabajo }
+            , beforeSend: function () {
+                $('#waitTrampa').show();
+            }
+            , success: function (data) {
+                if (data == "VACIO") {
+                    $('#waitTrampa').hide();
+                    mostrarMensaje("Error no hay trampas");
+                }
+                else {
+                    if (data == "ERROR") {
+                        $('#waitTrampa').hide();
+                        mostrarMensaje("Error al cargar trampas");
+                    }
+                    else {
+                        armarTrampas(data);
+                        $('#waitTrampa').hide();
+                    }
+                }
+            }
+        });
+    }
+
+    function armarTrampas(data) {
+        if (data.length > 0) {
+            $('#div_tblDatosTrampas').append(
+                ' <div id="tblDatosTrampas" class=""> </div>'
+                );
+
+            let cab = "";
+            let table = "";
+            let tablecab = "";
+            for (var i = 0; i < data.length; i++) {
+                debugger;
+                let colTable = 2           
+                tablecab = '<tr>'
+                tablecab = tablecab + '<th class="text-center">' + 'Sector/Trampa' + '</th>'
+                if (data[i].is_idEstado == "S") {
+                    tablecab = tablecab + '<th class="text-center">' + 'Estado' + '</th>'
+                    colTable++
+                }
+                if (data[i].is_idAccion == "S") {
+                    tablecab = tablecab + '<th class="text-center">' + 'Accion' + '</th>'
+                    colTable++
+                }
+                if (data[i].is_moscas == "S") {
+                    tablecab = tablecab + '<th class="text-center">' + 'Moscas' + '</th>'
+                    colTable++
+                }
+                if (data[i].is_mosquitas == "S") {
+                    tablecab = tablecab + '<th class="text-center">' + 'Mosquitas' + '</th>'
+                    colTable++
+                }
+                if (data[i].is_polillas == "S") {
+                    tablecab = tablecab + '<th class="text-center">' + 'Polillas' + '</th>'
+                    colTable++
+                }
+                if (data[i].is_mariposas == "S") {
+                    tablecab = tablecab + '<th class="text-center">' + 'Mariposas' + '</th>'
+                    colTable++
+                }
+                if (data[i].is_minusculos == "S") {
+                    tablecab = tablecab + '<th class="text-center">' + 'Minusculos' + '</th>'
+                    colTable++
+                }
+                if (data[i].is_roedor == "S") {
+                    tablecab = tablecab + '<th class="text-center">' + 'Roedores' + '</th>'
+                    colTable++
+                }
+                if (data[i].is_insecto == "S") {
+                    tablecab = tablecab + '<th class="text-center">' + 'Insectos' + '</th>'
+                    colTable++
+                }
+                if (data[i].is_cucaAmericana == "S") {
+                    tablecab = tablecab + '<th class="text-center">' + 'C. Americana' + '</th>'
+                    colTable++
+                }
+                if (data[i].is_cucaGermanica == "S") {
+                    tablecab = tablecab + '<th class="text-center">' + 'C. Germanica' + '</th>'
+                    colTable++
+                }
+                if (data[i].is_cantidad == "S") {
+                    tablecab = tablecab + '<th class="text-center">' + 'Cantidad' + '</th>'
+                    colTable++
+                }
+                tablecab = tablecab + '<th class="text-center">' + 'Observación' + '</th>'
+                tablecab = tablecab + '</tr>'
+
+                //DETALLE
+                let det = '';
+                let tabledetTotal = "";
+                for (var e = 0; e < data[i].trampas.length; e++) {
+
+                    let cargado = "";                    
+                    tabledet = '<tr>'
+                    
+                    if (data[i].trampas[e].cargado == true) {                                       
+                        tabledet = tabledet + '<td>' + data[i].trampas[e].descripcion + '</td>'             
+                        if (data[i].is_idEstado == "S") {
+                            tabledet = tabledet + '<td data-toggle="tooltip" class="text-center" title="' + data[i].trampas[e].descripcionEstado +'">' + data[i].trampas[e].descripcionEstadoAbr + '</td>'                            
+                        }
+                        if (data[i].is_idAccion == "S") {
+                            tabledet = tabledet + '<td data-toggle="tooltip" class="text-center" title="' + data[i].trampas[e].descripcionAccion + '">' + data[i].trampas[e].descripcionAccionAbr + '</td>'                                                        
+                        }
+                        if (data[i].is_moscas == "S") {
+                            tabledet = tabledet + '<td class="text-center">' + data[i].trampas[e].moscas + '</td>'                            
+                        }
+                        if (data[i].is_mosquitas == "S") {
+                            tabledet = tabledet + '<td class="text-center">' + data[i].trampas[e].mosquitas + '</td>'                           
+                        }
+                        if (data[i].is_polillas == "S") {
+                            tabledet = tabledet + '<td class="text-center">' + data[i].trampas[e].polillas + '</td>'                
+                        }
+                        if (data[i].is_mariposas == "S") {
+                            tabledet = tabledet + '<td class="text-center">' + data[i].trampas[e].mariposas + '</td>'
+                        }
+                        if (data[i].is_minusculos == "S") {
+                            tabledet = tabledet + '<td class="text-center">' + data[i].trampas[e].minusculos + '</td>'
+                        }                                                
+                        if (data[i].is_roedor == "S") {
+                            tabledet = tabledet + '<td class="text-center">' + data[i].trampas[e].roedor + '</td>'
+                        }
+                        if (data[i].is_insecto == "S") {
+                            tabledet = tabledet + '<td class="text-center">' + data[i].trampas[e].insecto + '</td>'
+                        }
+                        if (data[i].is_cucaAmericana == "S") {
+                            tabledet = tabledet + '<td class="text-center">' + data[i].trampas[e].cucaAmericana + '</td>'
+                        }
+                        if (data[i].is_cucaGermanica == "S") {
+                            tabledet = tabledet + '<td class="text-center">' + data[i].trampas[e].cucaGermanica + '</td>'
+                        }
+                        if (data[i].is_cantidad == "S") {
+                            tabledet = tabledet + '<td class="text-center">' + data[i].trampas[e].cantidad + '</td>'
+                        }
+                        tabledet = tabledet + '<td>' + data[i].trampas[e].observaciones + '</td>'
+                    }
+                    else {                        
+                        tabledet = tabledet + '<td colspan="' + colTable + '">' + data[i].trampas[e].descripcion + '    -------- Trabajo No Cargado --------' + '</td>'
+                    }
+                    tabledet = tabledet + '</tr>'
+                    tabledetTotal = tabledetTotal + tabledet;
+                    //det = det +
+                    //    '<li style="cursor:pointer" class="list-group-item">' +
+                    //    '<div class="d-flex w-100 justify-content-between">'+
+                    //   '<h6>' + data[i].trampas[e].descripcion + ' <span class="badge badge-primary">' + data[i].trampas[e].numero + '</span></h6>'
+                    //    '</div>' +
+                    //        '</li>'
+                }
+
+                //table = '<table>[TABLECAB][TABLEDET]</table>'
+
+                det = '<table class="table table-bordered table-sm">' + tablecab + tabledetTotal + '</table>'
+
+                //CABECERA
+                 cab = cab +
+                    '<div class="card mt-2">' +
+                     '<div class="card-header collapsed" href="#cab' + data[i].idTipoTrampa + '" class="" data-toggle="collapse" data-target="#cab' + data[i].idTipoTrampa + '" aria-expanded="false">' +
+                        '<span class="title">' + data[i].descTipoTrampa  + '</span>' +
+                        '<span class="accicon"><i class="fa fa-chevron-down rotate-icon"></i></span>' +
+                     '</div> ' +
+                     '<div id="cab' + data[i].idTipoTrampa + '" class="collapse" data-parent="#tblDatosTrampas">' +
+                        '<div class="card-body card-body-tabla" >' + det + '</div>' +
+                     '</div>' +
+                    '</div>'
+            }
+
+            $('#tblDatosTrampas').append(cab);
+            $('[data-toggle="tooltip"]').tooltip()
+        }
+    }
+
+    $('#imprimir1').on('click', function (e) {
+        modoPrint = "S";
+        $('.scroll-top').fadeOut();
+        $('#tblDatosTrampas .collapse').removeAttr("data-parent");
+        $('#tblDatosTrampas .collapse').collapse('show');
+        $('#divBotones').hide();
+        //$('.scroll-top').hide();
+        
+        setTimeout(function () {
+            window.print();
+        }, 1000);
+        
+        setTimeout(function () {
+            $('#divBotones').show();
+            modoPrint = "N";
+            //$('.scroll-top').show();
+        }, 4000);
+        
+
+    })
+
+    $('#imprimir2').on('click', function (e) {
+        $('#tblDatosTrampas .collapse').removeAttr("data-parent");
+        $('#tblDatosTrampas .collapse').collapse('show');
+
+        var mode = 'iframe'; //popup
+        var close = mode == "popup";
+        var options = { mode: mode, popClose: close };
+
+        setTimeout(function () {
+            $("#impresion").printArea(options);
+        }, 2000);
+
+        
+        
+        
+
+    })
+
+    function mostrarMensaje(mensaje) {
+        $("#modalMessage").html(mensaje);
+        $('#modalAlert').modal("show");
+    }
+
+</script>
+
+<style type="text/css">
+    .card-body-tabla {
+        padding: 0.19rem;
+        font-size: small;
+    }
+</style>

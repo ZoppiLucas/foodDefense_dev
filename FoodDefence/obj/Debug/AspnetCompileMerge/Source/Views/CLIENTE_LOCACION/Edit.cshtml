@@ -1,0 +1,325 @@
+﻿@model FoodDefence.Models.CLIENTE_LOCACION
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="callout callout-primary">
+    <h4><i class="fa fa-map-marker"></i> Editar Locacion</h4>
+    <br />
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formEditClienteLocacion" }))
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.idCliente)
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                Cliente
+                <div>
+                    @Html.Display("ClienteNombre", (string)ViewBag.ClienteNombre)
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                Locación
+                <div>
+                    @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                Cantidad de días para proceso de cebaderas consumidas
+                <div>
+                    @Html.EditorFor(model => model.cantidadDiasCebaderas, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.cantidadDiasCebaderas, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                Provincia
+                <div class="">
+                    @Html.DropDownList("idProvincia", null, "Elija una provincia", htmlAttributes: new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(model => model.idProvincia, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                Localidad
+                <div class="">
+                    @Html.EditorFor(model => model.localidad, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.localidad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group col-md-3">
+                Calle
+                <div class="">
+                    @Html.EditorFor(model => model.calle, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.calle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-3">
+                Número
+                <div>
+                    @Html.EditorFor(model => model.numero, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.numero, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-3">
+                Piso
+                <div>
+                    @Html.EditorFor(model => model.piso, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.piso, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-3">
+                Departamento
+                <div>
+                    @Html.EditorFor(model => model.departamento, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.departamento, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                Responsables
+                <button type="button" class="btn btn-outline-primary" data-toggle="modal" id="AddResponsable" onclick="NuevoResponsable();" data-target="#ResponsableModal">Agregar Responsable</button>
+                @*<button type="button" class="btn btn-outline-primary" data-toggle="modal" id="AddResponsable" data-target="#ResponsableModal">Agregar Responsable</button>*@
+
+                <div id="div_tblDatosResponsable" class="mt-2">
+                    <table id="tblDatosResponsable"></table>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                Observaciones
+                <div>
+                    @Html.EditorFor(model => model.observaciones, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.observaciones, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" id="btnGuardar" class="btn btn-outline-success">Guardar</button>
+            @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-outline-primary ml-2", @id = "btnVolver" })
+        </div>
+
+        <div id="validaciones" class="alert alert-danger" role="alert">
+            <button class="close" data-dismiss="alert"><span>&times;</span></button>
+            @ViewBag.ValidacionesLocacion
+        </div>
+    </div>
+    }
+</div>
+
+
+<!-- Modal Responsables -->
+<div class="modal fade" data-backdrop="static" id="ResponsableModal" data-url='@Url.Action("Responsable")' role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Responsable</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="ResponsableModalBody" class="modal-body">
+                Espere por favor......
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+<!-- Bootstrap Modal Confirm -->
+<div class="modal" tabindex="-1" role="dialog" id="modalConfirmLocacion">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-p"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="modal-btn-si" class="btn btn-primary">Si</button>
+                <button type="button" id="modal-btn-no" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="modalAlert" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                <h4 class="modal-title">Atención</h4>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    var Ingreso = '@ViewBag.ValidacionesLocacion'
+
+    $(document).ready(function () {
+
+        //controles
+        if (Ingreso != '') {
+            $("#validaciones").show();
+        }
+        else {
+            $("#validaciones").hide();
+        }
+
+        var datos = @(Html.Raw(Json.Encode(ViewBag.lstResponsables)));
+        agregarResponsableAhtml(datos);
+    });
+
+    $("#formEditClienteLocacion").submit(function (event) {
+        if ($(this).valid()) {
+
+            $('#btnGuardar').html('<span class="spinner-border spinner-border-sm mr-2 text-success" role="status" aria-hidden="true"></span>Guardando...').addClass('disabled');
+            $("#btnGuardar").attr("disabled", true);
+            $("#btnVolver").attr("disabled", true);
+            $("#btnVolver").addClass('disabled');
+        }
+
+    });
+
+    function NuevoResponsable() {
+        var url = $('#ResponsableModal').data('url');
+
+        url = url + '/-1'
+        $.get(url, function(data) {
+            $('#ResponsableModalBody').html(data);
+            $('#ResponsableModal').modal('show');
+         //   $('#ResponsableModal').modal({ backdrop: 'static', keyboard: false })
+        });
+    }
+
+    function editarResponsable(id) {
+        var url = '@Url.Action("Responsable")' + '/' + id
+
+        $.get(url, function(data) {
+            $('#ResponsableModalBody').html(data);
+            $('#ResponsableModal').modal('show');
+        });
+    }
+
+    function verResponsable(id) {
+        var url = '@Url.Action("ResponsableDetails")' + '/' + id
+
+        $.get(url, function(data) {
+            $('#ResponsableModalBody').html(data);
+            $('#ResponsableModal').modal('show');
+        });
+    }
+    
+
+    function agregarResponsableAhtml(lstResponsables) {
+        $('#tblDatosResponsable').remove();
+        $('#DatosContacto').remove();
+        if (lstResponsables.length > 0) {
+            $('#div_tblDatosResponsable').append(
+                ' <table id="tblDatosResponsable" class="table table-sm" align="center"> '
+                + '<thead> '
+                + ' <tr class="d-flex">'
+                + ' <th scope="col" class="col-4">' + 'Apellido' + ' </th>'
+                + ' <th scope="col" class="col-4">' + 'Nombre' + ' </th>'
+                + ' <th scope="col" class="col-4">' + ' ' + ' </th>'
+                + ' </thead>'
+                + ' </table> ');
+
+            let listaResponsables = "";
+
+            for (var i = 0; i < lstResponsables.length; i++) {
+                //html
+                listaResponsables = listaResponsables + '<tr class="d-flex"> ' +
+                    '<td class="col-4">' + lstResponsables[i].apellido + '</td> ' +
+                    '<td class="col-4">' + lstResponsables[i].nombre + '</td>' +
+                    '<td class="col-4">' + '<button  type="button" class="btn btn-outline-danger btn-sm" onClick="quitarResponsableConfirm(' + i + ')" id="btn_quitar_' + i + '"' + '>Eliminar</button>'  +
+                    '<button  type="button" class="btn btn-outline-primary btn-sm ml-1" onClick="verResponsable(' + i + ')" id="btn_ver_' + i + '"' + '>Ver</button>'  +
+                    '<button  type="button" class="btn btn-outline-primary btn-sm ml-1" onClick="editarResponsable(' + i + ')" id="btn_editar_' + i + '"' + '>Editar</button>' + '</td>' +
+                    '</tr>';
+            }
+
+            $('#tblDatosResponsable').append('<tbody>' + listaResponsables + '</tbody>');
+
+
+        }
+    }
+
+
+    function ocultarModalConfirm() {
+        $('#modalConfirmLocacion').modal('hide');
+    }
+    $('#modalConfirmLocacion' + ' #modal-btn-no').on('click', function () {
+        ocultarModalConfirm();
+    });
+
+    function quitarResponsableConfirm(id) {
+        $('#modalConfirmLocacion' + ' #modal-p').html("¿Desea eliminar el responsable?");
+        $('#modalConfirmLocacion' + ' #modal-btn-si').off("click");
+        $('#modalConfirmLocacion' + ' #modal-btn-si').on('click', function () { quitarResponsable(id); ocultarModalConfirm();} );
+        $('#modalConfirmLocacion').modal('show');
+
+    }
+
+    function quitarResponsable(id) {
+
+        let dataResponse = { id: id };
+
+                $.ajax({
+                    url: '@Url.Action("DeleteResponsable")',
+                    data: JSON.stringify(dataResponse),
+                    type: 'POST',
+                    contentType: 'application/json;',
+                    dataType: 'json',
+                    success: function (datos) {
+                        if (datos == "ERROR") {
+                            $("#modalMessage").html("Error al eliminar responsable, por favor cerrar y volver a probar.");
+                            $('#modalAlert').modal("show");
+                        }
+                        else {
+                            agregarResponsableAhtml(datos);
+                        }
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        $("#modalMessage").html("Error al eliminar responsable");
+                        $('#modalAlert').modal("show");
+                    }
+                });
+        }
+
+</script>

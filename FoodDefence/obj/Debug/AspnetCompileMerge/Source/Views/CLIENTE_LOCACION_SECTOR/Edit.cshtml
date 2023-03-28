@@ -1,0 +1,94 @@
+﻿@model FoodDefence.Models.CLIENTE_LOCACION_SECTOR
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="callout callout-primary">
+    <h4><i class="fa fa-industry"></i> Editar Sector</h4>
+    <br />
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id)
+
+            <div class="form-group">
+                Cliente
+                <div class="col-md-10">
+                    @Html.DropDownList("idCliente", null, "Seleccione un cliente", htmlAttributes: new { @class = "form-control", id = "cmbCliente" })
+                </div>
+            </div>
+
+            <div class="form-group" id="divComboClienteLocacion">
+                Locación
+                <div class="col-md-10">
+                    @Html.DropDownList("idClienteLocacion", null, "Seleccione una locación", htmlAttributes: new { @class = "form-control", id = "cmbClienteLocacion" })
+                    @Html.ValidationMessageFor(model => model.idClienteLocacion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                Sector
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-outline-success" /> |
+                @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-outline-primary" })
+            </div>
+
+            <div id="validaciones" class="alert alert-danger" role="alert">
+                <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                @ViewBag.ValidacionesLocacionSector
+            </div>
+        </div>
+    }
+
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+    <script type="text/javascript">
+    var Ingreso = '@ViewBag.ValidacionesLocacionSector'
+
+    $(document).ready(function () {
+        //controles
+        if (Ingreso != '') {
+            $("#validaciones").show();
+        }
+        else {
+            $("#validaciones").hide();
+        }
+
+        $('#cmbCliente').change(function () {
+            cargarCombo();
+        });
+    });
+
+    function cargarCombo() {
+        var lcliente = $('#cmbCliente').val();
+                $.ajax({
+                    url: '@Url.Action("ComboClienteLocacion")'
+                    , type:"GET"
+                    , dataType: 'json'
+                    , data: {pCliente: lcliente}
+                    , success: function (data) {
+                        $('#cmbClienteLocacion').empty();
+                        $('#cmbClienteLocacion').append("<option value=''>Seleccione una locación</option>");
+                        $.each(data, function (index, row) {
+                            $('#cmbClienteLocacion').append("<option value='" + row.id + "'>" + row.descripcion + "</option>");
+                        });
+                                        }
+        });
+    }
+    </script>

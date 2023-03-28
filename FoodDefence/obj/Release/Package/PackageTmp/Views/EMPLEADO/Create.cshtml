@@ -1,0 +1,281 @@
+﻿@model FoodDefence.Models.EMPLEADO
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="callout callout-primary">
+    <h4><i class="fa fa-id-badge"></i> Nuevo Técnico</h4>
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formCreateEmpleado" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                Documento
+                <div class="row">
+                    <div class="col-md-2">
+                        @Html.DropDownList("idDocumentoTipo", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.idDocumentoTipo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.numeroDocumento, new { htmlAttributes = new { @class = "form-control", @placeholder = "Número" } })
+                        @Html.ValidationMessageFor(model => model.numeroDocumento, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                Apellido y Nombre
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.apellido, new { htmlAttributes = new { @class = "form-control", @placeholder = "Apellido",  @maxlength = "200", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.apellido, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre",  @maxlength = "300", required = "required" } })
+                        @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                Contactos
+                <div class="row">
+                    <div class="col-md-2">@Html.DropDownList("tiposContactos", null, htmlAttributes: new { @class = "form-control", @id = "cboTiposContactos" })</div>
+                    <div class="col-md-4"><input type="text" class="form-control" id="txtValorContacto" maxlength="500" placeholder="Valor"></div>
+                    <div class="col-md-4"><input type="text" class="form-control" id="txtObsContacto" maxlength="2000" placeholder="Observacion"></div>
+                    <div class="col-md-2"><input type="button" id="btnAddContacto" value="Agregar" class="btn btn-outline-primary" /></div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div id="div_tblDatosContacto" class="col-md-12">
+                    <table id="tblDatosContacto"></table>
+                </div>
+            </div>
+
+            
+
+            <div class="form-group">            
+                <button type="submit" id="btnGuardar" class="btn btn-outline-success">Guardar</button>
+                @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-outline-primary ml-2", @id = "btnVolver" })
+            </div>
+
+            <div id="validaciones" class="alert alert-danger" role="alert">
+                <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                @ViewBag.ValidacionesEmpleado
+            </div>
+        </div>
+    }
+
+</div>
+
+
+
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="modalAlert" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                <h4 class="modal-title">Atención</h4>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap Modal Confirm -->
+<div class="modal" tabindex="-1" role="dialog" id="modalConfirm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-p"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="modal-btn-si" class="btn btn-primary">Si</button>
+                <button type="button" id="modal-btn-no" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@*<script src="@Url.Content("~/ViewsResources/Generico.js?V=" + System.Configuration.ConfigurationManager.AppSettings["version"])" type="text/javascript"></script>*@
+
+<script type="text/javascript">
+    var Ingreso = '@ViewBag.ValidacionesEmpleado'
+
+    $(document).ready(function () {
+        $('#chk').val(true);
+
+        //controles
+        if (Ingreso != '') {
+            $("#validaciones").show();
+        }
+        else {
+            $("#validaciones").hide();
+        }
+
+        var datos = @(Html.Raw(Json.Encode(ViewBag.lstContacto)));        
+        agregarContactoAhtml(datos);
+    });
+
+    $("#formCreateEmpleado").submit(function (event) {
+        if ($(this).valid()) {
+
+            $('#btnGuardar').html('<span class="spinner-border spinner-border-sm mr-2 text-success" role="status" aria-hidden="true"></span>Guardando...').addClass('disabled');
+            $("#btnGuardar").attr("disabled", true);
+            $("#btnVolver").attr("disabled", true);
+            $("#btnVolver").addClass('disabled');
+        }
+
+    });
+
+        //contacto de empleado INICIO
+        $("#btnAddContacto").click(function () {
+
+            let valorContancto = $('#txtValorContacto').val();
+            let obsContancto = $('#txtObsContacto').val();
+            let tipoContacto = $("#cboTiposContactos :selected").val();
+            let tipoContactoNombre = $("#cboTiposContactos :selected").text();
+
+            if (valorContancto == "") {
+                $("#modalMessage").html("Ingrese un valor de contacto");
+                $('#modalAlert').modal("show");
+                return null;
+            }
+
+            let dataResponse = { idContactoTipo: tipoContacto, valor: valorContancto, observaciones: obsContancto, ContactoTipo: tipoContactoNombre};
+
+                $.ajax({
+                    url: '@Url.Action("AddContactoEmpleado")',
+                    data: JSON.stringify(dataResponse),
+                    type: 'POST',
+                    contentType: 'application/json;',
+                    dataType: 'json',
+                    success: function (datos) {
+                        if (datos.success === 1) {
+                            agregarContactoAhtml(datos);
+                            $('#txtValorContacto').val('');
+                            $('#txtObsContacto').val('');
+                        }
+                        else {
+                            $("#modalMessage").html(datos.mensajeError);
+                            $('#modalAlert').modal("show");
+                        }
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        $("#modalMessage").html("Error al agregar contacto");
+                        $('#modalAlert').modal("show");
+                    }
+                });
+        });
+
+    
+    function ocultarModalConfirm() {
+        $('#modalConfirm').modal('hide');
+    }
+    $('#modalConfirm' + ' #modal-btn-no').on('click', function () {
+        ocultarModalConfirm();
+    });
+
+    function quitarContacto(idContacto) {
+        $('#modalConfirm' + ' #modal-p').html("¿Desea eliminar el contacto?");
+        $('#modalConfirm' + ' #modal-btn-si').off("click");
+        $('#modalConfirm' + ' #modal-btn-si').on('click', function () {
+                quitarContactoModal(idContacto);
+                        } );
+        $('#modalConfirm').modal('show');
+
+    }
+    function quitarContactoModal(idContacto) {
+        quitarContactoConfirmado(idContacto);
+        ocultarModalConfirm();
+    }
+
+    function quitarContactoConfirmado(idContacto) {
+
+            let dataResponse = { idContacto: idContacto };
+
+                $.ajax({
+                    url: '@Url.Action("DeleteContactoEmpleado")',
+                    data: JSON.stringify(dataResponse),
+                    type: 'POST',
+                    contentType: 'application/json;',
+                    dataType: 'json',
+                    success: function (datos) {
+                        if (datos.success === 1) {
+                            agregarContactoAhtml(datos);
+                            $('#txtValorContacto').val('');
+                            $('#txtObsContacto').val('');
+                        }
+                        else {
+                            $("#modalMessage").html(datos.mensajeError);
+                            $('#modalAlert').modal("show");
+                        }
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        $("#modalMessage").html("Error al eliminar contacto");
+                        $('#modalAlert').modal("show");
+                    }
+                });
+        }
+
+        function agregarContactoAhtml(datos) {
+            $('#tblDatosContacto').remove();
+            if (datos.contactos.length > 0) {
+                $('#div_tblDatosContacto').append(
+                    ' <table id="tblDatosContacto" class="table table-sm" align="center"> '
+                    + '<thead> '
+                    + ' <tr class="d-flex">'
+                    + ' <th scope="col" class="col-2">' + ' Tipo' + ' </th>'
+                    + ' <th scope="col" class="col-4">' + ' Valor' + ' </th>'
+                    + ' <th scope="col" class="col-5">' + ' Observacion' + ' </th>'
+                    + ' <th scope="col" class="col-1">' + ' ' + ' </th>'
+                    + ' </thead>'
+                    + ' </table> ');
+
+                let listaContacto = "";
+                for (var i = 0; i < datos.contactos.length; i++) {
+                    listaContacto = listaContacto + '<tr class="d-flex"> ' +
+                        '<td class="col-2">' + datos.contactos[i].ContactoTipo + '</td> ' +
+                        '<td class="col-4">' + datos.contactos[i].valor + '</td>' +
+                        '<td class="col-5" style="word-wrap: break-word;">' + datos.contactos[i].observaciones + '</td>' +
+                        '<td class="col-1">' + '<button  type="button" class="btn btn-outline-danger btn-sm" id="btn_quitar_' + datos.contactos[i].idContacto + '"' + '>Eliminar</button>' + '</td>' +
+                        '</tr>';
+                }
+
+                $('#tblDatosContacto').append('<tbody>' + listaContacto + '</tbody>');
+
+                for (var i = 0; i < datos.contactos.length; i++) {
+                    
+                    let _idContacto = datos.contactos[i].idContacto
+                    document.getElementById("btn_quitar_" + datos.contactos[i].idContacto).addEventListener("click", function () { quitarContacto(_idContacto); }, false);
+
+                }
+            }
+        }
+        //contacto de empleado FIN
+
+        
+
+</script>

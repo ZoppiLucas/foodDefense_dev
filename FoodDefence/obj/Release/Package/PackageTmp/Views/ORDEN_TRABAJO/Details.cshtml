@@ -1,0 +1,144 @@
+﻿@model FoodDefence.Models.ORDEN_TRABAJO
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="callout callout-primary">
+
+    <h4><i class="fa fa-file-text"></i> Orden de Trabajo</h4>
+    <br />
+
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formEditOrden" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <b>Fecha de carga</b>
+                    <div>                        
+                        @string.Format("{0:dd/MM/yyyy}", @Model.fechaCargaOrden)
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <b>Fecha de realización de trabajo</b>     
+                    <div>
+                        @string.Format("{0:dd/MM/yyyy}", @Model.fechaDeTrabajo)                        
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <b>Técnico</b> 
+                    <div>
+                        @if (@ViewBag.Select_Empleado == "N")
+                        {                            
+                        <div id="validaciones" class="alert alert-danger" role="alert">
+                            Sin declarar Técnico
+                        </div>
+                        }
+                        @if (@ViewBag.Select_Empleado == "S")
+                        {
+                            @ViewBag.Empleado
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <b>Cliente</b> 
+                    <div>
+                        @ViewBag.Cliente
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <b>Locación</b> 
+                    <div>
+                        @Html.DisplayFor(model => model.CLIENTE_LOCACION.descripcion)                        
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <div class="form-row">
+                    <b>Trampas a controlar</b> 
+                </div>                
+                <div class="form-row">
+                    <div id="div_tblDatosTrampas" class="col-md-12">
+                        <table id="tblDatosTrampas"></table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">                
+                @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-outline-primary", @id = "btnVolver" })
+            </div>
+
+
+        </div>
+    }
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        
+        var lstTrampaCargadas = '@ViewBag.lstTrampaCargadas';
+
+        if (lstTrampaCargadas == "S") {
+            var datos = @(Html.Raw(Json.Encode(ViewBag.lstTrampa)));
+            cargarTrampas(datos, 'S');
+        }
+        else {
+            $('#div_tblDatosTrampas').append('<p class="text-danger">Sin Trampas Cargadas</p>');
+        }
+
+
+    });
+    
+        
+    function cargarTrampas(data) {
+        $('#tblDatosTrampas').remove();
+        $('#DatosContacto').remove();
+        if (data.length > 0) {
+            $('#div_tblDatosTrampas').append(
+                ' <table id="tblDatosTrampas" class="table table-sm overflow-auto" style="height: 250px;" align="center"> '
+                + '<thead> '
+                + ' <tr class="d-flex">'
+                + ' <th scope="col" class="col-12">' + ' Descripcion' + ' </th>'
+                + ' </thead>'
+                + ' </table> ');
+
+            let listaInfo = "";
+
+            for (var i = 0; i < data.length; i++) {
+
+                //html
+                let descripcion = data[i].descripcion + ': Nº <span class="badge badge-primary">' + data[i].numero + '</span>';
+                listaInfo = listaInfo + '<tr class="d-flex"> ' +
+                    '<td class="col-12" style="word-wrap: break-word;">' + descripcion + '</td>' +
+                    '</tr>';
+            }
+
+            $('#tblDatosTrampas').append('<tbody>' + listaInfo + '</tbody>');
+
+        }
+        
+    }
+
+
+    
+
+
+</script>

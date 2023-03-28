@@ -1,0 +1,111 @@
+﻿@model IEnumerable<FoodDefence.Models.ListadoTrampaClienteLocacionSector_Result>
+<div class="float-right">
+    <label>Cantidad: </label>
+    <label>@Model.Count()</label>
+</div>
+<br />
+<div>
+    <table class="table table-bordered table-sm">
+        <tr>
+            @*<th class="priority-1 text-center"><i class="fa fa-print" onclick="checkTrampas();"></i></th>*@
+            <th class="priority-1 text-center"><input type="checkbox" name="select-all" id="select-all" /></th>
+            
+            <th class="priority-2">
+                Cliente
+            </th>
+            <th class="priority-1">
+                Locación
+            </th>
+            <th class="priority-1">
+                Sector
+            </th>
+            <th class="priority-1">
+                Trampa
+            </th>
+            <th class="priority-1">
+                Número
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="priority-1 text-center">
+                    <div class="form-check">
+                        <input class="form-check-input chkTrampa" type="checkbox"  data-numero="@item.numero" value="@item.idTrampaClienteLocacionSector" id="chkTrampa_@item.idTrampaClienteLocacionSector">
+                    </div>
+                </td>
+                <td class="priority-2">
+                    @Html.DisplayFor(modelItem => item.razonSocial)
+                </td>
+                <td class="priority-1">
+                    @Html.DisplayFor(modelItem => item.locacion)
+                </td>
+                <td class="priority-1">
+                    @Html.DisplayFor(modelItem => item.sector)
+                </td>
+                <td class="priority-1">
+                    @Html.DisplayFor(modelItem => item.tipoTrampa)
+                </td>
+                <td class="priority-1">
+                    @Html.DisplayFor(modelItem => item.numero)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<div>
+    <button id="btnGenerarQr" type="button" onclick="imprimirQRtrampas();" class="btn btn-primary"> Generar QR</button>
+</div>
+
+
+<script type="text/javascript">
+    $('#select-all').click(function (event) {
+        if (this.checked) {
+            // Iterate each checkbox
+            $(':checkbox').each(function () {
+                this.checked = true;
+            });
+        } else {
+            $(':checkbox').each(function () {
+                this.checked = false;
+            });
+        }
+    })
+
+    @*function imprimirQRtrampas() {
+        var lTrampas = '';
+        var exportMyUrl = '@Url.Action("imprimirQRtrampas")';
+        window.open(exportMyUrl + "?pTrampas=" + lTrampas, "_blank ");
+    }*@
+
+    function imprimirQRtrampas() {
+        var lTrampas = [];
+        //$("input:checkbox[name=type]:checked").each(function () {
+        debugger;
+        
+        $("input:checkbox.chkTrampa:checked").each(function () {
+            //lTrampas.push($(this).val());            
+            lTrampas.push({
+                idTrampaClienteLocacionSector: $(this).val(),
+                numero: $(this).data("numero")
+            });
+        });
+
+        var dataResponse = { pTrampas: lTrampas};
+
+        $.ajax({
+            url: '@Url.Action("cargarQRtrampas", "TRAMPA_CLIENTE_LOCACION_SECTOR")'
+            , type: "POST"
+            , contentType: "application/json; charset=utf-8"
+            , data: JSON.stringify(dataResponse)
+            , success: function (data) {
+                if (data == "OK") {
+                    var exportMyUrl = '@Url.Action("imprimirQRtrampas")';
+                    window.open(exportMyUrl, "_blank ");
+                }
+            }
+        });
+    }
+
+</script>

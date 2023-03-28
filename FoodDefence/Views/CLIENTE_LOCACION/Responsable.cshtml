@@ -1,0 +1,353 @@
+﻿@model FoodDefence.Models.objectModel.Responsable
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formResponsable" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.isEdit_Index)
+    @Html.HiddenFor(model => model.isEdit)    
+    @Html.Hidden("hd_lstContactosResponsable")
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                Apellido
+                <div>
+                    @Html.EditorFor(model => model.apellido, new { htmlAttributes = new { @class = "form-control", @maxlength = "200", @placeholder = "Apellido", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.apellido, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                Nombre
+                <div>
+                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", @maxlength = "200", @placeholder = "Nombre", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <ul class="list-group">
+                    <li class="list-group-item border-0">
+                        Habilitado para portal
+                        <div class="material-switch pull-right">
+                            <input id="checkboxhabitlitadoPortal" name="checkboxhabitlitadoPortal" type="checkbox" checked />
+                            <label for="checkboxhabitlitadoPortal" class="bg-primary"></label>
+                            @Html.HiddenFor(model => model.habilitadoPortal, new { id = "chk" })
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="form-group col-md-4" id="divUsuario">
+                Usuario portal
+                @Html.EditorFor(model => model.usuarioPortal, new { htmlAttributes = new { @id = "txtUsuarioPortal", @maxlength = "50", @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.usuarioPortal, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-4" id="divPassword">
+                Contraseña portal
+                @Html.EditorFor(model => model.clavePortal, new { htmlAttributes = new { @id = "txtPasswordPortal", @maxlength = "500", @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.clavePortal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                Contactos
+                <div class="row">
+                    <div class="col-md-2">@Html.DropDownList("tiposContactos", null, htmlAttributes: new { @class = "form-control", @id = "cboTiposContactos" })</div>
+                    <div class="col-md-4"><input type="text" class="form-control" id="txtValorContacto" maxlength="500" placeholder="Valor"></div>
+                    <div class="col-md-4"><input type="text" class="form-control" id="txtObsContacto" maxlength="2000" placeholder="Observacion"></div>
+                    <div class="col-md-2"><input type="button" id="btnAddContacto" value="Agregar" class="btn btn-outline-primary" /></div>
+                </div>
+            </div>
+            <div class="form-group row col-md-12 overflow-auto" style="height: 160px;">
+                <div id="div_tblDatosContacto" class="col-md-12">
+                    <table id="tblDatosContacto"></table>
+                    <div id="DatosContacto"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <button type="submit" id="btnGuardar"  class="btn btn-outline-success mr-2">Aceptar</button>
+            <button type="button" id="modal-btn-cerrar" class="btn btn-outline-secondary">Cerrar</button>
+        </div>
+
+        <div class="form-row">
+            <div id="alertResponsable" class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Atencion!</strong> <span id="msgAlertResponsable"></span>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Bootstrap Modal Confirm -->
+<div class="modal" tabindex="-1" role="dialog" id="modalConfirm">
+    <div class="modal-dialog" style="margin-top: 5rem;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar</h5>
+
+            </div>
+            <div class="modal-body">
+                <p id="modal-p"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="modal-btn-si" class="btn btn-primary">Si</button>
+                <button type="button" id="modal-btn-no" class="btn btn-secondary">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+
+
+    //let lstContactosResponsable
+
+    $(document).ready(function () {
+        //lstContactosResponsable = [];
+        
+        $("#alertResponsable").hide();
+        $("#msgAlertResponsable").html("");
+
+        var datos = @(Html.Raw(Json.Encode(ViewBag.lstContactosResponsable)));
+        $('#hd_lstContactosResponsable').val(JSON.stringify(datos));
+        agregarContactoAmodel(datos);
+    });
+
+        if ('@ViewBag.habitlitadoPortal' === 'S') {
+            $('#checkboxhabitlitadoPortal').prop('checked', true);
+            habilitarPortal();
+        }
+        else {
+            $('#checkboxhabitlitadoPortal').prop('checked', false);
+            inhabilitar();
+        }
+
+    $('#checkboxhabitlitadoPortal').click(function () {
+        $('#txtUsuarioPortal').val('');
+        $('#txtPasswordPortal').val('');
+        if ($(this).is(":checked")) {
+            habilitarPortal();
+        }
+        else if ($(this).is(":not(:checked)")) {
+            inhabilitar();
+        }
+    });
+
+    function habilitarPortal() {
+        $('#chk').val(true);
+        $('#divUsuario').show();
+        $('#divPassword').show();
+        $('#txtUsuarioPortal').prop('required', true);
+        $('#txtPasswordPortal').prop('required', true);
+    }
+    function inhabilitar() {
+        $('#chk').val(false);
+        $('#divUsuario').hide();
+        $('#divPassword').hide();
+        $('#txtUsuarioPortal').prop('required', false);
+        $('#txtPasswordPortal').prop('required', false);
+    }
+
+    $("#formResponsable").submit(function (e) {
+        e.preventDefault();
+        var formResponsable = $("#formResponsable").serialize();
+        var url = '@Url.Action("SaveResponsable")';
+
+        $.post(url, formResponsable, function (data) {
+            if (data == "") {
+                $("#msgAlertResponsable").html("El responsable esta repetido");
+                $("#alertResponsable").show();
+            } else {
+                agregarResponsableAhtml(data);
+                $('#ResponsableModal').modal('hide');
+            }
+        });
+    });
+    @*$("#btnGuardar").click(function() {
+        var formResponsable = $("#formResponsable").serialize();
+        var url = '@Url.Action("SaveResponsable")';
+
+        $.post(url, formResponsable, function (data) {
+            if (data == "") {
+                $("#msgAlertResponsable").html("El responsable esta repetido");
+                $("#alertResponsable").show();
+            } else {
+                agregarResponsableAhtml(data);
+                $('#ResponsableModal').modal('hide');
+            }
+        });
+
+    });*@
+
+    $("#btnAddContacto").click(function () {
+
+            let valorContancto = $('#txtValorContacto').val();
+            let obsContancto = $('#txtObsContacto').val();
+            let tipoContacto = $("#cboTiposContactos :selected").val();
+            let tipoContactoNombre = $("#cboTiposContactos :selected").text();
+            $("#alertResponsable").hide();
+
+            if (valorContancto == "") {
+                $("#msgAlertResponsable").html("Ingrese un valor de contacto");
+                $("#alertResponsable").show();
+                return null;
+        }
+
+
+
+
+
+       // $('#tblDatosContacto').remove();
+        let lstContactosResponsable = [];
+        //let indexContacto = 0;
+        if ($('#hd_lstContactosResponsable').val() != "") {
+            lstContactosResponsable = JSON.parse($('#hd_lstContactosResponsable').val());
+          //  var ultimoContacto = lstContactosResponsable[lstContactosResponsable.length - 1]
+           // indexContacto = ultimoContacto["idContacto"];
+        }
+
+        let repetido = contactoRepetido(lstContactosResponsable,tipoContacto, valorContancto);
+        if (repetido == "S") {
+            $("#msgAlertResponsable").html("El contacto esta repetido");
+            $("#alertResponsable").show();
+            return null;
+        }
+       // indexContacto++;
+        //let contacto = { idContacto: indexContacto, idContactoTipo: tipoContacto, valor: valorContancto, observaciones: obsContancto, ContactoTipo: tipoContactoNombre };
+        let contacto = {  idContactoTipo: tipoContacto, valor: valorContancto, observaciones: obsContancto, ContactoTipo: tipoContactoNombre };
+        lstContactosResponsable.push(contacto);
+
+        $('#hd_lstContactosResponsable').val(JSON.stringify(lstContactosResponsable));
+
+        agregarContactoAmodel(lstContactosResponsable);
+        $('#txtValorContacto').val('');
+        $('#txtObsContacto').val('');
+        });
+
+    function contactoRepetido(lstContactos, idContactoTipo, valor) {
+        for (var i = 0; i < lstContactos.length; i++) {
+            if (lstContactos[i].idContactoTipo == idContactoTipo && lstContactos[i].valor == valor) {
+                return "S";
+            }
+        }
+        return "N";
+    }
+
+    function agregarContactoAmodel(lstContactos) {
+        $('#tblDatosContacto').remove();
+        $('#DatosContacto').remove();
+        if (lstContactos.length > 0) {
+            $('#div_tblDatosContacto').append(
+                ' <table id="tblDatosContacto" class="table table-sm" align="center"> '
+                + '<thead> '
+                + ' <tr class="d-flex">'
+                + ' <th scope="col" class="col-2">' + ' Tipo' + ' </th>'
+                + ' <th scope="col" class="col-4">' + ' Valor' + ' </th>'
+                + ' <th scope="col" class="col-5">' + ' Observacion' + ' </th>'
+                + ' <th scope="col" class="col-1">' + ' ' + ' </th>'
+                + ' </thead>'
+                + ' </table> ');
+
+            let listaContacto = "";
+            let DatosContacto = document.createElement("div");
+            for (var i = 0; i < lstContactos.length; i++) {                
+                //html
+                let observaciones = "";
+                if (lstContactos[i].observaciones == null) {
+                    observaciones = "";
+                }
+                else {
+                    observaciones = lstContactos[i].observaciones;
+                }
+
+                listaContacto = listaContacto + '<tr class="d-flex"> ' +
+                    '<td class="col-2">' + lstContactos[i].ContactoTipo + '</td> ' +
+                    '<td class="col-4">' + lstContactos[i].valor + '</td>' +
+                    '<td class="col-5" style="word-wrap: break-word;">' + observaciones + '</td>' +
+                    '<td class="col-1">' + '<button  type="button" class="btn btn-outline-danger btn-sm" onClick="quitarContactoConfirm(' + i + ')" id="btn_quitar_' + i + '"' + '>Eliminar</button>' + '</td>' +
+                    '</tr>';
+
+                //model
+                let DatosContactoIndex = document.createElement("input");
+                let DatosContacto_idContactoTipo = document.createElement("input");
+                let DatosContacto_ContactoTipo = document.createElement("input");
+                let DatosContacto_valor = document.createElement("input");
+                let DatosContacto_observaciones = document.createElement("input");
+
+                DatosContactoIndex.name = "Contactos.Index";
+                DatosContactoIndex.type = "hidden";
+                DatosContactoIndex.value = i;
+                DatosContacto_idContactoTipo.name = "Contactos[" + i + "].idContactoTipo";
+                DatosContacto_idContactoTipo.type = "hidden";
+                DatosContacto_idContactoTipo.value = lstContactos[i].idContactoTipo;
+                DatosContacto_ContactoTipo.name = "Contactos[" + i + "].ContactoTipo";
+                DatosContacto_ContactoTipo.type = "hidden";
+                DatosContacto_ContactoTipo.value = lstContactos[i].ContactoTipo;
+                DatosContacto_valor.name = "Contactos[" + i + "].valor";
+                DatosContacto_valor.type = "hidden";
+                DatosContacto_valor.value = lstContactos[i].valor;
+                DatosContacto_observaciones.name = "Contactos[" + i + "].observaciones";
+                DatosContacto_observaciones.type = "hidden";
+                DatosContacto_observaciones.value = lstContactos[i].observaciones;
+
+                DatosContacto.appendChild(DatosContactoIndex);
+                DatosContacto.appendChild(DatosContacto_idContactoTipo);
+                DatosContacto.appendChild(DatosContacto_ContactoTipo);
+                DatosContacto.appendChild(DatosContacto_valor);
+                DatosContacto.appendChild(DatosContacto_observaciones);
+
+            }
+
+            $('#tblDatosContacto').append('<tbody>' + listaContacto + '</tbody>');
+            document.getElementById("tblDatosContacto").appendChild(DatosContacto);
+            //for (var i = 0; i < lstContactos.length; i++) {
+            
+            //    //let _idContacto = lstContactos[i].idContacto
+            // //   document.getElementById("btn_quitar_" + i).addEventListener("click", function () { quitarContacto(i); }, false);
+
+            //}
+        }
+    }
+
+
+    function quitarContactoConfirm(idContacto) {
+        $('#modalConfirm' + ' #modal-p').html("¿Desea eliminar el contacto?");
+        $('#modalConfirm' + ' #modal-btn-si').off("click");
+        $('#modalConfirm' + ' #modal-btn-si').on('click', function () {
+            quitarContacto(idContacto);
+        });
+        $('#modalConfirm').modal('show');
+
+    }
+
+    function quitarContacto(idContacto) {
+        let lstContactosResponsable = [];
+
+        if ($('#hd_lstContactosResponsable').val() != "") {
+            lstContactosResponsable = JSON.parse($('#hd_lstContactosResponsable').val());
+        }
+
+        lstContactosResponsable.splice(idContacto,1)
+        $('#hd_lstContactosResponsable').val(JSON.stringify(lstContactosResponsable));
+        agregarContactoAmodel(lstContactosResponsable);
+        $('#modalConfirm').modal('hide');
+    }
+
+    $("#modal-btn-no").click(function () {
+        $('#modalConfirm').modal('hide');
+    });
+
+    $("#modal-btn-cerrar").click(function () {
+        $('#ResponsableModal').modal('hide');
+    });
+
+</script>
+
+
+
+

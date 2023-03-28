@@ -1,0 +1,30 @@
+﻿
+@model IEnumerable<FoodDefence.Models.TAREA>
+<div>
+    <table class="table table-bordered table-sm">
+        <tr>
+            <th class="priority-1">
+                Tipo
+            </th>
+            <th class="priority-2">
+                Descripción
+            </th>
+            <th class="priority-1"></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="priority-1">
+                    @Html.DisplayFor(modelItem => item.TRAMPA_TIPO.descripcion)
+                </td>
+                <td class="priority-2">
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td class="priority-1">
+                    @Html.ActionLink("Editar", "Edit", "TAREAs", new { id = item.id }, new { @class = "btn btn-outline-dark" })
+                    @Html.ActionLink("Eliminar", "Delete", "TAREAs", new { id = item.id }, new { @class = "btn btn-outline-danger" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

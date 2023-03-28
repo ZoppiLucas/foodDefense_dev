@@ -1,0 +1,130 @@
+﻿@model FoodDefence.Models.ORDEN_TRABAJO
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="callout callout-primary">
+
+    <h4><i class="fa fa-check-circle"></i> ¿Esta seguro de aprobar esta orden de trabajo?</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Fecha de Carga
+        </dt>
+        <dd>
+            @string.Format("{0:dd/MM/yyyy}", @Model.fechaCargaOrden)            
+        </dd>
+        <dt>
+            Fecha De Trabajo
+        </dt>
+        <dd>
+            @string.Format("{0:dd/MM/yyyy}", @Model.fechaDeTrabajo)            
+        </dd>
+        <dt>
+            Cliente
+        </dt>
+        <dd>
+            @ViewBag.Cliente
+        </dd>
+        <dt>
+            Locacion
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CLIENTE_LOCACION.descripcion)
+        </dd>
+        <dt>
+            Técnico
+        </dt>
+        <dd class="col-md-9 p-0">
+            
+            @if (@ViewBag.Select_Empleado == "N")
+            {
+                @Html.DropDownList("idEmpleado", null, "Sin declarar Técnico", htmlAttributes: new { @class = "form-control", @id = "cmbEmpleado" })
+                <br />
+                <div id="validaciones" class="alert alert-danger" role="alert">
+                    Antes de continuar debe seleccionar un Técnico
+                </div>
+            }
+            @if (@ViewBag.Select_Empleado == "S")
+            {
+                @ViewBag.Empleado
+            }
+
+            @*@Html.Hidden("idEmpleado", (int)ViewBag.id, htmlAttributes: new { @id = "idEmpleado" })*@
+            @Html.HiddenFor(model => model.idEmpleado, htmlAttributes: new { @id = "idEmpleado" })
+        </dd>
+
+    </dl>
+
+    @Html.HiddenFor(model => model.id, htmlAttributes: new { @id = "idOrden" })
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <h2>&emsp;</h2>
+        <div class="form-actions no-color">
+            <input type="button" value="Aprobar" onclick="AprobarOrden();" class="btn btn-outline-success" />
+            @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-outline-primary" })
+        </div>
+    }
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="modalAlert" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                <h4 class="modal-title">Atención</h4>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $('#cmbEmpleado').change(function () {
+        $("#cmbEmpleado option[value='']").remove();
+        $("#validaciones").hide();
+        var idEmpleado = $("#cmbEmpleado").val();
+        $("#idEmpleado").val(idEmpleado);
+        
+    });
+
+
+    function AprobarOrden() {
+        var lEmpleado = $('#idEmpleado').val();
+        var idOrden = $('#idOrden').val();
+        if (lEmpleado == '' || lEmpleado === 0 || lEmpleado == '0') {
+            $("#modalMessage").html("Ingrese un Técnico");
+            $('#modalAlert').modal("show");
+            return null;
+        }
+
+        $.ajax({
+            url: '@Url.Action("AprobarOrden")'
+            , type:"GET"
+            , dataType: 'json'
+            , data: { id: idOrden, idEmpleado: lEmpleado}
+            , success: function (data) {
+                if (data == 'OK') {
+                    location.href = '@Url.Action("Index", "ORDEN_TRABAJO")'
+                }
+                else {
+                    $("#modalMessage").html("Ocurrió un error inesperado");
+                    $('#modalAlert').modal("show");
+                    return null;
+                }
+            }
+        });
+    }
+
+</script>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<FoodDefence.Models.CONTROL_PLAGA>
+
+
+<div>
+    <table class="table table-bordered table-sm">
+        <tr>
+            <th class="priority-1"> Cliente Locacion </th>
+            <th class="priority-1"> Tipo Trampa </th>
+            <th class="priority-3"> Campo </th>
+            <th class="priority-3"> Operador </th>
+            <th class="priority-3"> Valor </th>
+            <th class="priority-1"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="priority-1"> @Html.DisplayFor(modelItem => item.CLIENTE_LOCACION.descripcion) </td>
+                <td class="priority-1"> @Html.DisplayFor(modelItem => item.TRAMPA_TIPO.descripcion)</td>
+                <td class="priority-3"> @Html.DisplayFor(modelItem => item.campoCondicion)</td>
+                <td class="priority-3"> @Html.DisplayFor(modelItem => item.operadorCondicion)</td>
+                <td class="priority-3"> @Html.DisplayFor(modelItem => item.valorCondicion)</td>
+                <td class="priority-3">
+                    @Html.ActionLink("Ver", "Details", "CONTROL_PLAGA", new { id = item.id }, new { @class = "btn btn-outline-dark" })
+                    @Html.ActionLink("Editar", "Edit", "CONTROL_PLAGA", new { id = item.id }, new { @class = "btn btn-outline-dark" })
+                    @Html.ActionLink("Eliminar", "Delete", "CONTROL_PLAGA", new { id = item.id }, new { @class = "btn btn-outline-danger ml-1" })                    
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+<script type="text/javascript">
+    var Ingreso = '@ViewBag.ValidacionesLocacion'
+
+    $(document).ready(function () {
+        $("#btnBuscar").html('Buscar').removeClass('disabled');
+        $("#btnBuscar").attr('disabled', false);
+    });
+</script>

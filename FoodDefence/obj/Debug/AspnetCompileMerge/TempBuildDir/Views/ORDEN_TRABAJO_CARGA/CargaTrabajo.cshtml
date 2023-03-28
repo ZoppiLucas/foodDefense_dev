@@ -1,0 +1,329 @@
+﻿@model FoodDefence.Models.objectModel.Trampas_OrdenTrabajoDetalle
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formGuardarTrabajo" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.idOrdenTrabajoDetalle, new { @id = "idOrdenTrabajoDetalle" })
+    @Html.HiddenFor(model => model.is_idAccion, new { @id = "is_idAccion" })
+    @Html.HiddenFor(model => model.is_cantidad, new { @id = "is_cantidad" })
+    @Html.HiddenFor(model => model.is_idEstado, new { @id = "is_idEstado" })
+    @Html.HiddenFor(model => model.is_mariposas, new { @id = "is_mariposas" })
+    @Html.HiddenFor(model => model.is_minusculos, new { @id = "is_minusculos" })
+    @Html.HiddenFor(model => model.is_moscas, new { @id = "is_moscas" })
+    @Html.HiddenFor(model => model.is_mosquitas, new { @id = "is_mosquitas" })
+    @Html.HiddenFor(model => model.is_polillas, new { @id = "is_polillas" })
+    @Html.HiddenFor(model => model.is_cargado, new { @id = "is_cargado" })
+    @Html.HiddenFor(model => model.is_roedor, new { @id = "is_roedor" })
+    @Html.HiddenFor(model => model.is_insecto, new { @id = "is_insecto" })
+    @Html.HiddenFor(model => model.is_cucaAmericana, new { @id = "is_cucaAmericana" })
+    @Html.HiddenFor(model => model.is_cucaGermanica, new { @id = "is_cucaGermanica" })    
+    
+    <div class="form-horizontal">
+        <h5>
+            <span class="badge badge-primary">
+                @Model.descripcion
+            </span>
+        </h5>
+        <div class="form-row">
+            @if (@Model.is_idEstado == "S")
+            {
+
+                 <div class="form-group col-md-10">
+                    Estado
+                    <div>
+                        @if (Model.multiSelTipoTrampa == true)
+                        {
+                            @Html.ListBox("m", Model.cmbEstado, htmlAttributes: new { @class = "form-control", @id = "idEstado", required = "required", @data_wait = "modal-control", @style = "display:none" })
+                        }
+                        @if (Model.multiSelTipoTrampa == false)
+                        {
+                            @Html.DropDownListFor(m => m.idEstado, Model.cmbEstado, null, htmlAttributes: new { @class = "form-control", @id = "idEstado", required = "required", @data_wait = "modal-control", @style = "display:none" })
+                        }
+                    </div>
+                 </div>
+            }
+        </div>
+        <div class="form-row">
+            @if (@Model.is_idAccion == "S")
+            {
+                <div class="form-group col-md-10">
+                    Acción
+                    <div>
+                        @Html.DropDownListFor(m => m.idAccion, Model.cmbAccion, null, htmlAttributes: new { @class = "form-control", @id = "idAccion", required = "required", @data_wait = "modal-control" })
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="form-row">
+            @if (@Model.is_moscas == "S")
+            {
+                <div class="form-group col-md-2">
+                    Moscas
+                    <div>
+                        @Html.EditorFor(model => model.moscas, new { htmlAttributes = new { @class = "form-control", @max = "99999", @min = "0", required = "required", @data_wait = "modal-control" } })
+                    </div>
+                </div>
+            }
+            @if (@Model.is_mosquitas == "S")
+            {
+                <div class="form-group col-md-2">
+                    Mosquitas
+                    <div>
+                        @Html.EditorFor(model => model.mosquitas, new { htmlAttributes = new { @class = "form-control", @max = "99999", @min = "0", required = "required", @data_wait = "modal-control" } })
+                    </div>
+                </div>
+            }
+            @if (@Model.is_polillas == "S")
+            {
+                <div class="form-group col-md-2">
+                    Polillas
+                    <div>
+                        @Html.EditorFor(model => model.polillas, new { htmlAttributes = new { @class = "form-control", @max = "99999", @min = "0", required = "required", @data_wait = "modal-control" } })
+                    </div>
+                </div>
+            }
+            @if (@Model.is_mariposas == "S")
+            {
+                <div class="form-group col-md-2">
+                    Mariposas
+                    <div>
+                        @Html.EditorFor(model => model.mariposas, new { htmlAttributes = new { @class = "form-control", @max = "99999", @min = "0", required = "required", @data_wait = "modal-control" } })
+                    </div>
+                </div>
+            }
+            @if (@Model.is_minusculos == "S")
+            {
+                <div class="form-group col-md-2">
+                    Minusculos
+                    <div>
+                        @Html.EditorFor(model => model.minusculos, new { htmlAttributes = new { @class = "form-control", @max = "99999", @min = "0", required = "required", @data_wait = "modal-control" } })
+                    </div>
+                </div>
+            }
+
+            @if (@Model.is_roedor == "S")
+            {
+                <div class="form-group col-md-2">
+                    Roedores
+                    <div>
+                        @Html.EditorFor(model => model.roedor, new { htmlAttributes = new { @class = "form-control", @max = "99999", @min = "0", required = "required", @data_wait = "modal-control" } })
+                    </div>
+                </div>
+            }
+            @if (@Model.is_insecto == "S")
+            {
+                <div class="form-group col-md-2">
+                    Insectos
+                    <div>
+                        @Html.EditorFor(model => model.insecto, new { htmlAttributes = new { @class = "form-control", @max = "99999", @min = "0", required = "required", @data_wait = "modal-control" } })
+                    </div>
+                </div>
+            }
+            @if (@Model.is_cucaAmericana == "S")
+            {
+                <div class="form-group col-md-2">
+                    C. Americana
+                    <div>
+                        @Html.EditorFor(model => model.cucaAmericana, new { htmlAttributes = new { @class = "form-control", @max = "99999", @min = "0", required = "required", @data_wait = "modal-control" } })
+                    </div>
+                </div>
+            }
+            @if (@Model.is_cucaGermanica == "S")
+            {
+                <div class="form-group col-md-2">
+                    C. Germanica
+                    <div>
+                        @Html.EditorFor(model => model.cucaGermanica, new { htmlAttributes = new { @class = "form-control", @max = "99999", @min = "0", required = "required", @data_wait = "modal-control" } })
+                    </div>
+                </div>
+            }
+
+
+            @if (@Model.is_cantidad == "S")
+            {
+                <div class="form-group col-md-2">
+                    Cantidad
+                    <div>
+                        @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control", @max = "99999", @min = "0", required = "required", @data_wait = "modal-control" } })
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-10">
+                Observacion
+                <div>
+                    @Html.TextAreaFor(modelItem => modelItem.observaciones, new { @maxlength = "2000", @autocomplete = "off", @rows = "2", @style = "width:100% !important;", @data_wait = "modal-control" })
+                </div>
+            </div>
+        </div>
+        <button type="submit" id="modal-btn-guardar" data-wait="modal-btn" class="btn btn-outline-success">Guardar</button>
+        <button type="button" id="modal-btn-cerrar" data-wait="modal-btn" class="btn btn-outline-secondary">Cerrar</button>
+        @if (@Model.is_cargado == "S")
+        {
+            <button type="button" id="modal-btn-borrar" data-wait="modal-btn" class="btn btn-outline-danger">Borrar Trabajo Cargado</button>
+        }
+
+        <div id="modalvalidaciones" class="alert alert-danger" role="alert">
+            <label id="lblMensError"></label>
+        </div>
+
+    </div>
+}
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="CargaTrabajoModalAlert" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                <h4 class="modal-title">Atención</h4>
+            </div>
+            <div class="modal-body">
+                <p id="CargaTrabajoModalAlertMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap Modal Confirm -->
+<div class="modal" tabindex="-1" role="dialog" id="CargaTrabajoModalConfirm">
+    <div class="modal-dialog" style="margin-top: 5rem;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar</h5>
+
+            </div>
+            <div class="modal-body">
+                <p id="CargaTrabajoModalConfirmMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="CargaTrabajoModalConfirm-btn-si" class="btn btn-primary">Si</button>
+                <button type="button" id="CargaTrabajoModalConfirm-btn-no" class="btn btn-secondary">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('[data-wait="modal-btn"]').attr("disabled", false).removeClass('disabled');
+        $("#modalvalidaciones").hide();
+        var is_idEstado = $("#is_idEstado").val()
+        if (is_idEstado == "S") {
+            var idEst = $("#idEstado").val();
+            if (idEst != '') {
+                $("#idEstado option[value='']").remove();
+            }
+        }
+
+        var is_idAccion = $("#is_idAccion").val()
+        if (is_idAccion == "S") {
+            var idAcc = $("#idAccion").val();
+            if (idAcc != '') {
+                $("#idAccion option[value='']").remove();
+            }
+        }
+
+        $("#idEstado").multiselect({ includeSelectAllOption: true});
+        $("#idEstado").chosen();
+
+    });
+
+    $('#idEstado').change(function () {
+       // $("#idEstado option[value='']").remove();
+    });
+
+    $('#idAccion').change(function () {
+        $("#idAccion option[value='']").remove();
+    });
+
+    $("#formGuardarTrabajo").submit(function (event) {
+        event.preventDefault();
+        guardarTrabajo();
+
+    });
+
+    function guardarTrabajo() {
+        var idOrdenTrabajoDetalle = $('#idOrdenTrabajoDetalle').val();
+        $('#modal-btn-guardar').html('<span class="spinner-border spinner-border-sm mr-2 text-success" role="status" aria-hidden="true"></span>Guardando...');
+        $('[data-wait="modal-btn"]').attr("disabled", true).addClass('disabled');
+        var form = $("#formGuardarTrabajo").serialize();
+        $('[data-wait="modal-control"]').attr("disabled", true).addClass('disabled');
+        $("#modalvalidaciones").hide();
+        $.ajax({
+            url: '@Url.Action("guardarTrabajo")'
+            , type:"POST"
+            , dataType: 'json'
+            , data: form
+            , success: function (data) {
+                if (data == 'OK') {
+                    $('#CargaTrabajoModal').modal('hide');
+                    $('#badgeTrabajo_' + idOrdenTrabajoDetalle).hide();
+                    $('#badgeTrabajo_' + idOrdenTrabajoDetalle).data("cargado", "S");
+                }
+                else {
+                    //$("#CargaTrabajoModalAlertMessage").html(data);
+                    //$('#CargaTrabajoModalAlert').modal("show");
+                    $('[data-wait="modal-btn"]').attr("disabled", false).removeClass('disabled');
+                    $('[data-wait="modal-control"]').attr("disabled", false).removeClass('disabled');
+                    $('#modal-btn-guardar').html('Guardar');
+                    $("#modalvalidaciones").show();
+                    $("#lblMensError").html(data);
+                    return null;
+                }
+            }
+        });
+    }
+
+    function borrarTrabajo() {
+        var idOrdenTrabajoDetalle = $('#idOrdenTrabajoDetalle').val();
+        $('#modal-btn-borrar').html('<span class="spinner-border spinner-border-sm mr-2 text-danger" role="status" aria-hidden="true"></span>Borrando...');
+        $('[data-wait="modal-btn"]').attr("disabled", true).addClass('disabled');
+        $('[data-wait="modal-control"]').attr("disabled", true).addClass('disabled');
+        let dataResponse = { idOrdenTrabajoDetalle: idOrdenTrabajoDetalle };
+        $.ajax({
+            url: '@Url.Action("borrarTrabajo")'
+            , type:"POST"
+            , dataType: 'json'
+            , data: JSON.stringify(dataResponse)
+            , contentType: "application/json; charset=utf-8"
+            , success: function (data) {
+                if (data == 'OK') {
+                    $('#CargaTrabajoModal').modal('hide');
+                    $('#badgeTrabajo_' + idOrdenTrabajoDetalle).show();
+                    $('#badgeTrabajo_' + idOrdenTrabajoDetalle).data("cargado", "N");
+                }
+                else {
+                    $('#CargaTrabajoModalAlertMessage').html(data);
+                    $('#CargaTrabajoModalAlert').modal("show");
+                    return null;
+                }
+            }
+        });
+    }
+
+    $("#modal-btn-borrar").click(function () {
+        $('#CargaTrabajoModalConfirmMessage').html("¿Desea borrar el trabajo cargado?");
+        $('#CargaTrabajoModalConfirm-btn-si').off("click");
+        $('#CargaTrabajoModalConfirm-btn-si').on('click', function () {
+            $('#CargaTrabajoModalConfirm').modal('hide');
+            borrarTrabajo();
+        });
+        $('#CargaTrabajoModalConfirm').modal('show');
+    });
+
+    $("#CargaTrabajoModalConfirm-btn-no").click(function () {
+        $('#CargaTrabajoModalConfirm').modal('hide');
+    });
+
+    $("#modal-btn-cerrar").click(function () {
+        $('#CargaTrabajoModal').modal('hide');
+    });
+
+</script>

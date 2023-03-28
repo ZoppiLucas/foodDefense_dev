@@ -1,0 +1,540 @@
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\FoodDefence.dll.config
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\FoodDefence.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\FoodDefence.pdb
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\csc.exe
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\csc.exe.config
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\csc.rsp
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\csi.exe
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\csi.rsp
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\System.AppContext.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\System.Collections.Immutable.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\System.IO.FileSystem.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\System.Reflection.Metadata.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\vbc.exe
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\vbc.exe.config
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\vbc.rsp
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\VBCSCompiler.exe
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\roslyn\VBCSCompiler.exe.config
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\Antlr3.Runtime.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\BouncyCastle.Crypto.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\EntityFramework.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\EntityFramework.SqlServer.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\Microsoft.Web.Infrastructure.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\MigraDoc.DocumentObjectModel.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\MigraDoc.Rendering.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\MigraDoc.RtfRendering.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\Newtonsoft.Json.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\PdfSharp.Charting.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\PdfSharp.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\QRCoder.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Net.Http.Formatting.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.Helpers.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.Http.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.Http.WebHost.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.Mvc.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.Optimization.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.Razor.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.WebPages.Deployment.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.WebPages.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.WebPages.Razor.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\WebGrease.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\EntityFramework.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\EntityFramework.SqlServer.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\MigraDoc.DocumentObjectModel.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\MigraDoc.Rendering.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\MigraDoc.RtfRendering.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\PdfSharp.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\PdfSharp.Charting.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Net.Http.Formatting.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.Http.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.Http.WebHost.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.Helpers.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.Mvc.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.Optimization.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.Razor.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.WebPages.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.WebPages.Deployment.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\System.Web.WebPages.Razor.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\Newtonsoft.Json.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\Antlr3.Runtime.pdb
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\de\MigraDoc.DocumentObjectModel.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\de\MigraDoc.Rendering.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\de\MigraDoc.RtfRendering.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\de\PdfSharp.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\de\PdfSharp.Charting.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\es\System.Web.Helpers.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\es\System.Web.Mvc.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\es\System.Web.Optimization.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\es\System.Web.Razor.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.Deployment.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.Razor.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csproj.CoreCompileInputs.cache
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csproj.CopyComplete
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\obj\Debug\FoodDefence.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\obj\Debug\FoodDefence.pdb
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense 20210523\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csprojAssemblyReference.cache
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\FoodDefence.dll.config
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\FoodDefence.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\FoodDefence.pdb
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\csc.exe
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\csc.exe.config
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\csc.rsp
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\csi.exe
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\csi.rsp
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\System.AppContext.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\System.Collections.Immutable.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\System.IO.FileSystem.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\System.Reflection.Metadata.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\vbc.exe
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\vbc.exe.config
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\vbc.rsp
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\VBCSCompiler.exe
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\roslyn\VBCSCompiler.exe.config
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\Antlr3.Runtime.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\BouncyCastle.Crypto.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\EntityFramework.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\EntityFramework.SqlServer.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\Microsoft.Web.Infrastructure.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\MigraDoc.DocumentObjectModel.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\MigraDoc.Rendering.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\MigraDoc.RtfRendering.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\Newtonsoft.Json.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\PdfSharp.Charting.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\PdfSharp.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\QRCoder.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Net.Http.Formatting.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.Helpers.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.Http.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.Http.WebHost.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.Mvc.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.Optimization.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.Razor.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.WebPages.Deployment.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.WebPages.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.WebPages.Razor.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\WebGrease.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\EntityFramework.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\EntityFramework.SqlServer.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\MigraDoc.DocumentObjectModel.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\MigraDoc.Rendering.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\MigraDoc.RtfRendering.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\PdfSharp.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\PdfSharp.Charting.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Net.Http.Formatting.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.Http.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.Http.WebHost.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.Helpers.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.Mvc.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.Optimization.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.Razor.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.WebPages.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.WebPages.Deployment.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\System.Web.WebPages.Razor.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\Newtonsoft.Json.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\Antlr3.Runtime.pdb
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\de\MigraDoc.DocumentObjectModel.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\de\MigraDoc.Rendering.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\de\MigraDoc.RtfRendering.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\de\PdfSharp.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\de\PdfSharp.Charting.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\es\System.Web.Helpers.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\es\System.Web.Mvc.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\es\System.Web.Optimization.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\es\System.Web.Razor.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.Deployment.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.Razor.resources.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csprojAssemblyReference.cache
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csproj.CoreCompileInputs.cache
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csproj.CopyComplete
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\obj\Debug\FoodDefence.dll
+D:\sistemas\fede suaste\versiones del sensei\FoodDefense\FoodDefence\obj\Debug\FoodDefence.pdb
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\FoodDefence.dll.config
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\FoodDefence.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\FoodDefence.pdb
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\csc.exe
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\csc.exe.config
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\csc.rsp
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\csi.exe
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\csi.rsp
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\System.AppContext.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\vbc.exe
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\vbc.exe.config
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\vbc.rsp
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\VBCSCompiler.exe
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\Antlr3.Runtime.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\BouncyCastle.Crypto.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\EntityFramework.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\EntityFramework.SqlServer.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\MigraDoc.DocumentObjectModel.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\MigraDoc.Rendering.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\MigraDoc.RtfRendering.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\Newtonsoft.Json.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\PdfSharp.Charting.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\PdfSharp.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\QRCoder.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Net.Http.Formatting.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.Helpers.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.Http.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.Http.WebHost.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.Mvc.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.Optimization.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.Razor.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.WebPages.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.WebPages.Razor.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\WebGrease.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\EntityFramework.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\EntityFramework.SqlServer.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\MigraDoc.DocumentObjectModel.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\MigraDoc.Rendering.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\MigraDoc.RtfRendering.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\PdfSharp.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\PdfSharp.Charting.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Net.Http.Formatting.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.Http.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.Http.WebHost.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.Helpers.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.Mvc.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.Optimization.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.Razor.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.WebPages.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\System.Web.WebPages.Razor.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\Newtonsoft.Json.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\Antlr3.Runtime.pdb
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\de\MigraDoc.DocumentObjectModel.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\de\MigraDoc.Rendering.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\de\MigraDoc.RtfRendering.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\de\PdfSharp.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\de\PdfSharp.Charting.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\es\System.Web.Mvc.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\es\System.Web.Razor.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csproj.AssemblyReference.cache
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csproj.CoreCompileInputs.cache
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csproj.CopyComplete
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\obj\Debug\FoodDefence.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022\FoodDefense\FoodDefence\obj\Debug\FoodDefence.pdb
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\FoodDefence.dll.config
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\FoodDefence.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\FoodDefence.pdb
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\csc.exe
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\csc.exe.config
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\csc.rsp
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\csi.exe
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\csi.rsp
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\System.AppContext.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\vbc.exe
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\vbc.exe.config
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\vbc.rsp
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\VBCSCompiler.exe
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\Antlr3.Runtime.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\BouncyCastle.Crypto.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\EntityFramework.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\EntityFramework.SqlServer.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\MigraDoc.DocumentObjectModel.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\MigraDoc.Rendering.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\MigraDoc.RtfRendering.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\Newtonsoft.Json.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\PdfSharp.Charting.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\PdfSharp.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\QRCoder.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Net.Http.Formatting.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.Helpers.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.Http.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.Http.WebHost.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.Mvc.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.Optimization.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.Razor.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.WebPages.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.WebPages.Razor.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\WebGrease.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\EntityFramework.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\EntityFramework.SqlServer.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\MigraDoc.DocumentObjectModel.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\MigraDoc.Rendering.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\MigraDoc.RtfRendering.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\PdfSharp.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\PdfSharp.Charting.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Net.Http.Formatting.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.Http.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.Http.WebHost.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.Helpers.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.Mvc.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.Optimization.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.Razor.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.WebPages.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\System.Web.WebPages.Razor.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\Newtonsoft.Json.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\Antlr3.Runtime.pdb
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\de\MigraDoc.DocumentObjectModel.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\de\MigraDoc.Rendering.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\de\MigraDoc.RtfRendering.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\de\PdfSharp.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\de\PdfSharp.Charting.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\es\System.Web.Mvc.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\es\System.Web.Razor.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csproj.AssemblyReference.cache
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csproj.CoreCompileInputs.cache
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csproj.CopyComplete
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\obj\Debug\FoodDefence.dll
+C:\Users\Hugo\Documents\FoodDefense_14-03-2022_error\FoodDefense\FoodDefence\obj\Debug\FoodDefence.pdb
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csproj.AssemblyReference.cache
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csproj.CoreCompileInputs.cache
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\FoodDefence.dll.config
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\FoodDefence.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\FoodDefence.pdb
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\csc.exe
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\csc.exe.config
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\csc.rsp
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\csi.exe
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\csi.rsp
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\System.AppContext.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\vbc.exe
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\vbc.exe.config
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\vbc.rsp
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\VBCSCompiler.exe
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\Antlr3.Runtime.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\BouncyCastle.Crypto.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\EntityFramework.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\EntityFramework.SqlServer.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\MigraDoc.DocumentObjectModel.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\MigraDoc.Rendering.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\MigraDoc.RtfRendering.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\Newtonsoft.Json.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\PdfSharp.Charting.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\PdfSharp.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\QRCoder.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Net.Http.Formatting.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.Helpers.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.Http.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.Http.WebHost.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.Mvc.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.Optimization.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.Razor.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.WebPages.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.WebPages.Razor.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\WebGrease.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\EntityFramework.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\EntityFramework.SqlServer.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\MigraDoc.DocumentObjectModel.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\MigraDoc.Rendering.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\MigraDoc.RtfRendering.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\PdfSharp.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\PdfSharp.Charting.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Net.Http.Formatting.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.Http.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.Http.WebHost.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.Helpers.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.Mvc.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.Optimization.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.Razor.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.WebPages.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\System.Web.WebPages.Razor.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\Newtonsoft.Json.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\Antlr3.Runtime.pdb
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\de\MigraDoc.DocumentObjectModel.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\de\MigraDoc.Rendering.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\de\MigraDoc.RtfRendering.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\de\PdfSharp.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\de\PdfSharp.Charting.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\es\System.Web.Mvc.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\es\System.Web.Razor.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csproj.CopyComplete
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\obj\Debug\FoodDefence.dll
+C:\Users\Hugo\Documents\FoodDefense_MOD\FoodDefense\FoodDefence\obj\Debug\FoodDefence.pdb
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\FoodDefence.dll.config
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\FoodDefence.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\FoodDefence.pdb
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\csc.exe
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\csc.exe.config
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\csc.rsp
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\csi.exe
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\csi.rsp
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\System.AppContext.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\System.Collections.Immutable.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\System.IO.FileSystem.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\System.Reflection.Metadata.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\vbc.exe
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\vbc.exe.config
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\vbc.rsp
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\VBCSCompiler.exe
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\roslyn\VBCSCompiler.exe.config
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\Antlr3.Runtime.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\BouncyCastle.Crypto.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\EntityFramework.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\EntityFramework.SqlServer.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\Microsoft.Web.Infrastructure.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\MigraDoc.DocumentObjectModel.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\MigraDoc.Rendering.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\MigraDoc.RtfRendering.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\Newtonsoft.Json.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\PdfSharp.Charting.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\PdfSharp.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\QRCoder.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Net.Http.Formatting.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.Helpers.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.Http.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.Http.WebHost.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.Mvc.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.Optimization.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.Razor.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.WebPages.Deployment.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.WebPages.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.WebPages.Razor.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\WebGrease.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\EntityFramework.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\EntityFramework.SqlServer.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\MigraDoc.DocumentObjectModel.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\MigraDoc.Rendering.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\MigraDoc.RtfRendering.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\PdfSharp.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\PdfSharp.Charting.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Net.Http.Formatting.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.Http.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.Http.WebHost.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.Helpers.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.Mvc.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.Optimization.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.Razor.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.WebPages.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.WebPages.Deployment.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\System.Web.WebPages.Razor.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\Newtonsoft.Json.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\Antlr3.Runtime.pdb
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\de\MigraDoc.DocumentObjectModel.resources.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\de\MigraDoc.Rendering.resources.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\de\MigraDoc.RtfRendering.resources.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\de\PdfSharp.resources.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\de\PdfSharp.Charting.resources.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\es\System.Web.Helpers.resources.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\es\System.Web.Mvc.resources.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\es\System.Web.Optimization.resources.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\es\System.Web.Razor.resources.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.resources.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.Deployment.resources.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\bin\es\System.Web.WebPages.Razor.resources.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csproj.CoreCompileInputs.cache
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csproj.CopyComplete
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\obj\Debug\FoodDefence.dll
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\obj\Debug\FoodDefence.pdb
+D:\Datos Usuario\Downloads\nueva version huguito\lucas\FoodDefense\FoodDefence\obj\Debug\FoodDefense.csprojAssemblyReference.cache

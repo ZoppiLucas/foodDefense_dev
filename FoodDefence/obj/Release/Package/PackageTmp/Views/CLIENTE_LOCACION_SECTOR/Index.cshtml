@@ -1,0 +1,91 @@
+﻿@model IEnumerable<FoodDefence.Models.CLIENTE_LOCACION_SECTOR>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="callout callout-primary">
+    <h4><i class="fa fa-industry"></i> Sectores</h4>
+    <br />
+
+    <p>
+        @Html.ActionLink("Crear sector", "Create", "CLIENTE_LOCACION_SECTOR", null, new { @class = "btn btn-outline-primary" })
+    </p>
+
+    <div class="table-responsive-sm">
+        <table class="table-sm">
+            <tr>
+                <td width="30%">
+                    Cliente
+                </td>
+                <td width="20%">
+                    Locación
+                </td>
+                <td width="20%">
+                    Sector
+                </td>
+                <td width="20%">
+                    Estado
+                </td>
+                <td width="10%"></td>
+            </tr>
+            <tr>
+                <td width="30%">
+                    @Html.EditorFor(model => Model.FirstOrDefault().CLIENTE_LOCACION.CLIENTE.razonSocial, new { htmlAttributes = new { @class = "form-control", id = "txtCliente" } })
+                </td>
+                <td width="30%">
+                    @Html.EditorFor(model => Model.FirstOrDefault().CLIENTE_LOCACION.descripcion, new { htmlAttributes = new { @class = "form-control", id = "txtLocacion" } })
+                </td>
+                <td width="30%">
+                    @Html.EditorFor(model => Model.FirstOrDefault().descripcion, new { htmlAttributes = new { @class = "form-control", id = "txtSector" } })
+                </td>
+                <td width="10%">
+                    <select id="cmbBaja" class="form-control">
+                        <option value="-1" selected="selected">Todos</option>
+                        <option value="0">Activos</option>
+                        <option value="1">Inactivos</option>
+                    </select>
+                </td>
+                <td width="10%">
+                    <input type="button" id="btnBuscar" class="btn btn-outline-secondary" onclick="btnBuscar_onclic()" value="Buscar" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="divTabla">
+
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+        limpiar();
+    });
+
+    function limpiar() {
+        $("#txtCliente").val('');
+        $('#txtLocacion').val('');
+        $('#txtSector').val('');
+        $('#cmbBaja').val('-1');
+    }
+    function btnBuscar_onclic() {
+        var lCliente= $('#txtCliente').val();
+        var lLocacion = $('#txtLocacion').val();
+        var lSector = $('#txtSector').val();
+        var lBaja = $('#cmbBaja').val();
+
+        $.ajax({
+                url: '@Url.Action("ListadoClienteLocacionSector", "CLIENTE_LOCACION_SECTOR")'
+                , data: {
+                        pCliente: lCliente
+                        , pLocacion: lLocacion
+                        , pSector: lSector
+                        , pBaja: lBaja}
+            , success: function (data) { $("#divTabla").html(data);
+                                        limpiar();
+                                        }
+        });
+    }
+</script>
+

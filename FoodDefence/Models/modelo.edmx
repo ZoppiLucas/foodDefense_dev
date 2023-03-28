@@ -1,0 +1,3073 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FoodDefense_DevModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTrampaTipo" Type="int" Nullable="false" />
+          <Property Name="campo" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idDocumentoTipo" Type="int" Nullable="false" />
+          <Property Name="numeroDocumento" Type="bigint" Nullable="false" />
+          <Property Name="razonSocial" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="habitlitadoPortal" Type="bit" Nullable="false" />
+          <Property Name="usuarioPortal" Type="varchar" MaxLength="50" />
+          <Property Name="clavePortal" Type="varchar" MaxLength="500" />
+          <Property Name="baja" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTE_CONTACTO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="idContactoTipo" Type="int" Nullable="false" />
+          <Property Name="valor" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="observaciones" Type="varchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="CLIENTE_LOCACION">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="idProvincia" Type="int" Nullable="false" />
+          <Property Name="localidad" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="calle" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="numero" Type="int" />
+          <Property Name="piso" Type="int" />
+          <Property Name="departamento" Type="varchar" MaxLength="5" />
+          <Property Name="observaciones" Type="varchar" MaxLength="3000" />
+          <Property Name="baja" Type="bit" Nullable="false" />
+          <Property Name="cantidadDiasCebaderas" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENTE_LOCACION_RESPONSABLE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idClienteLocacion" Type="int" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="habilitadoPortal" Type="bit" Nullable="false" />
+          <Property Name="usuarioPortal" Type="varchar" MaxLength="50" />
+          <Property Name="clavePortal" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="CLIENTE_LOCACION_RESPONSABLE_CONTACTO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idClienteLocacionResponsable" Type="int" Nullable="false" />
+          <Property Name="idContactoTipo" Type="int" Nullable="false" />
+          <Property Name="valor" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="observaciones" Type="varchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="CLIENTE_LOCACION_SECTOR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idClienteLocacion" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="baja" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CONTACTO_TIPO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CONTROL_PLAGA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idClienteLocacion" Type="int" Nullable="false" />
+          <Property Name="idTipoTrampa" Type="int" Nullable="false" />
+          <Property Name="campoCondicion" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="operadorCondicion" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="valorCondicion" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CONTROL_PLAGA_DETALLE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idControlPlaga" Type="int" />
+          <Property Name="idTarea" Type="int" />
+        </EntityType>
+        <EntityType Name="DOCUMENTO_TIPO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EMPLEADO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idDocumentoTipo" Type="int" Nullable="false" />
+          <Property Name="numeroDocumento" Type="bigint" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="baja" Type="bit" />
+        </EntityType>
+        <EntityType Name="EMPLEADO_CONTACTO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEmpleado" Type="int" Nullable="false" />
+          <Property Name="idContactoTipo" Type="int" Nullable="false" />
+          <Property Name="valor" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="observaciones" Type="varchar" MaxLength="2000" />
+          <Property Name="conexionApp" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GRAFICOS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTrampaTipo" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="otroFormatoEjeX" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menu" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="padre" Type="int" />
+        </EntityType>
+        <EntityType Name="MENU_USUARIO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="idMenu" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ORDEN_TRABAJO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idOrdenTrabajoEstado" Type="int" Nullable="false" />
+          <Property Name="idClienteLocacion" Type="int" Nullable="false" />
+          <Property Name="fechaCargaOrden" Type="datetime" Nullable="false" />
+          <Property Name="fechaDeTrabajo" Type="datetime" Nullable="false" />
+          <Property Name="idEmpleado" Type="int" />
+        </EntityType>
+        <EntityType Name="ORDEN_TRABAJO_DETALLE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idOrdenTrabajo" Type="int" Nullable="false" />
+          <Property Name="idTrampaClienteLocacionSector" Type="int" Nullable="false" />
+          <Property Name="idEstado" Type="int" />
+          <Property Name="idAccion" Type="int" />
+          <Property Name="moscas" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="mosquitas" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="polillas" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="mariposas" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="minusculos" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="cantidad" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="observaciones" Type="varchar" MaxLength="2000" />
+          <Property Name="cargado" Type="bit" />
+          <Property Name="roedor" Type="int" />
+          <Property Name="insecto" Type="int" />
+          <Property Name="cucaGermanica" Type="int" />
+          <Property Name="cucaAmericana" Type="int" />
+        </EntityType>
+        <EntityType Name="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idOrdenTrabajoDetalle" Type="int" />
+          <Property Name="idTarea" Type="int" />
+          <Property Name="realizado" Type="bit" />
+        </EntityType>
+        <EntityType Name="ORDEN_TRABAJO_DETALLE_ESTADO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idOrdenTrabajoDetalle" Type="int" Nullable="false" />
+          <Property Name="idEstado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ORDEN_TRABAJO_ESTADO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROVINCIA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TAREA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoTrampa" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="2500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRAMPA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTrampaTipo" Type="int" Nullable="false" />
+          <Property Name="idTrampaEstado" Type="int" Nullable="false" />
+          <Property Name="numero" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="observaciones" Type="varchar" MaxLength="3000" />
+        </EntityType>
+        <EntityType Name="TRAMPA_CLIENTE_LOCACION_SECTOR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idClienteLocacionSector" Type="int" Nullable="false" />
+          <Property Name="idTrampa" Type="int" Nullable="false" />
+          <Property Name="fechaDesde" Type="datetime" Nullable="false" />
+          <Property Name="fechaHasta" Type="datetime" />
+          <Property Name="observacion" Type="varchar" MaxLength="3000" />
+        </EntityType>
+        <EntityType Name="TRAMPA_CONTROL_ACCION">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTrampaTipo" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="abreviatura" Type="varchar" MaxLength="5" />
+          <Property Name="orden" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="TRAMPA_CONTROL_ESTADO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTrampaTipo" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="abreviatura" Type="varchar" MaxLength="5" />
+          <Property Name="orden" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="TRAMPA_ESTADO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRAMPA_TIPO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="baja" Type="bit" Nullable="false" />
+          <Property Name="multiSel" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="clave" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="mail" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="idUsuarioTipo" Type="int" />
+          <Property Name="idEmpleado" Type="int" />
+          <Property Name="idCliente" Type="int" />
+        </EntityType>
+        <EntityType Name="USUARIO_TIPO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__USUARIO__idEmple__55BFB948">
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="0..1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USUARIO__idUsuar__54CB950F">
+          <End Role="USUARIO_TIPO" Type="Self.USUARIO_TIPO" Multiplicity="0..1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="idUsuarioTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA_TRAMPA_TIPO">
+          <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+          <End Role="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" Type="Self.CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA">
+              <PropertyRef Name="idTrampaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_CONTACTO_CLIENTE">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+          <End Role="CLIENTE_CONTACTO" Type="Self.CLIENTE_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE_CONTACTO">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_CONTACTO_CONTACTO_TIPO">
+          <End Role="CONTACTO_TIPO" Type="Self.CONTACTO_TIPO" Multiplicity="1" />
+          <End Role="CLIENTE_CONTACTO" Type="Self.CLIENTE_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTACTO_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE_CONTACTO">
+              <PropertyRef Name="idContactoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_DOCUMENTO_TIPO">
+          <End Role="DOCUMENTO_TIPO" Type="Self.DOCUMENTO_TIPO" Multiplicity="1" />
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCUMENTO_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="idDocumentoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_LOCACION_CLIENTE">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+          <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE_LOCACION">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_LOCACION_PROVINCIA">
+          <End Role="PROVINCIA" Type="Self.PROVINCIA" Multiplicity="1" />
+          <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVINCIA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE_LOCACION">
+              <PropertyRef Name="idProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_LOCACION_RESPONSABLE_CLIENTE_LOCACION">
+          <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="1" />
+          <End Role="CLIENTE_LOCACION_RESPONSABLE" Type="Self.CLIENTE_LOCACION_RESPONSABLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE_LOCACION">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE_LOCACION_RESPONSABLE">
+              <PropertyRef Name="idClienteLocacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CLIENTE_LOCACION_RESPONSABLE">
+          <End Role="CLIENTE_LOCACION_RESPONSABLE" Type="Self.CLIENTE_LOCACION_RESPONSABLE" Multiplicity="1" />
+          <End Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" Type="Self.CLIENTE_LOCACION_RESPONSABLE_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE_LOCACION_RESPONSABLE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO">
+              <PropertyRef Name="idClienteLocacionResponsable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CONTACTO_TIPO">
+          <End Role="CONTACTO_TIPO" Type="Self.CONTACTO_TIPO" Multiplicity="1" />
+          <End Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" Type="Self.CLIENTE_LOCACION_RESPONSABLE_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTACTO_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO">
+              <PropertyRef Name="idContactoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION">
+          <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="1" />
+          <End Role="CLIENTE_LOCACION_SECTOR" Type="Self.CLIENTE_LOCACION_SECTOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE_LOCACION">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE_LOCACION_SECTOR">
+              <PropertyRef Name="idClienteLocacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONTROL_PLAGA">
+          <End Role="CONTROL_PLAGA" Type="Self.CONTROL_PLAGA" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CONTROL_PLAGA_DETALLE" Type="Self.CONTROL_PLAGA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTROL_PLAGA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CONTROL_PLAGA_DETALLE">
+              <PropertyRef Name="idControlPlaga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONTROL_PLAGA_CLIENTE_LOCACION">
+          <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="1" />
+          <End Role="CONTROL_PLAGA" Type="Self.CONTROL_PLAGA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE_LOCACION">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CONTROL_PLAGA">
+              <PropertyRef Name="idClienteLocacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONTROL_PLAGA_TRAMPA_TIPO">
+          <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+          <End Role="CONTROL_PLAGA" Type="Self.CONTROL_PLAGA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CONTROL_PLAGA">
+              <PropertyRef Name="idTipoTrampa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLEADO_CONTACTO_CONTACTO_TIPO">
+          <End Role="CONTACTO_TIPO" Type="Self.CONTACTO_TIPO" Multiplicity="1" />
+          <End Role="EMPLEADO_CONTACTO" Type="Self.EMPLEADO_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTACTO_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EMPLEADO_CONTACTO">
+              <PropertyRef Name="idContactoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLEADO_CONTACTO_EMPLEADO">
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+          <End Role="EMPLEADO_CONTACTO" Type="Self.EMPLEADO_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EMPLEADO_CONTACTO">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLEADO_DOCUMENTO_TIPO">
+          <End Role="DOCUMENTO_TIPO" Type="Self.DOCUMENTO_TIPO" Multiplicity="1" />
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCUMENTO_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EMPLEADO">
+              <PropertyRef Name="idDocumentoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRAFICOS_TRAMPA_TIPO">
+          <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+          <End Role="GRAFICOS" Type="Self.GRAFICOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GRAFICOS">
+              <PropertyRef Name="idTrampaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_MENU">
+          <End Role="MENU" Type="Self.MENU" Multiplicity="0..1" />
+          <End Role="MENU1" Type="Self.MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MENU1">
+              <PropertyRef Name="padre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_USUARIO_MENU">
+          <End Role="MENU" Type="Self.MENU" Multiplicity="1" />
+          <End Role="MENU_USUARIO" Type="Self.MENU_USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MENU_USUARIO">
+              <PropertyRef Name="idMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_USUARIO_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="MENU_USUARIO" Type="Self.MENU_USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MENU_USUARIO">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_TRABAJO_DETALLE">
+          <End Role="ORDEN_TRABAJO_DETALLE" Type="Self.ORDEN_TRABAJO_DETALLE" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Type="Self.ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDEN_TRABAJO_DETALLE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA">
+              <PropertyRef Name="idOrdenTrabajoDetalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_TRABAJO_DETALLE_ESTADO_ORDEN_TRABAJO_DETALLE">
+          <End Role="ORDEN_TRABAJO_DETALLE" Type="Self.ORDEN_TRABAJO_DETALLE" Multiplicity="1" />
+          <End Role="ORDEN_TRABAJO_DETALLE_ESTADO" Type="Self.ORDEN_TRABAJO_DETALLE_ESTADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDEN_TRABAJO_DETALLE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO_DETALLE_ESTADO">
+              <PropertyRef Name="idOrdenTrabajoDetalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_TRABAJO_DETALLE_ESTADO_TRAMPA_CONTROL_ESTADO">
+          <End Role="TRAMPA_CONTROL_ESTADO" Type="Self.TRAMPA_CONTROL_ESTADO" Multiplicity="1" />
+          <End Role="ORDEN_TRABAJO_DETALLE_ESTADO" Type="Self.ORDEN_TRABAJO_DETALLE_ESTADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_CONTROL_ESTADO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO_DETALLE_ESTADO">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_TRABAJO_DETALLE_ORDEN_TRABAJO">
+          <End Role="ORDEN_TRABAJO" Type="Self.ORDEN_TRABAJO" Multiplicity="1" />
+          <End Role="ORDEN_TRABAJO_DETALLE" Type="Self.ORDEN_TRABAJO_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDEN_TRABAJO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO_DETALLE">
+              <PropertyRef Name="idOrdenTrabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CLIENTE_LOCACION_SECTOR">
+          <End Role="TRAMPA_CLIENTE_LOCACION_SECTOR" Type="Self.TRAMPA_CLIENTE_LOCACION_SECTOR" Multiplicity="1" />
+          <End Role="ORDEN_TRABAJO_DETALLE" Type="Self.ORDEN_TRABAJO_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_CLIENTE_LOCACION_SECTOR">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO_DETALLE">
+              <PropertyRef Name="idTrampaClienteLocacionSector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ACCION">
+          <End Role="TRAMPA_CONTROL_ACCION" Type="Self.TRAMPA_CONTROL_ACCION" Multiplicity="0..1" />
+          <End Role="ORDEN_TRABAJO_DETALLE" Type="Self.ORDEN_TRABAJO_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_CONTROL_ACCION">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO_DETALLE">
+              <PropertyRef Name="idAccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO">
+          <End Role="TRAMPA_CONTROL_ESTADO" Type="Self.TRAMPA_CONTROL_ESTADO" Multiplicity="0..1" />
+          <End Role="ORDEN_TRABAJO_DETALLE" Type="Self.ORDEN_TRABAJO_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_CONTROL_ESTADO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO_DETALLE">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_TRABAJO_EMPLEADO">
+          <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="0..1" />
+          <End Role="ORDEN_TRABAJO" Type="Self.ORDEN_TRABAJO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_TRABAJO_ORDEN_TRABAJO">
+          <End Role="ORDEN_TRABAJO_ESTADO" Type="Self.ORDEN_TRABAJO_ESTADO" Multiplicity="1" />
+          <End Role="ORDEN_TRABAJO" Type="Self.ORDEN_TRABAJO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDEN_TRABAJO_ESTADO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO">
+              <PropertyRef Name="idOrdenTrabajoEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_TRABAJO_ORDEN_TRABAJO1">
+          <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="1" />
+          <End Role="ORDEN_TRABAJO" Type="Self.ORDEN_TRABAJO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE_LOCACION">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO">
+              <PropertyRef Name="idClienteLocacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAREA">
+          <End Role="TAREA" Type="Self.TAREA" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CONTROL_PLAGA_DETALLE" Type="Self.CONTROL_PLAGA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAREA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CONTROL_PLAGA_DETALLE">
+              <PropertyRef Name="idTarea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAREA_DETALLE">
+          <End Role="TAREA" Type="Self.TAREA" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Type="Self.ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAREA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA">
+              <PropertyRef Name="idTarea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAREA_TRAMPA_TIPO">
+          <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+          <End Role="TAREA" Type="Self.TAREA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TAREA">
+              <PropertyRef Name="idTipoTrampa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRAMPA_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION_SECTOR">
+          <End Role="CLIENTE_LOCACION_SECTOR" Type="Self.CLIENTE_LOCACION_SECTOR" Multiplicity="1" />
+          <End Role="TRAMPA_CLIENTE_LOCACION_SECTOR" Type="Self.TRAMPA_CLIENTE_LOCACION_SECTOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE_LOCACION_SECTOR">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TRAMPA_CLIENTE_LOCACION_SECTOR">
+              <PropertyRef Name="idClienteLocacionSector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRAMPA_CLIENTE_LOCACION_SECTOR_TRAMPA">
+          <End Role="TRAMPA" Type="Self.TRAMPA" Multiplicity="1" />
+          <End Role="TRAMPA_CLIENTE_LOCACION_SECTOR" Type="Self.TRAMPA_CLIENTE_LOCACION_SECTOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TRAMPA_CLIENTE_LOCACION_SECTOR">
+              <PropertyRef Name="idTrampa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRAMPA_CONTROL_ACCION_TRAMPA_TIPO1">
+          <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+          <End Role="TRAMPA_CONTROL_ACCION" Type="Self.TRAMPA_CONTROL_ACCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TRAMPA_CONTROL_ACCION">
+              <PropertyRef Name="idTrampaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRAMPA_CONTROL_ESTADO_TRAMPA_TIPO">
+          <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+          <End Role="TRAMPA_CONTROL_ESTADO" Type="Self.TRAMPA_CONTROL_ESTADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TRAMPA_CONTROL_ESTADO">
+              <PropertyRef Name="idTrampaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRAMPA_TRAMPA_ESTADO">
+          <End Role="TRAMPA_ESTADO" Type="Self.TRAMPA_ESTADO" Multiplicity="1" />
+          <End Role="TRAMPA" Type="Self.TRAMPA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_ESTADO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TRAMPA">
+              <PropertyRef Name="idTrampaEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRAMPA_TRAMPA_TIPO">
+          <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+          <End Role="TRAMPA" Type="Self.TRAMPA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TRAMPA">
+              <PropertyRef Name="idTrampaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIO_CLIENTE">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_Fechas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FechaIni" Type="datetime" Mode="In" />
+          <Parameter Name="FechaFin" Type="datetime" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Fecha" Type="datetime" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="st_AutocompleteTrampas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="numero" Type="varchar" Mode="In" />
+          <Parameter Name="idTrampaTipo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="st_control_cantidad_requerida_estado_trampa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idTrampaClienteLocacionSector" Type="int" Mode="In" />
+          <Parameter Name="idAccion" Type="int" Mode="In" />
+          <Parameter Name="idEstado" Type="int" Mode="In" />
+          <Parameter Name="moscas" Type="int" Mode="In" />
+          <Parameter Name="mosquitas" Type="int" Mode="In" />
+          <Parameter Name="polillas" Type="int" Mode="In" />
+          <Parameter Name="mariposas" Type="int" Mode="In" />
+          <Parameter Name="minusculos" Type="int" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+          <Parameter Name="roedor" Type="int" Mode="In" />
+          <Parameter Name="insecto" Type="int" Mode="In" />
+          <Parameter Name="cucaGermanica" Type="int" Mode="In" />
+          <Parameter Name="cucaAmericana" Type="int" Mode="In" />
+          <Parameter Name="observaciones" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="st_getCamposControlPlaga" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pIdTipoTrampa" Type="int" Mode="In" />
+        </Function>
+        <Function Name="st_getDatosExportacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCliente" Type="int" Mode="In" />
+          <Parameter Name="pLocacion" Type="int" Mode="In" />
+          <Parameter Name="pPeriodo" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="st_getDatosGraficos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pGraficos" Type="varchar" Mode="In" />
+          <Parameter Name="pPeriodo" Type="datetime" Mode="In" />
+          <Parameter Name="pClienteLocacion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="st_getDetalleTrampasOrdenTrabajo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idOrdenTrabajo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="st_getEmpListTask" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idEmpleado" Type="int" Mode="In" />
+          <Parameter Name="fechaDeTrabajo" Type="date" Mode="In" />
+        </Function>
+        <Function Name="st_getLastTrampaApp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idOrdenTrabajoDetalle" Type="int" Mode="In" />
+        </Function>
+        <Function Name="st_GetListAccionesTareas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idOrdenTrabajo" Type="int" Mode="In" />
+          <Parameter Name="idTipoTrampa" Type="int" Mode="In" />
+          <Parameter Name="idOrdenTrabajoDetalle" Type="int" Mode="In" />
+        </Function>
+        <Function Name="st_GetListaControlPlaga" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Cliente" Type="varchar" Mode="In" />
+          <Parameter Name="CliLoca" Type="varchar" Mode="In" />
+          <Parameter Name="TipoTrampa" Type="int" Mode="In" />
+          <Parameter Name="CamCond" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="st_getListadoTrampaClienteLocacionSector" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cliente" Type="varchar" Mode="In" />
+          <Parameter Name="locacion" Type="varchar" Mode="In" />
+          <Parameter Name="sector" Type="varchar" Mode="In" />
+          <Parameter Name="numero" Type="varchar" Mode="In" />
+          <Parameter Name="tipotrampa" Type="int" Mode="In" />
+        </Function>
+        <Function Name="st_getOrdenesTrabajo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cliente" Type="varchar" Mode="In" />
+          <Parameter Name="empleado" Type="varchar" Mode="In" />
+          <Parameter Name="fDesde" Type="date" Mode="In" />
+          <Parameter Name="fHasta" Type="date" Mode="In" />
+          <Parameter Name="estado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="st_getTrampaApp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idClienteLocacion" Type="int" Mode="In" />
+          <Parameter Name="idTrampaTipo" Type="int" Mode="In" />
+          <Parameter Name="numeroTrampa" Type="varchar" Mode="In" />
+          <Parameter Name="idEmpleado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="st_getTrampasOrdenTrabajo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipoBusqueda" Type="char" Mode="In" />
+          <Parameter Name="idClienteLocacion" Type="int" Mode="In" />
+          <Parameter Name="idClienteLocacionSector" Type="int" Mode="In" />
+          <Parameter Name="idTrampaTipo" Type="int" Mode="In" />
+          <Parameter Name="pTrampadesde" Type="varchar" Mode="In" />
+          <Parameter Name="pTrampaHasta" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="st_validarTrampaCargaApp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idTrampaClienteLocacionSector" Type="int" Mode="In" />
+          <Parameter Name="idEmpleado" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="FoodDefense_DevModelStoreContainer">
+          <EntitySet Name="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" EntityType="Self.CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTE_CONTACTO" EntityType="Self.CLIENTE_CONTACTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTE_LOCACION" EntityType="Self.CLIENTE_LOCACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTE_LOCACION_RESPONSABLE" EntityType="Self.CLIENTE_LOCACION_RESPONSABLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" EntityType="Self.CLIENTE_LOCACION_RESPONSABLE_CONTACTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENTE_LOCACION_SECTOR" EntityType="Self.CLIENTE_LOCACION_SECTOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONTACTO_TIPO" EntityType="Self.CONTACTO_TIPO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONTROL_PLAGA" EntityType="Self.CONTROL_PLAGA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONTROL_PLAGA_DETALLE" EntityType="Self.CONTROL_PLAGA_DETALLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOCUMENTO_TIPO" EntityType="Self.DOCUMENTO_TIPO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLEADO_CONTACTO" EntityType="Self.EMPLEADO_CONTACTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GRAFICOS" EntityType="Self.GRAFICOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MENU" EntityType="Self.MENU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MENU_USUARIO" EntityType="Self.MENU_USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORDEN_TRABAJO" EntityType="Self.ORDEN_TRABAJO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORDEN_TRABAJO_DETALLE" EntityType="Self.ORDEN_TRABAJO_DETALLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" EntityType="Self.ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORDEN_TRABAJO_DETALLE_ESTADO" EntityType="Self.ORDEN_TRABAJO_DETALLE_ESTADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORDEN_TRABAJO_ESTADO" EntityType="Self.ORDEN_TRABAJO_ESTADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROVINCIA" EntityType="Self.PROVINCIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAREA" EntityType="Self.TAREA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRAMPA" EntityType="Self.TRAMPA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRAMPA_CLIENTE_LOCACION_SECTOR" EntityType="Self.TRAMPA_CLIENTE_LOCACION_SECTOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRAMPA_CONTROL_ACCION" EntityType="Self.TRAMPA_CONTROL_ACCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRAMPA_CONTROL_ESTADO" EntityType="Self.TRAMPA_CONTROL_ESTADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRAMPA_ESTADO" EntityType="Self.TRAMPA_ESTADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRAMPA_TIPO" EntityType="Self.TRAMPA_TIPO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO_TIPO" EntityType="Self.USUARIO_TIPO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__USUARIO__idEmple__55BFB948" Association="Self.FK__USUARIO__idEmple__55BFB948">
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USUARIO__idUsuar__54CB950F" Association="Self.FK__USUARIO__idUsuar__54CB950F">
+            <End Role="USUARIO_TIPO" EntitySet="USUARIO_TIPO" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA_TRAMPA_TIPO" Association="Self.FK_CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA_TRAMPA_TIPO">
+            <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+            <End Role="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" EntitySet="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_CONTACTO_CLIENTE" Association="Self.FK_CLIENTE_CONTACTO_CLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="CLIENTE_CONTACTO" EntitySet="CLIENTE_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_CONTACTO_CONTACTO_TIPO" Association="Self.FK_CLIENTE_CONTACTO_CONTACTO_TIPO">
+            <End Role="CONTACTO_TIPO" EntitySet="CONTACTO_TIPO" />
+            <End Role="CLIENTE_CONTACTO" EntitySet="CLIENTE_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_DOCUMENTO_TIPO" Association="Self.FK_CLIENTE_DOCUMENTO_TIPO">
+            <End Role="DOCUMENTO_TIPO" EntitySet="DOCUMENTO_TIPO" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_LOCACION_CLIENTE" Association="Self.FK_CLIENTE_LOCACION_CLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_LOCACION_PROVINCIA" Association="Self.FK_CLIENTE_LOCACION_PROVINCIA">
+            <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+            <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_LOCACION_RESPONSABLE_CLIENTE_LOCACION" Association="Self.FK_CLIENTE_LOCACION_RESPONSABLE_CLIENTE_LOCACION">
+            <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+            <End Role="CLIENTE_LOCACION_RESPONSABLE" EntitySet="CLIENTE_LOCACION_RESPONSABLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CLIENTE_LOCACION_RESPONSABLE" Association="Self.FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CLIENTE_LOCACION_RESPONSABLE">
+            <End Role="CLIENTE_LOCACION_RESPONSABLE" EntitySet="CLIENTE_LOCACION_RESPONSABLE" />
+            <End Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" EntitySet="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CONTACTO_TIPO" Association="Self.FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CONTACTO_TIPO">
+            <End Role="CONTACTO_TIPO" EntitySet="CONTACTO_TIPO" />
+            <End Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" EntitySet="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION" Association="Self.FK_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION">
+            <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+            <End Role="CLIENTE_LOCACION_SECTOR" EntitySet="CLIENTE_LOCACION_SECTOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTROL_PLAGA" Association="Self.FK_CONTROL_PLAGA">
+            <End Role="CONTROL_PLAGA" EntitySet="CONTROL_PLAGA" />
+            <End Role="CONTROL_PLAGA_DETALLE" EntitySet="CONTROL_PLAGA_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTROL_PLAGA_CLIENTE_LOCACION" Association="Self.FK_CONTROL_PLAGA_CLIENTE_LOCACION">
+            <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+            <End Role="CONTROL_PLAGA" EntitySet="CONTROL_PLAGA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTROL_PLAGA_TRAMPA_TIPO" Association="Self.FK_CONTROL_PLAGA_TRAMPA_TIPO">
+            <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+            <End Role="CONTROL_PLAGA" EntitySet="CONTROL_PLAGA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLEADO_CONTACTO_CONTACTO_TIPO" Association="Self.FK_EMPLEADO_CONTACTO_CONTACTO_TIPO">
+            <End Role="CONTACTO_TIPO" EntitySet="CONTACTO_TIPO" />
+            <End Role="EMPLEADO_CONTACTO" EntitySet="EMPLEADO_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLEADO_CONTACTO_EMPLEADO" Association="Self.FK_EMPLEADO_CONTACTO_EMPLEADO">
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+            <End Role="EMPLEADO_CONTACTO" EntitySet="EMPLEADO_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLEADO_DOCUMENTO_TIPO" Association="Self.FK_EMPLEADO_DOCUMENTO_TIPO">
+            <End Role="DOCUMENTO_TIPO" EntitySet="DOCUMENTO_TIPO" />
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRAFICOS_TRAMPA_TIPO" Association="Self.FK_GRAFICOS_TRAMPA_TIPO">
+            <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+            <End Role="GRAFICOS" EntitySet="GRAFICOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_MENU" Association="Self.FK_MENU_MENU">
+            <End Role="MENU" EntitySet="MENU" />
+            <End Role="MENU1" EntitySet="MENU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_USUARIO_MENU" Association="Self.FK_MENU_USUARIO_MENU">
+            <End Role="MENU" EntitySet="MENU" />
+            <End Role="MENU_USUARIO" EntitySet="MENU_USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_USUARIO_USUARIO" Association="Self.FK_MENU_USUARIO_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="MENU_USUARIO" EntitySet="MENU_USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE" Association="Self.FK_ORDEN_TRABAJO_DETALLE">
+            <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+            <End Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" EntitySet="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_ESTADO_ORDEN_TRABAJO_DETALLE" Association="Self.FK_ORDEN_TRABAJO_DETALLE_ESTADO_ORDEN_TRABAJO_DETALLE">
+            <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+            <End Role="ORDEN_TRABAJO_DETALLE_ESTADO" EntitySet="ORDEN_TRABAJO_DETALLE_ESTADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_ESTADO_TRAMPA_CONTROL_ESTADO" Association="Self.FK_ORDEN_TRABAJO_DETALLE_ESTADO_TRAMPA_CONTROL_ESTADO">
+            <End Role="TRAMPA_CONTROL_ESTADO" EntitySet="TRAMPA_CONTROL_ESTADO" />
+            <End Role="ORDEN_TRABAJO_DETALLE_ESTADO" EntitySet="ORDEN_TRABAJO_DETALLE_ESTADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_ORDEN_TRABAJO" Association="Self.FK_ORDEN_TRABAJO_DETALLE_ORDEN_TRABAJO">
+            <End Role="ORDEN_TRABAJO" EntitySet="ORDEN_TRABAJO" />
+            <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CLIENTE_LOCACION_SECTOR" Association="Self.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CLIENTE_LOCACION_SECTOR">
+            <End Role="TRAMPA_CLIENTE_LOCACION_SECTOR" EntitySet="TRAMPA_CLIENTE_LOCACION_SECTOR" />
+            <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ACCION" Association="Self.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ACCION">
+            <End Role="TRAMPA_CONTROL_ACCION" EntitySet="TRAMPA_CONTROL_ACCION" />
+            <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO" Association="Self.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO">
+            <End Role="TRAMPA_CONTROL_ESTADO" EntitySet="TRAMPA_CONTROL_ESTADO" />
+            <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_EMPLEADO" Association="Self.FK_ORDEN_TRABAJO_EMPLEADO">
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+            <End Role="ORDEN_TRABAJO" EntitySet="ORDEN_TRABAJO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_ORDEN_TRABAJO" Association="Self.FK_ORDEN_TRABAJO_ORDEN_TRABAJO">
+            <End Role="ORDEN_TRABAJO_ESTADO" EntitySet="ORDEN_TRABAJO_ESTADO" />
+            <End Role="ORDEN_TRABAJO" EntitySet="ORDEN_TRABAJO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_ORDEN_TRABAJO1" Association="Self.FK_ORDEN_TRABAJO_ORDEN_TRABAJO1">
+            <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+            <End Role="ORDEN_TRABAJO" EntitySet="ORDEN_TRABAJO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAREA" Association="Self.FK_TAREA">
+            <End Role="TAREA" EntitySet="TAREA" />
+            <End Role="CONTROL_PLAGA_DETALLE" EntitySet="CONTROL_PLAGA_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAREA_DETALLE" Association="Self.FK_TAREA_DETALLE">
+            <End Role="TAREA" EntitySet="TAREA" />
+            <End Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" EntitySet="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAREA_TRAMPA_TIPO" Association="Self.FK_TAREA_TRAMPA_TIPO">
+            <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+            <End Role="TAREA" EntitySet="TAREA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRAMPA_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION_SECTOR" Association="Self.FK_TRAMPA_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION_SECTOR">
+            <End Role="CLIENTE_LOCACION_SECTOR" EntitySet="CLIENTE_LOCACION_SECTOR" />
+            <End Role="TRAMPA_CLIENTE_LOCACION_SECTOR" EntitySet="TRAMPA_CLIENTE_LOCACION_SECTOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRAMPA_CLIENTE_LOCACION_SECTOR_TRAMPA" Association="Self.FK_TRAMPA_CLIENTE_LOCACION_SECTOR_TRAMPA">
+            <End Role="TRAMPA" EntitySet="TRAMPA" />
+            <End Role="TRAMPA_CLIENTE_LOCACION_SECTOR" EntitySet="TRAMPA_CLIENTE_LOCACION_SECTOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRAMPA_CONTROL_ACCION_TRAMPA_TIPO1" Association="Self.FK_TRAMPA_CONTROL_ACCION_TRAMPA_TIPO1">
+            <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+            <End Role="TRAMPA_CONTROL_ACCION" EntitySet="TRAMPA_CONTROL_ACCION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRAMPA_CONTROL_ESTADO_TRAMPA_TIPO" Association="Self.FK_TRAMPA_CONTROL_ESTADO_TRAMPA_TIPO">
+            <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+            <End Role="TRAMPA_CONTROL_ESTADO" EntitySet="TRAMPA_CONTROL_ESTADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRAMPA_TRAMPA_ESTADO" Association="Self.FK_TRAMPA_TRAMPA_ESTADO">
+            <End Role="TRAMPA_ESTADO" EntitySet="TRAMPA_ESTADO" />
+            <End Role="TRAMPA" EntitySet="TRAMPA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRAMPA_TRAMPA_TIPO" Association="Self.FK_TRAMPA_TRAMPA_TIPO">
+            <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+            <End Role="TRAMPA" EntitySet="TRAMPA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIO_CLIENTE" Association="Self.FK_USUARIO_CLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FoodDefense_DevModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTrampaTipo" Type="Int32" Nullable="false" />
+          <Property Name="campo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TRAMPA_TIPO" Relationship="Self.FK_CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA_TRAMPA_TIPO" FromRole="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" ToRole="TRAMPA_TIPO" />
+        </EntityType>
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idDocumentoTipo" Type="Int32" Nullable="false" />
+          <Property Name="numeroDocumento" Type="Int64" Nullable="false" />
+          <Property Name="razonSocial" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="habitlitadoPortal" Type="Boolean" Nullable="false" />
+          <Property Name="usuarioPortal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="clavePortal" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CLIENTE_CONTACTO" Relationship="Self.FK_CLIENTE_CONTACTO_CLIENTE" FromRole="CLIENTE" ToRole="CLIENTE_CONTACTO" />
+          <NavigationProperty Name="DOCUMENTO_TIPO" Relationship="Self.FK_CLIENTE_DOCUMENTO_TIPO" FromRole="CLIENTE" ToRole="DOCUMENTO_TIPO" />
+          <NavigationProperty Name="CLIENTE_LOCACION" Relationship="Self.FK_CLIENTE_LOCACION_CLIENTE" FromRole="CLIENTE" ToRole="CLIENTE_LOCACION" />
+          <Property Name="baja" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="USUARIO" Relationship="FoodDefense_DevModel.FK_USUARIO_CLIENTE" FromRole="CLIENTE" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="CLIENTE_CONTACTO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="idContactoTipo" Type="Int32" Nullable="false" />
+          <Property Name="valor" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="observaciones" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.FK_CLIENTE_CONTACTO_CLIENTE" FromRole="CLIENTE_CONTACTO" ToRole="CLIENTE" />
+          <NavigationProperty Name="CONTACTO_TIPO" Relationship="Self.FK_CLIENTE_CONTACTO_CONTACTO_TIPO" FromRole="CLIENTE_CONTACTO" ToRole="CONTACTO_TIPO" />
+        </EntityType>
+        <EntityType Name="CLIENTE_LOCACION">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idProvincia" Type="Int32" Nullable="false" />
+          <Property Name="localidad" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="calle" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numero" Type="Int32" />
+          <Property Name="piso" Type="Int32" />
+          <Property Name="departamento" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="observaciones" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.FK_CLIENTE_LOCACION_CLIENTE" FromRole="CLIENTE_LOCACION" ToRole="CLIENTE" />
+          <NavigationProperty Name="PROVINCIA" Relationship="Self.FK_CLIENTE_LOCACION_PROVINCIA" FromRole="CLIENTE_LOCACION" ToRole="PROVINCIA" />
+          <NavigationProperty Name="CLIENTE_LOCACION_RESPONSABLE" Relationship="Self.FK_CLIENTE_LOCACION_RESPONSABLE_CLIENTE_LOCACION" FromRole="CLIENTE_LOCACION" ToRole="CLIENTE_LOCACION_RESPONSABLE" />
+          <NavigationProperty Name="CLIENTE_LOCACION_SECTOR" Relationship="Self.FK_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION" FromRole="CLIENTE_LOCACION" ToRole="CLIENTE_LOCACION_SECTOR" />
+          <NavigationProperty Name="ORDEN_TRABAJO" Relationship="Self.FK_ORDEN_TRABAJO_ORDEN_TRABAJO1" FromRole="CLIENTE_LOCACION" ToRole="ORDEN_TRABAJO" />
+          <Property Name="baja" Type="Boolean" Nullable="false" />
+          <Property Name="cantidadDiasCebaderas" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CONTROL_PLAGA" Relationship="FoodDefense_DevModel.FK_CONTROL_PLAGA_CLIENTE_LOCACION" FromRole="CLIENTE_LOCACION" ToRole="CONTROL_PLAGA" />
+        </EntityType>
+        <EntityType Name="CLIENTE_LOCACION_RESPONSABLE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idClienteLocacion" Type="Int32" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="habilitadoPortal" Type="Boolean" Nullable="false" />
+          <Property Name="usuarioPortal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="clavePortal" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CLIENTE_LOCACION" Relationship="Self.FK_CLIENTE_LOCACION_RESPONSABLE_CLIENTE_LOCACION" FromRole="CLIENTE_LOCACION_RESPONSABLE" ToRole="CLIENTE_LOCACION" />
+          <NavigationProperty Name="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" Relationship="Self.FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CLIENTE_LOCACION_RESPONSABLE" FromRole="CLIENTE_LOCACION_RESPONSABLE" ToRole="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" />
+        </EntityType>
+        <EntityType Name="CLIENTE_LOCACION_RESPONSABLE_CONTACTO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idClienteLocacionResponsable" Type="Int32" Nullable="false" />
+          <Property Name="idContactoTipo" Type="Int32" Nullable="false" />
+          <Property Name="valor" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="observaciones" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CLIENTE_LOCACION_RESPONSABLE" Relationship="Self.FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CLIENTE_LOCACION_RESPONSABLE" FromRole="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" ToRole="CLIENTE_LOCACION_RESPONSABLE" />
+          <NavigationProperty Name="CONTACTO_TIPO" Relationship="Self.FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CONTACTO_TIPO" FromRole="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" ToRole="CONTACTO_TIPO" />
+        </EntityType>
+        <EntityType Name="CLIENTE_LOCACION_SECTOR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idClienteLocacion" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CLIENTE_LOCACION" Relationship="Self.FK_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION" FromRole="CLIENTE_LOCACION_SECTOR" ToRole="CLIENTE_LOCACION" />
+          <Property Name="baja" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TRAMPA_CLIENTE_LOCACION_SECTOR" Relationship="FoodDefense_DevModel.FK_TRAMPA_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION_SECTOR" FromRole="CLIENTE_LOCACION_SECTOR" ToRole="TRAMPA_CLIENTE_LOCACION_SECTOR" />
+        </EntityType>
+        <EntityType Name="CONTACTO_TIPO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CLIENTE_CONTACTO" Relationship="Self.FK_CLIENTE_CONTACTO_CONTACTO_TIPO" FromRole="CONTACTO_TIPO" ToRole="CLIENTE_CONTACTO" />
+          <NavigationProperty Name="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" Relationship="Self.FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CONTACTO_TIPO" FromRole="CONTACTO_TIPO" ToRole="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" />
+          <NavigationProperty Name="EMPLEADO_CONTACTO" Relationship="Self.FK_EMPLEADO_CONTACTO_CONTACTO_TIPO" FromRole="CONTACTO_TIPO" ToRole="EMPLEADO_CONTACTO" />
+        </EntityType>
+        <EntityType Name="DOCUMENTO_TIPO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.FK_CLIENTE_DOCUMENTO_TIPO" FromRole="DOCUMENTO_TIPO" ToRole="CLIENTE" />
+          <NavigationProperty Name="EMPLEADO" Relationship="FoodDefense_DevModel.FK_EMPLEADO_DOCUMENTO_TIPO" FromRole="DOCUMENTO_TIPO" ToRole="EMPLEADO" />
+        </EntityType>
+        <EntityType Name="EMPLEADO_CONTACTO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="idContactoTipo" Type="Int32" Nullable="false" />
+          <Property Name="valor" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="observaciones" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="conexionApp" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CONTACTO_TIPO" Relationship="Self.FK_EMPLEADO_CONTACTO_CONTACTO_TIPO" FromRole="EMPLEADO_CONTACTO" ToRole="CONTACTO_TIPO" />
+          <NavigationProperty Name="EMPLEADO" Relationship="FoodDefense_DevModel.FK_EMPLEADO_CONTACTO_EMPLEADO" FromRole="EMPLEADO_CONTACTO" ToRole="EMPLEADO" />
+        </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menu1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="padre" Type="Int32" />
+          <NavigationProperty Name="MENU11" Relationship="Self.FK_MENU_MENU" FromRole="MENU" ToRole="MENU1" />
+          <NavigationProperty Name="MENU2" Relationship="Self.FK_MENU_MENU" FromRole="MENU1" ToRole="MENU" />
+          <NavigationProperty Name="MENU_USUARIO" Relationship="Self.FK_MENU_USUARIO_MENU" FromRole="MENU" ToRole="MENU_USUARIO" />
+        </EntityType>
+        <EntityType Name="MENU_USUARIO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="idMenu" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MENU" Relationship="Self.FK_MENU_USUARIO_MENU" FromRole="MENU_USUARIO" ToRole="MENU" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK_MENU_USUARIO_USUARIO" FromRole="MENU_USUARIO" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="ORDEN_TRABAJO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idOrdenTrabajoEstado" Type="Int32" Nullable="false" />
+          <Property Name="idClienteLocacion" Type="Int32" Nullable="false" />
+          <Property Name="fechaCargaOrden" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaDeTrabajo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idEmpleado" Type="Int32" />
+          <NavigationProperty Name="CLIENTE_LOCACION" Relationship="Self.FK_ORDEN_TRABAJO_ORDEN_TRABAJO1" FromRole="ORDEN_TRABAJO" ToRole="CLIENTE_LOCACION" />
+          <NavigationProperty Name="ORDEN_TRABAJO_ESTADO" Relationship="Self.FK_ORDEN_TRABAJO_ORDEN_TRABAJO" FromRole="ORDEN_TRABAJO" ToRole="ORDEN_TRABAJO_ESTADO" />
+          <NavigationProperty Name="EMPLEADO" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_EMPLEADO" FromRole="ORDEN_TRABAJO" ToRole="EMPLEADO" />
+          <NavigationProperty Name="ORDEN_TRABAJO_DETALLE" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_ORDEN_TRABAJO" FromRole="ORDEN_TRABAJO" ToRole="ORDEN_TRABAJO_DETALLE" />
+        </EntityType>
+        <EntityType Name="ORDEN_TRABAJO_ESTADO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ORDEN_TRABAJO" Relationship="Self.FK_ORDEN_TRABAJO_ORDEN_TRABAJO" FromRole="ORDEN_TRABAJO_ESTADO" ToRole="ORDEN_TRABAJO" />
+        </EntityType>
+        <EntityType Name="PROVINCIA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CLIENTE_LOCACION" Relationship="Self.FK_CLIENTE_LOCACION_PROVINCIA" FromRole="PROVINCIA" ToRole="CLIENTE_LOCACION" />
+        </EntityType>
+        <EntityType Name="TRAMPA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTrampaTipo" Type="Int32" Nullable="false" />
+          <Property Name="idTrampaEstado" Type="Int32" Nullable="false" />
+          <Property Name="numero" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="observaciones" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TRAMPA_ESTADO" Relationship="Self.FK_TRAMPA_TRAMPA_ESTADO" FromRole="TRAMPA" ToRole="TRAMPA_ESTADO" />
+          <NavigationProperty Name="TRAMPA_TIPO" Relationship="Self.FK_TRAMPA_TRAMPA_TIPO" FromRole="TRAMPA" ToRole="TRAMPA_TIPO" />
+          <NavigationProperty Name="TRAMPA_CLIENTE_LOCACION_SECTOR" Relationship="FoodDefense_DevModel.FK_TRAMPA_CLIENTE_LOCACION_SECTOR_TRAMPA" FromRole="TRAMPA" ToRole="TRAMPA_CLIENTE_LOCACION_SECTOR" />
+        </EntityType>
+        <EntityType Name="TRAMPA_CONTROL_ACCION">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTrampaTipo" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="abreviatura" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TRAMPA_TIPO" Relationship="Self.FK_TRAMPA_CONTROL_ACCION_TRAMPA_TIPO1" FromRole="TRAMPA_CONTROL_ACCION" ToRole="TRAMPA_TIPO" />
+          <Property Name="orden" Type="Byte" />
+          <NavigationProperty Name="ORDEN_TRABAJO_DETALLE" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ACCION" FromRole="TRAMPA_CONTROL_ACCION" ToRole="ORDEN_TRABAJO_DETALLE" />
+        </EntityType>
+        <EntityType Name="TRAMPA_CONTROL_ESTADO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTrampaTipo" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="abreviatura" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TRAMPA_TIPO" Relationship="Self.FK_TRAMPA_CONTROL_ESTADO_TRAMPA_TIPO" FromRole="TRAMPA_CONTROL_ESTADO" ToRole="TRAMPA_TIPO" />
+          <Property Name="orden" Type="Byte" />
+          <NavigationProperty Name="ORDEN_TRABAJO_DETALLE_ESTADO" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_ESTADO_TRAMPA_CONTROL_ESTADO" FromRole="TRAMPA_CONTROL_ESTADO" ToRole="ORDEN_TRABAJO_DETALLE_ESTADO" />
+          <NavigationProperty Name="ORDEN_TRABAJO_DETALLE" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO" FromRole="TRAMPA_CONTROL_ESTADO" ToRole="ORDEN_TRABAJO_DETALLE" />
+        </EntityType>
+        <EntityType Name="TRAMPA_ESTADO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TRAMPA" Relationship="Self.FK_TRAMPA_TRAMPA_ESTADO" FromRole="TRAMPA_ESTADO" ToRole="TRAMPA" />
+        </EntityType>
+        <EntityType Name="TRAMPA_TIPO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" Relationship="Self.FK_CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA_TRAMPA_TIPO" FromRole="TRAMPA_TIPO" ToRole="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" />
+          <NavigationProperty Name="TRAMPA" Relationship="Self.FK_TRAMPA_TRAMPA_TIPO" FromRole="TRAMPA_TIPO" ToRole="TRAMPA" />
+          <NavigationProperty Name="TRAMPA_CONTROL_ACCION" Relationship="Self.FK_TRAMPA_CONTROL_ACCION_TRAMPA_TIPO1" FromRole="TRAMPA_TIPO" ToRole="TRAMPA_CONTROL_ACCION" />
+          <NavigationProperty Name="TRAMPA_CONTROL_ESTADO" Relationship="Self.FK_TRAMPA_CONTROL_ESTADO_TRAMPA_TIPO" FromRole="TRAMPA_TIPO" ToRole="TRAMPA_CONTROL_ESTADO" />
+          <Property Name="baja" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GRAFICOS" Relationship="FoodDefense_DevModel.FK_GRAFICOS_TRAMPA_TIPO" FromRole="TRAMPA_TIPO" ToRole="GRAFICOS" />
+          <Property Name="multiSel" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TAREA" Relationship="FoodDefense_DevModel.FK_TAREA_TRAMPA_TIPO" FromRole="TRAMPA_TIPO" ToRole="TAREA" />
+          <NavigationProperty Name="CONTROL_PLAGA" Relationship="FoodDefense_DevModel.FK_CONTROL_PLAGA_TRAMPA_TIPO" FromRole="TRAMPA_TIPO" ToRole="CONTROL_PLAGA" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="clave" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MENU_USUARIO" Relationship="Self.FK_MENU_USUARIO_USUARIO" FromRole="USUARIO" ToRole="MENU_USUARIO" />
+          <Property Name="idUsuarioTipo" Type="Int32" />
+          <Property Name="idEmpleado" Type="Int32" />
+          <NavigationProperty Name="EMPLEADO" Relationship="FoodDefense_DevModel.FK__USUARIO__idEmple__55BFB948" FromRole="USUARIO" ToRole="EMPLEADO" />
+          <Property Name="idCliente" Type="Int32" />
+          <NavigationProperty Name="CLIENTE" Relationship="FoodDefense_DevModel.FK_USUARIO_CLIENTE" FromRole="USUARIO" ToRole="CLIENTE" />
+          <NavigationProperty Name="USUARIO_TIPO" Relationship="FoodDefense_DevModel.FK__USUARIO__idUsuar__2B5F6B28" FromRole="USUARIO" ToRole="USUARIO_TIPO" />
+        </EntityType>
+        <Association Name="FK_CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA_TRAMPA_TIPO">
+          <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+          <End Role="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" Type="Self.CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA">
+              <PropertyRef Name="idTrampaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_CONTACTO_CLIENTE">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+          <End Role="CLIENTE_CONTACTO" Type="Self.CLIENTE_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE_CONTACTO">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_DOCUMENTO_TIPO">
+          <End Role="DOCUMENTO_TIPO" Type="Self.DOCUMENTO_TIPO" Multiplicity="1" />
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCUMENTO_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="idDocumentoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_LOCACION_CLIENTE">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+          <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE_LOCACION">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_CONTACTO_CONTACTO_TIPO">
+          <End Role="CONTACTO_TIPO" Type="Self.CONTACTO_TIPO" Multiplicity="1" />
+          <End Role="CLIENTE_CONTACTO" Type="Self.CLIENTE_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTACTO_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE_CONTACTO">
+              <PropertyRef Name="idContactoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_LOCACION_PROVINCIA">
+          <End Role="PROVINCIA" Type="Self.PROVINCIA" Multiplicity="1" />
+          <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROVINCIA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE_LOCACION">
+              <PropertyRef Name="idProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_LOCACION_RESPONSABLE_CLIENTE_LOCACION">
+          <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="1" />
+          <End Role="CLIENTE_LOCACION_RESPONSABLE" Type="Self.CLIENTE_LOCACION_RESPONSABLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE_LOCACION">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE_LOCACION_RESPONSABLE">
+              <PropertyRef Name="idClienteLocacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION">
+          <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="1" />
+          <End Role="CLIENTE_LOCACION_SECTOR" Type="Self.CLIENTE_LOCACION_SECTOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE_LOCACION">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE_LOCACION_SECTOR">
+              <PropertyRef Name="idClienteLocacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_TRABAJO_ORDEN_TRABAJO1">
+          <End Role="CLIENTE_LOCACION" Type="Self.CLIENTE_LOCACION" Multiplicity="1" />
+          <End Role="ORDEN_TRABAJO" Type="Self.ORDEN_TRABAJO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE_LOCACION">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO">
+              <PropertyRef Name="idClienteLocacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CLIENTE_LOCACION_RESPONSABLE">
+          <End Role="CLIENTE_LOCACION_RESPONSABLE" Type="Self.CLIENTE_LOCACION_RESPONSABLE" Multiplicity="1" />
+          <End Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" Type="Self.CLIENTE_LOCACION_RESPONSABLE_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE_LOCACION_RESPONSABLE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO">
+              <PropertyRef Name="idClienteLocacionResponsable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CONTACTO_TIPO">
+          <End Role="CONTACTO_TIPO" Type="Self.CONTACTO_TIPO" Multiplicity="1" />
+          <End Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" Type="Self.CLIENTE_LOCACION_RESPONSABLE_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTACTO_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO">
+              <PropertyRef Name="idContactoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLEADO_CONTACTO_CONTACTO_TIPO">
+          <End Role="CONTACTO_TIPO" Type="Self.CONTACTO_TIPO" Multiplicity="1" />
+          <End Role="EMPLEADO_CONTACTO" Type="Self.EMPLEADO_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTACTO_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EMPLEADO_CONTACTO">
+              <PropertyRef Name="idContactoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_MENU">
+          <End Role="MENU" Type="Self.MENU" Multiplicity="0..1" />
+          <End Role="MENU1" Type="Self.MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MENU1">
+              <PropertyRef Name="padre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_USUARIO_MENU">
+          <End Role="MENU" Type="Self.MENU" Multiplicity="1" />
+          <End Role="MENU_USUARIO" Type="Self.MENU_USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MENU_USUARIO">
+              <PropertyRef Name="idMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_USUARIO_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="MENU_USUARIO" Type="Self.MENU_USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MENU_USUARIO">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_TRABAJO_ORDEN_TRABAJO">
+          <End Role="ORDEN_TRABAJO_ESTADO" Type="Self.ORDEN_TRABAJO_ESTADO" Multiplicity="1" />
+          <End Role="ORDEN_TRABAJO" Type="Self.ORDEN_TRABAJO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDEN_TRABAJO_ESTADO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO">
+              <PropertyRef Name="idOrdenTrabajoEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRAMPA_TRAMPA_ESTADO">
+          <End Role="TRAMPA_ESTADO" Type="Self.TRAMPA_ESTADO" Multiplicity="1" />
+          <End Role="TRAMPA" Type="Self.TRAMPA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_ESTADO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TRAMPA">
+              <PropertyRef Name="idTrampaEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRAMPA_TRAMPA_TIPO">
+          <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+          <End Role="TRAMPA" Type="Self.TRAMPA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TRAMPA">
+              <PropertyRef Name="idTrampaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRAMPA_CONTROL_ACCION_TRAMPA_TIPO1">
+          <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+          <End Role="TRAMPA_CONTROL_ACCION" Type="Self.TRAMPA_CONTROL_ACCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TRAMPA_CONTROL_ACCION">
+              <PropertyRef Name="idTrampaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRAMPA_CONTROL_ESTADO_TRAMPA_TIPO">
+          <End Role="TRAMPA_TIPO" Type="Self.TRAMPA_TIPO" Multiplicity="1" />
+          <End Role="TRAMPA_CONTROL_ESTADO" Type="Self.TRAMPA_CONTROL_ESTADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TRAMPA_CONTROL_ESTADO">
+              <PropertyRef Name="idTrampaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FoodDefense_DevEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" EntityType="Self.CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" />
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
+          <EntitySet Name="CLIENTE_CONTACTO" EntityType="Self.CLIENTE_CONTACTO" />
+          <EntitySet Name="CLIENTE_LOCACION" EntityType="Self.CLIENTE_LOCACION" />
+          <EntitySet Name="CLIENTE_LOCACION_RESPONSABLE" EntityType="Self.CLIENTE_LOCACION_RESPONSABLE" />
+          <EntitySet Name="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" EntityType="Self.CLIENTE_LOCACION_RESPONSABLE_CONTACTO" />
+          <EntitySet Name="CLIENTE_LOCACION_SECTOR" EntityType="Self.CLIENTE_LOCACION_SECTOR" />
+          <EntitySet Name="CONTACTO_TIPO" EntityType="Self.CONTACTO_TIPO" />
+          <EntitySet Name="DOCUMENTO_TIPO" EntityType="Self.DOCUMENTO_TIPO" />
+          <EntitySet Name="EMPLEADO_CONTACTO" EntityType="Self.EMPLEADO_CONTACTO" />
+          <EntitySet Name="MENU" EntityType="Self.MENU" />
+          <EntitySet Name="MENU_USUARIO" EntityType="Self.MENU_USUARIO" />
+          <EntitySet Name="ORDEN_TRABAJO" EntityType="Self.ORDEN_TRABAJO" />
+          <EntitySet Name="ORDEN_TRABAJO_ESTADO" EntityType="Self.ORDEN_TRABAJO_ESTADO" />
+          <EntitySet Name="PROVINCIA" EntityType="Self.PROVINCIA" />
+          <EntitySet Name="TRAMPA" EntityType="Self.TRAMPA" />
+          <EntitySet Name="TRAMPA_CONTROL_ACCION" EntityType="Self.TRAMPA_CONTROL_ACCION" />
+          <EntitySet Name="TRAMPA_CONTROL_ESTADO" EntityType="Self.TRAMPA_CONTROL_ESTADO" />
+          <EntitySet Name="TRAMPA_ESTADO" EntityType="Self.TRAMPA_ESTADO" />
+          <EntitySet Name="TRAMPA_TIPO" EntityType="Self.TRAMPA_TIPO" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+          <AssociationSet Name="FK_CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA_TRAMPA_TIPO" Association="Self.FK_CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA_TRAMPA_TIPO">
+            <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+            <End Role="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" EntitySet="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_CONTACTO_CLIENTE" Association="Self.FK_CLIENTE_CONTACTO_CLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="CLIENTE_CONTACTO" EntitySet="CLIENTE_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_DOCUMENTO_TIPO" Association="Self.FK_CLIENTE_DOCUMENTO_TIPO">
+            <End Role="DOCUMENTO_TIPO" EntitySet="DOCUMENTO_TIPO" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_LOCACION_CLIENTE" Association="Self.FK_CLIENTE_LOCACION_CLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_CONTACTO_CONTACTO_TIPO" Association="Self.FK_CLIENTE_CONTACTO_CONTACTO_TIPO">
+            <End Role="CONTACTO_TIPO" EntitySet="CONTACTO_TIPO" />
+            <End Role="CLIENTE_CONTACTO" EntitySet="CLIENTE_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_LOCACION_PROVINCIA" Association="Self.FK_CLIENTE_LOCACION_PROVINCIA">
+            <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+            <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_LOCACION_RESPONSABLE_CLIENTE_LOCACION" Association="Self.FK_CLIENTE_LOCACION_RESPONSABLE_CLIENTE_LOCACION">
+            <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+            <End Role="CLIENTE_LOCACION_RESPONSABLE" EntitySet="CLIENTE_LOCACION_RESPONSABLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION" Association="Self.FK_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION">
+            <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+            <End Role="CLIENTE_LOCACION_SECTOR" EntitySet="CLIENTE_LOCACION_SECTOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_ORDEN_TRABAJO1" Association="Self.FK_ORDEN_TRABAJO_ORDEN_TRABAJO1">
+            <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+            <End Role="ORDEN_TRABAJO" EntitySet="ORDEN_TRABAJO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CLIENTE_LOCACION_RESPONSABLE" Association="Self.FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CLIENTE_LOCACION_RESPONSABLE">
+            <End Role="CLIENTE_LOCACION_RESPONSABLE" EntitySet="CLIENTE_LOCACION_RESPONSABLE" />
+            <End Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" EntitySet="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CONTACTO_TIPO" Association="Self.FK_CLIENTE_LOCACION_RESPONSABLE_CONTACTO_CONTACTO_TIPO">
+            <End Role="CONTACTO_TIPO" EntitySet="CONTACTO_TIPO" />
+            <End Role="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" EntitySet="CLIENTE_LOCACION_RESPONSABLE_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLEADO_CONTACTO_CONTACTO_TIPO" Association="Self.FK_EMPLEADO_CONTACTO_CONTACTO_TIPO">
+            <End Role="CONTACTO_TIPO" EntitySet="CONTACTO_TIPO" />
+            <End Role="EMPLEADO_CONTACTO" EntitySet="EMPLEADO_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_MENU" Association="Self.FK_MENU_MENU">
+            <End Role="MENU" EntitySet="MENU" />
+            <End Role="MENU1" EntitySet="MENU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_USUARIO_MENU" Association="Self.FK_MENU_USUARIO_MENU">
+            <End Role="MENU" EntitySet="MENU" />
+            <End Role="MENU_USUARIO" EntitySet="MENU_USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_USUARIO_USUARIO" Association="Self.FK_MENU_USUARIO_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="MENU_USUARIO" EntitySet="MENU_USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_ORDEN_TRABAJO" Association="Self.FK_ORDEN_TRABAJO_ORDEN_TRABAJO">
+            <End Role="ORDEN_TRABAJO_ESTADO" EntitySet="ORDEN_TRABAJO_ESTADO" />
+            <End Role="ORDEN_TRABAJO" EntitySet="ORDEN_TRABAJO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRAMPA_TRAMPA_ESTADO" Association="Self.FK_TRAMPA_TRAMPA_ESTADO">
+            <End Role="TRAMPA_ESTADO" EntitySet="TRAMPA_ESTADO" />
+            <End Role="TRAMPA" EntitySet="TRAMPA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRAMPA_TRAMPA_TIPO" Association="Self.FK_TRAMPA_TRAMPA_TIPO">
+            <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+            <End Role="TRAMPA" EntitySet="TRAMPA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRAMPA_CONTROL_ACCION_TRAMPA_TIPO1" Association="Self.FK_TRAMPA_CONTROL_ACCION_TRAMPA_TIPO1">
+            <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+            <End Role="TRAMPA_CONTROL_ACCION" EntitySet="TRAMPA_CONTROL_ACCION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRAMPA_CONTROL_ESTADO_TRAMPA_TIPO" Association="Self.FK_TRAMPA_CONTROL_ESTADO_TRAMPA_TIPO">
+            <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+            <End Role="TRAMPA_CONTROL_ESTADO" EntitySet="TRAMPA_CONTROL_ESTADO" />
+          </AssociationSet>
+          <EntitySet Name="TRAMPA_CLIENTE_LOCACION_SECTOR" EntityType="FoodDefense_DevModel.TRAMPA_CLIENTE_LOCACION_SECTOR" />
+          <AssociationSet Name="FK_TRAMPA_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION_SECTOR" Association="FoodDefense_DevModel.FK_TRAMPA_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION_SECTOR">
+            <End Role="CLIENTE_LOCACION_SECTOR" EntitySet="CLIENTE_LOCACION_SECTOR" />
+            <End Role="TRAMPA_CLIENTE_LOCACION_SECTOR" EntitySet="TRAMPA_CLIENTE_LOCACION_SECTOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRAMPA_CLIENTE_LOCACION_SECTOR_TRAMPA" Association="FoodDefense_DevModel.FK_TRAMPA_CLIENTE_LOCACION_SECTOR_TRAMPA">
+            <End Role="TRAMPA" EntitySet="TRAMPA" />
+            <End Role="TRAMPA_CLIENTE_LOCACION_SECTOR" EntitySet="TRAMPA_CLIENTE_LOCACION_SECTOR" />
+          </AssociationSet>
+          <EntitySet Name="EMPLEADO" EntityType="FoodDefense_DevModel.EMPLEADO" />
+          <AssociationSet Name="FK_EMPLEADO_DOCUMENTO_TIPO" Association="FoodDefense_DevModel.FK_EMPLEADO_DOCUMENTO_TIPO">
+            <End Role="DOCUMENTO_TIPO" EntitySet="DOCUMENTO_TIPO" />
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLEADO_CONTACTO_EMPLEADO" Association="FoodDefense_DevModel.FK_EMPLEADO_CONTACTO_EMPLEADO">
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+            <End Role="EMPLEADO_CONTACTO" EntitySet="EMPLEADO_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_EMPLEADO" Association="FoodDefense_DevModel.FK_ORDEN_TRABAJO_EMPLEADO">
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+            <End Role="ORDEN_TRABAJO" EntitySet="ORDEN_TRABAJO" />
+          </AssociationSet>
+          <FunctionImport Name="st_getDetalleTrampasOrdenTrabajo" ReturnType="Collection(FoodDefense_DevModel.DetalleTrampasOrdenTrabajo_Result)">
+          <Parameter Name="idOrdenTrabajo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="st_getOrdenesTrabajo" ReturnType="Collection(FoodDefense_DevModel.OrdenesTrabajo_Result)">
+            <Parameter Name="cliente" Mode="In" Type="String" />
+            <Parameter Name="empleado" Mode="In" Type="String" />
+            <Parameter Name="fDesde" Mode="In" Type="DateTime" />
+            <Parameter Name="fHasta" Mode="In" Type="DateTime" />
+            <Parameter Name="estado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="st_AutocompleteTrampas" ReturnType="Collection(FoodDefense_DevModel.AutocompleteTrampas)">
+            <Parameter Name="numero" Mode="In" Type="String" />
+            <Parameter Name="idTrampaTipo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="st_getListadoTrampaClienteLocacionSector" ReturnType="Collection(FoodDefense_DevModel.ListadoTrampaClienteLocacionSector_Result)">
+            <Parameter Name="cliente" Mode="In" Type="String" />
+            <Parameter Name="locacion" Mode="In" Type="String" />
+            <Parameter Name="sector" Mode="In" Type="String" />
+            <Parameter Name="numero" Mode="In" Type="String" />
+            <Parameter Name="tipotrampa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="st_getDatosExportacion" ReturnType="Collection(FoodDefense_DevModel.DatosExportacion_Result)">
+            <Parameter Name="pCliente" Mode="In" Type="Int32" />
+            <Parameter Name="pLocacion" Mode="In" Type="Int32" />
+            <Parameter Name="pPeriodo" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="st_validarTrampaCargaApp" ReturnType="Collection(FoodDefense_DevModel.validarTrampa_Result)">
+            <Parameter Name="idTrampaClienteLocacionSector" Mode="In" Type="Int32" />
+            <Parameter Name="idEmpleado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="st_getTrampaApp" ReturnType="Collection(FoodDefense_DevModel.TrampaApp_Result)">
+            <Parameter Name="idClienteLocacion" Mode="In" Type="Int32" />
+            <Parameter Name="idTrampaTipo" Mode="In" Type="Int32" />
+            <Parameter Name="numeroTrampa" Mode="In" Type="String" />
+            <Parameter Name="idEmpleado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="st_getLastTrampaApp" ReturnType="Collection(FoodDefense_DevModel.LastTrampaApp_Result)">
+          <Parameter Name="idOrdenTrabajoDetalle" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="st_control_cantidad_requerida_estado_trampa" ReturnType="Collection(String)">
+            <Parameter Name="idTrampaClienteLocacionSector" Mode="In" Type="Int32" />
+            <Parameter Name="idAccion" Mode="In" Type="Int32" />
+            <Parameter Name="idEstado" Mode="In" Type="Int32" />
+            <Parameter Name="moscas" Mode="In" Type="Int32" />
+            <Parameter Name="mosquitas" Mode="In" Type="Int32" />
+            <Parameter Name="polillas" Mode="In" Type="Int32" />
+            <Parameter Name="mariposas" Mode="In" Type="Int32" />
+            <Parameter Name="minusculos" Mode="In" Type="Int32" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+            <Parameter Name="roedor" Mode="In" Type="Int32" />
+            <Parameter Name="insecto" Mode="In" Type="Int32" />
+            <Parameter Name="cucaGermanica" Mode="In" Type="Int32" />
+            <Parameter Name="cucaAmericana" Mode="In" Type="Int32" />
+            <Parameter Name="observaciones" Mode="In" Type="String" />
+          </FunctionImport>
+          <AssociationSet Name="FK__USUARIO__idEmple__55BFB948" Association="FoodDefense_DevModel.FK__USUARIO__idEmple__55BFB948">
+            <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <FunctionImport Name="st_getDatosGraficos" ReturnType="Collection(FoodDefense_DevModel.DatosGraficos_Result)">
+            <Parameter Name="pGraficos" Mode="In" Type="String" />
+            <Parameter Name="pPeriodo" Mode="In" Type="DateTime" />
+            <Parameter Name="pClienteLocacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="GRAFICOS" EntityType="FoodDefense_DevModel.GRAFICOS" />
+          <AssociationSet Name="FK_GRAFICOS_TRAMPA_TIPO" Association="FoodDefense_DevModel.FK_GRAFICOS_TRAMPA_TIPO">
+            <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+            <End Role="GRAFICOS" EntitySet="GRAFICOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIO_CLIENTE" Association="FoodDefense_DevModel.FK_USUARIO_CLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <FunctionImport Name="st_getTrampasOrdenTrabajo" ReturnType="Collection(FoodDefense_DevModel.st_getTrampasOrdenTrabajo_Result)">
+            <Parameter Name="tipoBusqueda" Mode="In" Type="String" />
+            <Parameter Name="idClienteLocacion" Mode="In" Type="Int32" />
+            <Parameter Name="idClienteLocacionSector" Mode="In" Type="Int32" />
+            <Parameter Name="idTrampaTipo" Mode="In" Type="Int32" />
+            <Parameter Name="pTrampadesde" Mode="In" Type="String" />
+            <Parameter Name="pTrampaHasta" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="ORDEN_TRABAJO_DETALLE_ESTADO" EntityType="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE_ESTADO" />
+          <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_ESTADO_TRAMPA_CONTROL_ESTADO" Association="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_ESTADO_TRAMPA_CONTROL_ESTADO">
+            <End Role="TRAMPA_CONTROL_ESTADO" EntitySet="TRAMPA_CONTROL_ESTADO" />
+            <End Role="ORDEN_TRABAJO_DETALLE_ESTADO" EntitySet="ORDEN_TRABAJO_DETALLE_ESTADO" />
+          </AssociationSet>
+          <EntitySet Name="ORDEN_TRABAJO_DETALLE" EntityType="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE" />
+          <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_ORDEN_TRABAJO" Association="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_ORDEN_TRABAJO">
+            <End Role="ORDEN_TRABAJO" EntitySet="ORDEN_TRABAJO" />
+            <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_ESTADO_ORDEN_TRABAJO_DETALLE" Association="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_ESTADO_ORDEN_TRABAJO_DETALLE">
+            <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+            <End Role="ORDEN_TRABAJO_DETALLE_ESTADO" EntitySet="ORDEN_TRABAJO_DETALLE_ESTADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CLIENTE_LOCACION_SECTOR" Association="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CLIENTE_LOCACION_SECTOR">
+            <End Role="TRAMPA_CLIENTE_LOCACION_SECTOR" EntitySet="TRAMPA_CLIENTE_LOCACION_SECTOR" />
+            <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ACCION" Association="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ACCION">
+            <End Role="TRAMPA_CONTROL_ACCION" EntitySet="TRAMPA_CONTROL_ACCION" />
+            <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+          </AssociationSet>
+          <EntitySet Name="USUARIO_TIPO" EntityType="FoodDefense_DevModel.USUARIO_TIPO" />
+          <AssociationSet Name="FK__USUARIO__idUsuar__2B5F6B28" Association="FoodDefense_DevModel.FK__USUARIO__idUsuar__2B5F6B28">
+            <End Role="USUARIO_TIPO" EntitySet="USUARIO_TIPO" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <EntitySet Name="TAREA" EntityType="FoodDefense_DevModel.TAREA" />
+          <AssociationSet Name="FK_TAREA_TRAMPA_TIPO" Association="FoodDefense_DevModel.FK_TAREA_TRAMPA_TIPO">
+            <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+            <End Role="TAREA" EntitySet="TAREA" />
+          </AssociationSet>
+          <EntitySet Name="CONTROL_PLAGA" EntityType="FoodDefense_DevModel.CONTROL_PLAGA" />
+          <AssociationSet Name="FK_CONTROL_PLAGA_CLIENTE_LOCACION" Association="FoodDefense_DevModel.FK_CONTROL_PLAGA_CLIENTE_LOCACION">
+            <End Role="CLIENTE_LOCACION" EntitySet="CLIENTE_LOCACION" />
+            <End Role="CONTROL_PLAGA" EntitySet="CONTROL_PLAGA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CONTROL_PLAGA_TRAMPA_TIPO" Association="FoodDefense_DevModel.FK_CONTROL_PLAGA_TRAMPA_TIPO">
+            <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
+            <End Role="CONTROL_PLAGA" EntitySet="CONTROL_PLAGA" />
+          </AssociationSet>
+          <FunctionImport Name="fn_Fechas" IsComposable="true" ReturnType="Collection(DateTime)">
+            <Parameter Name="FechaIni" Mode="In" Type="DateTime" />
+            <Parameter Name="FechaFin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="getDatosExportacion" ReturnType="Collection(FoodDefense_DevModel.getDatosExportacion_Result)">
+            <Parameter Name="pCliente" Mode="In" Type="Int32" />
+            <Parameter Name="pLocacion" Mode="In" Type="Int32" />
+            <Parameter Name="pPeriodo" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="st_getCamposControlPlaga" ReturnType="Collection(FoodDefense_DevModel.st_getCamposControlPlaga_Result)">
+          <Parameter Name="pIdTipoTrampa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="st_getEmpListTask" ReturnType="Collection(FoodDefense_DevModel.st_getEmpListTask_Result)">
+            <Parameter Name="idEmpleado" Mode="In" Type="Int32" />
+            <Parameter Name="fechaDeTrabajo" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="CONTROL_PLAGA_DETALLE" EntityType="FoodDefense_DevModel.CONTROL_PLAGA_DETALLE" />
+          <AssociationSet Name="FK_CONTROL_PLAGA" Association="FoodDefense_DevModel.FK_CONTROL_PLAGA">
+            <End Role="CONTROL_PLAGA" EntitySet="CONTROL_PLAGA" />
+            <End Role="CONTROL_PLAGA_DETALLE" EntitySet="CONTROL_PLAGA_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAREA" Association="FoodDefense_DevModel.FK_TAREA">
+            <End Role="TAREA" EntitySet="TAREA" />
+            <End Role="CONTROL_PLAGA_DETALLE" EntitySet="CONTROL_PLAGA_DETALLE" />
+          </AssociationSet>
+          <FunctionImport Name="GetListAccionesTareas">
+            <Parameter Name="idOrdenTrabajo" Mode="In" Type="Int32" />
+            <Parameter Name="idTipoTrampa" Mode="In" Type="Int32" />
+            <Parameter Name="idOrdenTrabajoDetalle" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" EntityType="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" />
+          <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE" Association="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE">
+            <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+            <End Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" EntitySet="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TAREA_DETALLE" Association="FoodDefense_DevModel.FK_TAREA_DETALLE">
+            <End Role="TAREA" EntitySet="TAREA" />
+            <End Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" EntitySet="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" />
+          </AssociationSet>
+          <FunctionImport Name="st_GetListAccionesTareas" ReturnType="Collection(FoodDefense_DevModel.st_GetListAccionesTareas_Result)">
+            <Parameter Name="idOrdenTrabajo" Mode="In" Type="Int32" />
+            <Parameter Name="idTipoTrampa" Mode="In" Type="Int32" />
+            <Parameter Name="idOrdenTrabajoDetalle" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO" Association="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO">
+            <End Role="TRAMPA_CONTROL_ESTADO" EntitySet="TRAMPA_CONTROL_ESTADO" />
+            <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
+          </AssociationSet>
+          <FunctionImport Name="st_GetListaControlPlaga" ReturnType="Collection(FoodDefense_DevModel.st_GetListaControlPlaga_Result)">
+            <Parameter Name="Cliente" Mode="In" Type="String" />
+            <Parameter Name="CliLoca" Mode="In" Type="String" />
+            <Parameter Name="TipoTrampa" Mode="In" Type="Int32" />
+            <Parameter Name="CamCond" Mode="In" Type="String" />
+          </FunctionImport>
+          </EntityContainer>
+        <EntityType Name="TRAMPA_CLIENTE_LOCACION_SECTOR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idClienteLocacionSector" Type="Int32" Nullable="false" />
+          <Property Name="idTrampa" Type="Int32" Nullable="false" />
+          <Property Name="fechaDesde" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaHasta" Type="DateTime" Precision="3" />
+          <Property Name="observacion" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CLIENTE_LOCACION_SECTOR" Relationship="FoodDefense_DevModel.FK_TRAMPA_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION_SECTOR" FromRole="TRAMPA_CLIENTE_LOCACION_SECTOR" ToRole="CLIENTE_LOCACION_SECTOR" />
+          <NavigationProperty Name="TRAMPA" Relationship="FoodDefense_DevModel.FK_TRAMPA_CLIENTE_LOCACION_SECTOR_TRAMPA" FromRole="TRAMPA_CLIENTE_LOCACION_SECTOR" ToRole="TRAMPA" />
+          <NavigationProperty Name="ORDEN_TRABAJO_DETALLE" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CLIENTE_LOCACION_SECTOR" FromRole="TRAMPA_CLIENTE_LOCACION_SECTOR" ToRole="ORDEN_TRABAJO_DETALLE" />
+        </EntityType>
+        <Association Name="FK_TRAMPA_CLIENTE_LOCACION_SECTOR_CLIENTE_LOCACION_SECTOR">
+          <End Type="FoodDefense_DevModel.CLIENTE_LOCACION_SECTOR" Role="CLIENTE_LOCACION_SECTOR" Multiplicity="1" />
+          <End Type="FoodDefense_DevModel.TRAMPA_CLIENTE_LOCACION_SECTOR" Role="TRAMPA_CLIENTE_LOCACION_SECTOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE_LOCACION_SECTOR">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TRAMPA_CLIENTE_LOCACION_SECTOR">
+              <PropertyRef Name="idClienteLocacionSector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRAMPA_CLIENTE_LOCACION_SECTOR_TRAMPA">
+          <End Type="FoodDefense_DevModel.TRAMPA" Role="TRAMPA" Multiplicity="1" />
+          <End Type="FoodDefense_DevModel.TRAMPA_CLIENTE_LOCACION_SECTOR" Role="TRAMPA_CLIENTE_LOCACION_SECTOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TRAMPA_CLIENTE_LOCACION_SECTOR">
+              <PropertyRef Name="idTrampa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EMPLEADO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idDocumentoTipo" Type="Int32" Nullable="false" />
+          <Property Name="numeroDocumento" Type="Int64" Nullable="false" />
+          <Property Name="apellido" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="baja" Type="Boolean" />
+          <NavigationProperty Name="DOCUMENTO_TIPO" Relationship="FoodDefense_DevModel.FK_EMPLEADO_DOCUMENTO_TIPO" FromRole="EMPLEADO" ToRole="DOCUMENTO_TIPO" />
+          <NavigationProperty Name="EMPLEADO_CONTACTO" Relationship="FoodDefense_DevModel.FK_EMPLEADO_CONTACTO_EMPLEADO" FromRole="EMPLEADO" ToRole="EMPLEADO_CONTACTO" />
+          <NavigationProperty Name="ORDEN_TRABAJO" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_EMPLEADO" FromRole="EMPLEADO" ToRole="ORDEN_TRABAJO" />
+          <NavigationProperty Name="USUARIO" Relationship="FoodDefense_DevModel.FK__USUARIO__idEmple__55BFB948" FromRole="EMPLEADO" ToRole="USUARIO" />
+        </EntityType>
+        <Association Name="FK_EMPLEADO_DOCUMENTO_TIPO">
+          <End Type="FoodDefense_DevModel.DOCUMENTO_TIPO" Role="DOCUMENTO_TIPO" Multiplicity="1" />
+          <End Type="FoodDefense_DevModel.EMPLEADO" Role="EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCUMENTO_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EMPLEADO">
+              <PropertyRef Name="idDocumentoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLEADO_CONTACTO_EMPLEADO">
+          <End Type="FoodDefense_DevModel.EMPLEADO" Role="EMPLEADO" Multiplicity="1" />
+          <End Type="FoodDefense_DevModel.EMPLEADO_CONTACTO" Role="EMPLEADO_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EMPLEADO_CONTACTO">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_TRABAJO_EMPLEADO">
+          <End Type="FoodDefense_DevModel.EMPLEADO" Role="EMPLEADO" Multiplicity="0..1" />
+          <End Type="FoodDefense_DevModel.ORDEN_TRABAJO" Role="ORDEN_TRABAJO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="TrampasOrdenTrabajo_Result">
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="900" />
+          <Property Type="String" Name="numero" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="id" Nullable="true" />
+          <Property Type="Int32" Name="idTrampaClienteLocacionSector" Nullable="true" />
+          <Property Type="Int64" Name="orden" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="DetalleTrampasOrdenTrabajo_Result">
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="900" />
+          <Property Type="String" Name="numero" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="id" Nullable="true" />
+          <Property Type="Int32" Name="idTrampaClienteLocacionSector" Nullable="true" />
+          <Property Type="String" Name="descTipoTrampa" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="idTipoTrampa" Nullable="true" />
+          <Property Type="Int32" Name="idOrdenTrabajoDetalle" Nullable="true" />
+          <Property Type="Boolean" Name="cargado" Nullable="true" />
+          <Property Type="Int64" Name="orden" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="OrdenesTrabajo_Result">
+          <Property Type="Int32" Name="id" Nullable="true" />
+          <Property Type="DateTime" Name="fechaDeTrabajo" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="fechaCargaOrden" Nullable="true" Precision="23" />
+          <Property Type="String" Name="locacion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="cliente" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="idOrdenTrabajoEstado" Nullable="true" />
+          <Property Type="Int32" Name="cantTrampas" Nullable="true" />
+          <Property Type="Int32" Name="cargados" Nullable="false" />
+          <Property Type="Int32" Name="porcentaje" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="st_AutocompleteTrampas_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="numero" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="AutocompleteTrampas">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="numero" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="ListadoTrampaClienteLocacionSector_Result">
+          <Property Type="String" Name="razonSocial" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="locacion" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="tipoTrampa" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="sector" Nullable="false" MaxLength="300" />
+          <Property Type="Int32" Name="idTrampaClienteLocacionSector" Nullable="false" />
+          <Property Type="String" Name="numero" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="idClienteLocacionSector" Nullable="false" />
+          <Property Type="Int32" Name="idClienteLocacion" Nullable="false" />
+          <Property Type="Int32" Name="idTrampa" Nullable="false" />
+          <Property Type="Int32" Name="idCliente" Nullable="false" />
+          <Property Type="Int32" Name="idTrampaTipo" Nullable="false" />
+          <Property Type="Int32" Name="OrdenNumero" Nullable="true" />
+          <Property Type="String" Name="OrdenSubNumero" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="DatosExportacion_Result">
+          <Property Type="DateTime" Name="fechadetrabajo" Nullable="false" Precision="23" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="numero" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="accion" Nullable="true" MaxLength="5" />
+          <Property Type="Decimal" Name="moscas" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="mosquitas" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="polillas" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="mariposas" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="minusculos" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="roedor" Nullable="true" />
+          <Property Type="Int32" Name="insecto" Nullable="true" />
+          <Property Type="Int32" Name="cucaAmericana" Nullable="true" />
+          <Property Type="Int32" Name="cucaGermanica" Nullable="true" />
+          <Property Type="Decimal" Name="cantidad" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="String" Name="observaciones" Nullable="true" MaxLength="2000" />
+          <Property Type="Int32" Name="OrdenId" Nullable="false" />
+          <Property Type="Int32" Name="OrdenIdtrampatipo" Nullable="false" />
+          <Property Type="Int32" Name="OrdenNumero" Nullable="true" />
+          <Property Type="String" Name="OrdenSubNumero" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="validarTrampa_Result">
+          <Property Type="Int32" Name="IdOrdenTrabajoDetalle" Nullable="false" />
+          <Property Type="Boolean" Name="cargado" Nullable="true" />
+          <Property Type="Int32" Name="idOrdenTrabajo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="st_getTrampaApp_Result">
+          <Property Type="Int32" Name="idOrdenTrabajo" Nullable="false" />
+          <Property Type="Int32" Name="idOrdenDetalle" Nullable="false" />
+          <Property Type="Int32" Name="TrampaClienteLocacionSector" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="TrampaApp_Result">
+          <Property Type="Int32" Name="idOrdenTrabajo" Nullable="false" />
+          <Property Type="Int32" Name="idOrdenDetalle" Nullable="false" />
+          <Property Type="Int32" Name="TrampaClienteLocacionSector" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="st_getLastTrampaApp_Result">
+          <Property Type="Int32" Name="idTrampaTipo" Nullable="false" />
+          <Property Type="String" Name="desctrampatipo" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="numero" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="OrdenNumero" Nullable="true" />
+          <Property Type="String" Name="OrdenSubNumero" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="LastTrampaApp_Result">
+          <Property Type="Int32" Name="idTrampaTipo" Nullable="false" />
+          <Property Type="String" Name="desctrampatipo" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="numero" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="OrdenNumero" Nullable="true" />
+          <Property Type="String" Name="OrdenSubNumero" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <Association Name="FK__USUARIO__idEmple__55BFB948">
+          <End Type="FoodDefense_DevModel.EMPLEADO" Role="EMPLEADO" Multiplicity="0..1" />
+          <End Type="FoodDefense_DevModel.USUARIO" Role="USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLEADO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="st_getDatosExportacion1_Result">
+          <Property Type="DateTime" Name="fechadetrabajo" Nullable="false" Precision="23" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="numero" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="accion" Nullable="true" MaxLength="5" />
+          <Property Type="Decimal" Name="moscas" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="mosquitas" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="polillas" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="mariposas" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="minusculos" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="roedor" Nullable="true" />
+          <Property Type="Int32" Name="insecto" Nullable="true" />
+          <Property Type="Int32" Name="cucaAmericana" Nullable="true" />
+          <Property Type="Int32" Name="cucagermanica" Nullable="true" />
+          <Property Type="String" Name="observaciones" Nullable="true" MaxLength="2000" />
+          <Property Type="Int32" Name="OrdenNumero" Nullable="true" />
+          <Property Type="String" Name="OrdenSubNumero" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="cantidad" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="OrdenId" Nullable="false" />
+          <Property Type="Int32" Name="OrdenIdtrampatipo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="st_getDatosExportacion1_Result1">
+          <Property Type="DateTime" Name="fechadetrabajo" Nullable="false" Precision="23" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="numero" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="accion" Nullable="true" MaxLength="5" />
+          <Property Type="Decimal" Name="moscas" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="mosquitas" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="polillas" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="mariposas" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="minusculos" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="roedor" Nullable="true" />
+          <Property Type="Int32" Name="insecto" Nullable="true" />
+          <Property Type="Int32" Name="cucaAmericana" Nullable="true" />
+          <Property Type="Int32" Name="cucagermanica" Nullable="true" />
+          <Property Type="String" Name="observaciones" Nullable="true" MaxLength="2000" />
+          <Property Type="Int32" Name="OrdenNumero" Nullable="true" />
+          <Property Type="String" Name="OrdenSubNumero" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="cantidad" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="OrdenId" Nullable="false" />
+          <Property Type="Int32" Name="OrdenIdtrampatipo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="st_getDatosGraficos_Result">
+          <Property Type="Int32" Name="nro" Nullable="true" />
+          <Property Type="String" Name="titulo" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="dia" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="cantidad" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="DatosGraficos_Result">
+          <Property Type="Int32" Name="nro" Nullable="true" />
+          <Property Type="String" Name="titulo" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="dia" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="cantidad" Nullable="true" />
+          <Property Type="String" Name="leyendaX" Nullable="true" MaxLength="20" />
+          <Property Type="Boolean" Name="otroFormatoEjeX" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="GRAFICOS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTrampaTipo" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="otroFormatoEjeX" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TRAMPA_TIPO" Relationship="FoodDefense_DevModel.FK_GRAFICOS_TRAMPA_TIPO" FromRole="GRAFICOS" ToRole="TRAMPA_TIPO" />
+        </EntityType>
+        <Association Name="FK_GRAFICOS_TRAMPA_TIPO">
+          <End Type="FoodDefense_DevModel.TRAMPA_TIPO" Role="TRAMPA_TIPO" Multiplicity="1" />
+          <End Type="FoodDefense_DevModel.GRAFICOS" Role="GRAFICOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GRAFICOS">
+              <PropertyRef Name="idTrampaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIO_CLIENTE">
+          <End Type="FoodDefense_DevModel.CLIENTE" Role="CLIENTE" Multiplicity="0..1" />
+          <End Type="FoodDefense_DevModel.USUARIO" Role="USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="st_getTrampasOrdenTrabajo_Result">
+          <Property Type="Int64" Name="orden" Nullable="true" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="900" />
+          <Property Type="String" Name="numero" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="id" Nullable="true" />
+          <Property Type="Int32" Name="idTrampaClienteLocacionSector" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="ORDEN_TRABAJO_DETALLE_ESTADO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idOrdenTrabajoDetalle" Type="Int32" Nullable="false" />
+          <Property Name="idEstado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TRAMPA_CONTROL_ESTADO" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_ESTADO_TRAMPA_CONTROL_ESTADO" FromRole="ORDEN_TRABAJO_DETALLE_ESTADO" ToRole="TRAMPA_CONTROL_ESTADO" />
+          <NavigationProperty Name="ORDEN_TRABAJO_DETALLE" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_ESTADO_ORDEN_TRABAJO_DETALLE" FromRole="ORDEN_TRABAJO_DETALLE_ESTADO" ToRole="ORDEN_TRABAJO_DETALLE" />
+        </EntityType>
+        <Association Name="FK_ORDEN_TRABAJO_DETALLE_ESTADO_TRAMPA_CONTROL_ESTADO">
+          <End Type="FoodDefense_DevModel.TRAMPA_CONTROL_ESTADO" Role="TRAMPA_CONTROL_ESTADO" Multiplicity="1" />
+          <End Type="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE_ESTADO" Role="ORDEN_TRABAJO_DETALLE_ESTADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_CONTROL_ESTADO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO_DETALLE_ESTADO">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ORDEN_TRABAJO_DETALLE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idOrdenTrabajo" Type="Int32" Nullable="false" />
+          <Property Name="idTrampaClienteLocacionSector" Type="Int32" Nullable="false" />
+          <Property Name="idAccion" Type="Int32" />
+          <Property Name="moscas" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="mosquitas" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="polillas" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="mariposas" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="minusculos" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="cantidad" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="observaciones" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="cargado" Type="Boolean" />
+          <Property Name="roedor" Type="Int32" />
+          <Property Name="insecto" Type="Int32" />
+          <Property Name="cucaGermanica" Type="Int32" />
+          <Property Name="cucaAmericana" Type="Int32" />
+          <NavigationProperty Name="ORDEN_TRABAJO" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_ORDEN_TRABAJO" FromRole="ORDEN_TRABAJO_DETALLE" ToRole="ORDEN_TRABAJO" />
+          <NavigationProperty Name="ORDEN_TRABAJO_DETALLE_ESTADO" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_ESTADO_ORDEN_TRABAJO_DETALLE" FromRole="ORDEN_TRABAJO_DETALLE" ToRole="ORDEN_TRABAJO_DETALLE_ESTADO" />
+          <NavigationProperty Name="TRAMPA_CLIENTE_LOCACION_SECTOR" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CLIENTE_LOCACION_SECTOR" FromRole="ORDEN_TRABAJO_DETALLE" ToRole="TRAMPA_CLIENTE_LOCACION_SECTOR" />
+          <NavigationProperty Name="TRAMPA_CONTROL_ACCION" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ACCION" FromRole="ORDEN_TRABAJO_DETALLE" ToRole="TRAMPA_CONTROL_ACCION" />
+          <NavigationProperty Name="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE" FromRole="ORDEN_TRABAJO_DETALLE" ToRole="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" />
+          <Property Name="idEstado" Type="Int32" />
+          <NavigationProperty Name="TRAMPA_CONTROL_ESTADO" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO" FromRole="ORDEN_TRABAJO_DETALLE" ToRole="TRAMPA_CONTROL_ESTADO" />
+        </EntityType>
+        <Association Name="FK_ORDEN_TRABAJO_DETALLE_ORDEN_TRABAJO">
+          <End Type="FoodDefense_DevModel.ORDEN_TRABAJO" Role="ORDEN_TRABAJO" Multiplicity="1" />
+          <End Type="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE" Role="ORDEN_TRABAJO_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDEN_TRABAJO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO_DETALLE">
+              <PropertyRef Name="idOrdenTrabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_TRABAJO_DETALLE_ESTADO_ORDEN_TRABAJO_DETALLE">
+          <End Type="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE" Role="ORDEN_TRABAJO_DETALLE" Multiplicity="1" />
+          <End Type="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE_ESTADO" Role="ORDEN_TRABAJO_DETALLE_ESTADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDEN_TRABAJO_DETALLE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO_DETALLE_ESTADO">
+              <PropertyRef Name="idOrdenTrabajoDetalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CLIENTE_LOCACION_SECTOR">
+          <End Type="FoodDefense_DevModel.TRAMPA_CLIENTE_LOCACION_SECTOR" Role="TRAMPA_CLIENTE_LOCACION_SECTOR" Multiplicity="1" />
+          <End Type="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE" Role="ORDEN_TRABAJO_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_CLIENTE_LOCACION_SECTOR">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO_DETALLE">
+              <PropertyRef Name="idTrampaClienteLocacionSector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ACCION">
+          <End Type="FoodDefense_DevModel.TRAMPA_CONTROL_ACCION" Role="TRAMPA_CONTROL_ACCION" Multiplicity="0..1" />
+          <End Type="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE" Role="ORDEN_TRABAJO_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_CONTROL_ACCION">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO_DETALLE">
+              <PropertyRef Name="idAccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="USUARIO_TIPO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="USUARIO" Relationship="FoodDefense_DevModel.FK__USUARIO__idUsuar__2B5F6B28" FromRole="USUARIO_TIPO" ToRole="USUARIO" />
+        </EntityType>
+        <Association Name="FK__USUARIO__idUsuar__2B5F6B28">
+          <End Type="FoodDefense_DevModel.USUARIO_TIPO" Role="USUARIO_TIPO" Multiplicity="0..1" />
+          <End Type="FoodDefense_DevModel.USUARIO" Role="USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="idUsuarioTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TAREA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipoTrampa" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="2500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TRAMPA_TIPO" Relationship="FoodDefense_DevModel.FK_TAREA_TRAMPA_TIPO" FromRole="TAREA" ToRole="TRAMPA_TIPO" />
+          <NavigationProperty Name="CONTROL_PLAGA_DETALLE" Relationship="FoodDefense_DevModel.FK_TAREA" FromRole="TAREA" ToRole="CONTROL_PLAGA_DETALLE" />
+          <NavigationProperty Name="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Relationship="FoodDefense_DevModel.FK_TAREA_DETALLE" FromRole="TAREA" ToRole="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" />
+        </EntityType>
+        <Association Name="FK_TAREA_TRAMPA_TIPO">
+          <End Type="FoodDefense_DevModel.TRAMPA_TIPO" Role="TRAMPA_TIPO" Multiplicity="1" />
+          <End Type="FoodDefense_DevModel.TAREA" Role="TAREA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TAREA">
+              <PropertyRef Name="idTipoTrampa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CONTROL_PLAGA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idClienteLocacion" Type="Int32" Nullable="false" />
+          <Property Name="idTipoTrampa" Type="Int32" Nullable="false" />
+          <Property Name="campoCondicion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="operadorCondicion" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="valorCondicion" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="CLIENTE_LOCACION" Relationship="FoodDefense_DevModel.FK_CONTROL_PLAGA_CLIENTE_LOCACION" FromRole="CONTROL_PLAGA" ToRole="CLIENTE_LOCACION" />
+          <NavigationProperty Name="TRAMPA_TIPO" Relationship="FoodDefense_DevModel.FK_CONTROL_PLAGA_TRAMPA_TIPO" FromRole="CONTROL_PLAGA" ToRole="TRAMPA_TIPO" />
+          <NavigationProperty Name="CONTROL_PLAGA_DETALLE" Relationship="FoodDefense_DevModel.FK_CONTROL_PLAGA" FromRole="CONTROL_PLAGA" ToRole="CONTROL_PLAGA_DETALLE" />
+        </EntityType>
+        <Association Name="FK_CONTROL_PLAGA_CLIENTE_LOCACION">
+          <End Type="FoodDefense_DevModel.CLIENTE_LOCACION" Role="CLIENTE_LOCACION" Multiplicity="1" />
+          <End Type="FoodDefense_DevModel.CONTROL_PLAGA" Role="CONTROL_PLAGA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE_LOCACION">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CONTROL_PLAGA">
+              <PropertyRef Name="idClienteLocacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CONTROL_PLAGA_TRAMPA_TIPO">
+          <End Type="FoodDefense_DevModel.TRAMPA_TIPO" Role="TRAMPA_TIPO" Multiplicity="1" />
+          <End Type="FoodDefense_DevModel.CONTROL_PLAGA" Role="CONTROL_PLAGA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_TIPO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CONTROL_PLAGA">
+              <PropertyRef Name="idTipoTrampa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="getDatosExportacion_Result">
+          <Property Type="DateTime" Name="fechadetrabajo" Nullable="false" Precision="23" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="numero" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="accion" Nullable="true" MaxLength="5" />
+          <Property Type="Decimal" Name="moscas" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="mosquitas" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="polillas" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="mariposas" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="minusculos" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="roedor" Nullable="true" />
+          <Property Type="Int32" Name="insecto" Nullable="true" />
+          <Property Type="Int32" Name="cucaAmericana" Nullable="true" />
+          <Property Type="Int32" Name="cucagermanica" Nullable="true" />
+          <Property Type="String" Name="observaciones" Nullable="true" MaxLength="2000" />
+          <Property Type="Int32" Name="OrdenNumero" Nullable="true" />
+          <Property Type="String" Name="OrdenSubNumero" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="st_getCamposControlPlaga_Result">
+          <Property Type="Int32" Name="idTrampaTipo" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="campo" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="st_getEmpListTask_Result">
+          <Property Type="Int32" Name="CLIENTE_ID" Nullable="false" />
+          <Property Type="String" Name="razonSocial" Nullable="false" MaxLength="300" />
+          <Property Type="Int32" Name="SECTOR_ID" Nullable="false" />
+          <Property Type="String" Name="SECTOR" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="TIPO_TRAMPA" Nullable="true" MaxLength="23" />
+          <Property Type="Int32" Name="CNT" Nullable="true" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="CONTROL_PLAGA_DETALLE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idControlPlaga" Type="Int32" />
+          <Property Name="idTarea" Type="Int32" />
+          <NavigationProperty Name="CONTROL_PLAGA" Relationship="FoodDefense_DevModel.FK_CONTROL_PLAGA" FromRole="CONTROL_PLAGA_DETALLE" ToRole="CONTROL_PLAGA" />
+          <NavigationProperty Name="TAREA" Relationship="FoodDefense_DevModel.FK_TAREA" FromRole="CONTROL_PLAGA_DETALLE" ToRole="TAREA" />
+        </EntityType>
+        <Association Name="FK_CONTROL_PLAGA">
+          <End Type="FoodDefense_DevModel.CONTROL_PLAGA" Role="CONTROL_PLAGA" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FoodDefense_DevModel.CONTROL_PLAGA_DETALLE" Role="CONTROL_PLAGA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CONTROL_PLAGA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CONTROL_PLAGA_DETALLE">
+              <PropertyRef Name="idControlPlaga" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAREA">
+          <End Type="FoodDefense_DevModel.TAREA" Role="TAREA" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FoodDefense_DevModel.CONTROL_PLAGA_DETALLE" Role="CONTROL_PLAGA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAREA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CONTROL_PLAGA_DETALLE">
+              <PropertyRef Name="idTarea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idOrdenTrabajoDetalle" Type="Int32" />
+          <Property Name="idTarea" Type="Int32" />
+          <Property Name="realizado" Type="Boolean" />
+          <NavigationProperty Name="ORDEN_TRABAJO_DETALLE" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE" FromRole="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" ToRole="ORDEN_TRABAJO_DETALLE" />
+          <NavigationProperty Name="TAREA" Relationship="FoodDefense_DevModel.FK_TAREA_DETALLE" FromRole="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" ToRole="TAREA" />
+        </EntityType>
+        <Association Name="FK_ORDEN_TRABAJO_DETALLE">
+          <End Type="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE" Role="ORDEN_TRABAJO_DETALLE" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORDEN_TRABAJO_DETALLE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA">
+              <PropertyRef Name="idOrdenTrabajoDetalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TAREA_DETALLE">
+          <End Type="FoodDefense_DevModel.TAREA" Role="TAREA" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAREA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA">
+              <PropertyRef Name="idTarea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="st_GetListAccionesTareas_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="2500" />
+          <Property Type="Int32" Name="realizado" Nullable="true" />
+        </ComplexType>
+        <Association Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO">
+          <End Type="FoodDefense_DevModel.TRAMPA_CONTROL_ESTADO" Role="TRAMPA_CONTROL_ESTADO" Multiplicity="0..1" />
+          <End Type="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE" Role="ORDEN_TRABAJO_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMPA_CONTROL_ESTADO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ORDEN_TRABAJO_DETALLE">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="st_GetListaControlPlaga_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="razonSocial" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="locacion" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="trampa_tipo" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="campocondicion" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="operadorCondicion" Nullable="false" MaxLength="200" />
+          <Property Type="Decimal" Name="valorcondicion" Nullable="false" Precision="10" Scale="2" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FoodDefense_DevModelStoreContainer" CdmEntityContainer="FoodDefense_DevEntities">
+          <EntitySetMapping Name="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA">
+              <MappingFragment StoreEntitySet="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idTrampaTipo" ColumnName="idTrampaTipo" />
+                <ScalarProperty Name="campo" ColumnName="campo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTE">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idDocumentoTipo" ColumnName="idDocumentoTipo" />
+                <ScalarProperty Name="numeroDocumento" ColumnName="numeroDocumento" />
+                <ScalarProperty Name="razonSocial" ColumnName="razonSocial" />
+                <ScalarProperty Name="habitlitadoPortal" ColumnName="habitlitadoPortal" />
+                <ScalarProperty Name="usuarioPortal" ColumnName="usuarioPortal" />
+                <ScalarProperty Name="clavePortal" ColumnName="clavePortal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTE_CONTACTO">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.CLIENTE_CONTACTO">
+              <MappingFragment StoreEntitySet="CLIENTE_CONTACTO">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idContactoTipo" ColumnName="idContactoTipo" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTE_LOCACION">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.CLIENTE_LOCACION">
+              <MappingFragment StoreEntitySet="CLIENTE_LOCACION">
+                <ScalarProperty Name="cantidadDiasCebaderas" ColumnName="cantidadDiasCebaderas" />
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+                <ScalarProperty Name="localidad" ColumnName="localidad" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="piso" ColumnName="piso" />
+                <ScalarProperty Name="departamento" ColumnName="departamento" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTE_LOCACION_RESPONSABLE">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.CLIENTE_LOCACION_RESPONSABLE">
+              <MappingFragment StoreEntitySet="CLIENTE_LOCACION_RESPONSABLE">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idClienteLocacion" ColumnName="idClienteLocacion" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="habilitadoPortal" ColumnName="habilitadoPortal" />
+                <ScalarProperty Name="usuarioPortal" ColumnName="usuarioPortal" />
+                <ScalarProperty Name="clavePortal" ColumnName="clavePortal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTE_LOCACION_RESPONSABLE_CONTACTO">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.CLIENTE_LOCACION_RESPONSABLE_CONTACTO">
+              <MappingFragment StoreEntitySet="CLIENTE_LOCACION_RESPONSABLE_CONTACTO">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idClienteLocacionResponsable" ColumnName="idClienteLocacionResponsable" />
+                <ScalarProperty Name="idContactoTipo" ColumnName="idContactoTipo" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENTE_LOCACION_SECTOR">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.CLIENTE_LOCACION_SECTOR">
+              <MappingFragment StoreEntitySet="CLIENTE_LOCACION_SECTOR">
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idClienteLocacion" ColumnName="idClienteLocacion" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTACTO_TIPO">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.CONTACTO_TIPO">
+              <MappingFragment StoreEntitySet="CONTACTO_TIPO">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOCUMENTO_TIPO">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.DOCUMENTO_TIPO">
+              <MappingFragment StoreEntitySet="DOCUMENTO_TIPO">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLEADO_CONTACTO">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.EMPLEADO_CONTACTO">
+              <MappingFragment StoreEntitySet="EMPLEADO_CONTACTO">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+                <ScalarProperty Name="idContactoTipo" ColumnName="idContactoTipo" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="conexionApp" ColumnName="conexionApp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENU">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.MENU">
+              <MappingFragment StoreEntitySet="MENU">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="menu1" ColumnName="menu" />
+                <ScalarProperty Name="padre" ColumnName="padre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENU_USUARIO">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.MENU_USUARIO">
+              <MappingFragment StoreEntitySet="MENU_USUARIO">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idMenu" ColumnName="idMenu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDEN_TRABAJO">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.ORDEN_TRABAJO">
+              <MappingFragment StoreEntitySet="ORDEN_TRABAJO">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idOrdenTrabajoEstado" ColumnName="idOrdenTrabajoEstado" />
+                <ScalarProperty Name="idClienteLocacion" ColumnName="idClienteLocacion" />
+                <ScalarProperty Name="fechaCargaOrden" ColumnName="fechaCargaOrden" />
+                <ScalarProperty Name="fechaDeTrabajo" ColumnName="fechaDeTrabajo" />
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDEN_TRABAJO_ESTADO">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.ORDEN_TRABAJO_ESTADO">
+              <MappingFragment StoreEntitySet="ORDEN_TRABAJO_ESTADO">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVINCIA">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.PROVINCIA">
+              <MappingFragment StoreEntitySet="PROVINCIA">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRAMPA">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.TRAMPA">
+              <MappingFragment StoreEntitySet="TRAMPA">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idTrampaTipo" ColumnName="idTrampaTipo" />
+                <ScalarProperty Name="idTrampaEstado" ColumnName="idTrampaEstado" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRAMPA_CONTROL_ACCION">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.TRAMPA_CONTROL_ACCION">
+              <MappingFragment StoreEntitySet="TRAMPA_CONTROL_ACCION">
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idTrampaTipo" ColumnName="idTrampaTipo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="abreviatura" ColumnName="abreviatura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRAMPA_CONTROL_ESTADO">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.TRAMPA_CONTROL_ESTADO">
+              <MappingFragment StoreEntitySet="TRAMPA_CONTROL_ESTADO">
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idTrampaTipo" ColumnName="idTrampaTipo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="abreviatura" ColumnName="abreviatura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRAMPA_ESTADO">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.TRAMPA_ESTADO">
+              <MappingFragment StoreEntitySet="TRAMPA_ESTADO">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRAMPA_TIPO">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.TRAMPA_TIPO">
+              <MappingFragment StoreEntitySet="TRAMPA_TIPO">
+                <ScalarProperty Name="multiSel" ColumnName="multiSel" />
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+                <ScalarProperty Name="idUsuarioTipo" ColumnName="idUsuarioTipo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRAMPA_CLIENTE_LOCACION_SECTOR">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.TRAMPA_CLIENTE_LOCACION_SECTOR">
+              <MappingFragment StoreEntitySet="TRAMPA_CLIENTE_LOCACION_SECTOR">
+                <ScalarProperty Name="observacion" ColumnName="observacion" />
+                <ScalarProperty Name="fechaHasta" ColumnName="fechaHasta" />
+                <ScalarProperty Name="fechaDesde" ColumnName="fechaDesde" />
+                <ScalarProperty Name="idTrampa" ColumnName="idTrampa" />
+                <ScalarProperty Name="idClienteLocacionSector" ColumnName="idClienteLocacionSector" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLEADO">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.EMPLEADO">
+              <MappingFragment StoreEntitySet="EMPLEADO">
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="numeroDocumento" ColumnName="numeroDocumento" />
+                <ScalarProperty Name="idDocumentoTipo" ColumnName="idDocumentoTipo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="st_getDetalleTrampasOrdenTrabajo" FunctionName="FoodDefense_DevModel.Store.st_getDetalleTrampasOrdenTrabajo">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDefense_DevModel.DetalleTrampasOrdenTrabajo_Result">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idTrampaClienteLocacionSector" ColumnName="idTrampaClienteLocacionSector" />
+                <ScalarProperty Name="descTipoTrampa" ColumnName="descTipoTrampa" />
+                <ScalarProperty Name="idTipoTrampa" ColumnName="idTipoTrampa" />
+                <ScalarProperty Name="idOrdenTrabajoDetalle" ColumnName="idOrdenTrabajoDetalle" />
+                <ScalarProperty Name="cargado" ColumnName="cargado" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="st_getOrdenesTrabajo" FunctionName="FoodDefense_DevModel.Store.st_getOrdenesTrabajo">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDefense_DevModel.OrdenesTrabajo_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fechaDeTrabajo" ColumnName="fechaDeTrabajo" />
+                <ScalarProperty Name="fechaCargaOrden" ColumnName="fechaCargaOrden" />
+                <ScalarProperty Name="locacion" ColumnName="locacion" />
+                <ScalarProperty Name="cliente" ColumnName="cliente" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="idOrdenTrabajoEstado" ColumnName="idOrdenTrabajoEstado" />
+                <ScalarProperty Name="cantTrampas" ColumnName="cantTrampas" />
+                <ScalarProperty Name="cargados" ColumnName="cargados" />
+                <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="st_AutocompleteTrampas" FunctionName="FoodDefense_DevModel.Store.st_AutocompleteTrampas">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDefense_DevModel.AutocompleteTrampas">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="st_getListadoTrampaClienteLocacionSector" FunctionName="FoodDefense_DevModel.Store.st_getListadoTrampaClienteLocacionSector">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDefense_DevModel.ListadoTrampaClienteLocacionSector_Result">
+                <ScalarProperty Name="razonSocial" ColumnName="razonSocial" />
+                <ScalarProperty Name="locacion" ColumnName="locacion" />
+                <ScalarProperty Name="tipoTrampa" ColumnName="tipoTrampa" />
+                <ScalarProperty Name="sector" ColumnName="sector" />
+                <ScalarProperty Name="idTrampaClienteLocacionSector" ColumnName="idTrampaClienteLocacionSector" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="idClienteLocacionSector" ColumnName="idClienteLocacionSector" />
+                <ScalarProperty Name="idClienteLocacion" ColumnName="idClienteLocacion" />
+                <ScalarProperty Name="idTrampa" ColumnName="idTrampa" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idTrampaTipo" ColumnName="idTrampaTipo" />
+                <ScalarProperty Name="OrdenNumero" ColumnName="OrdenNumero" />
+                <ScalarProperty Name="OrdenSubNumero" ColumnName="OrdenSubNumero" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="st_validarTrampaCargaApp" FunctionName="FoodDefense_DevModel.Store.st_validarTrampaCargaApp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDefense_DevModel.validarTrampa_Result">
+                <ScalarProperty Name="IdOrdenTrabajoDetalle" ColumnName="IdOrdenTrabajoDetalle" />
+                <ScalarProperty Name="cargado" ColumnName="cargado" />
+                <ScalarProperty Name="idOrdenTrabajo" ColumnName="idOrdenTrabajo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="st_getTrampaApp" FunctionName="FoodDefense_DevModel.Store.st_getTrampaApp">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDefense_DevModel.TrampaApp_Result">
+                <ScalarProperty Name="idOrdenTrabajo" ColumnName="idOrdenTrabajo" />
+                <ScalarProperty Name="idOrdenDetalle" ColumnName="idOrdenDetalle" />
+                <ScalarProperty Name="TrampaClienteLocacionSector" ColumnName="TrampaClienteLocacionSector" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="st_getLastTrampaApp" FunctionName="FoodDefense_DevModel.Store.st_getLastTrampaApp">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDefense_DevModel.LastTrampaApp_Result">
+                <ScalarProperty Name="idTrampaTipo" ColumnName="idTrampaTipo" />
+                <ScalarProperty Name="desctrampatipo" ColumnName="desctrampatipo" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="OrdenNumero" ColumnName="OrdenNumero" />
+                <ScalarProperty Name="OrdenSubNumero" ColumnName="OrdenSubNumero" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="st_control_cantidad_requerida_estado_trampa" FunctionName="FoodDefense_DevModel.Store.st_control_cantidad_requerida_estado_trampa" />
+          <FunctionImportMapping FunctionImportName="st_getDatosExportacion" FunctionName="FoodDefense_DevModel.Store.st_getDatosExportacion" />
+          <FunctionImportMapping FunctionImportName="st_getDatosGraficos" FunctionName="FoodDefense_DevModel.Store.st_getDatosGraficos">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDefense_DevModel.DatosGraficos_Result">
+                <ScalarProperty Name="nro" ColumnName="nro" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="dia" ColumnName="dia" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="leyendaX" ColumnName="leyendaX" />
+                <ScalarProperty Name="otroFormatoEjeX" ColumnName="otroFormatoEjeX" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="GRAFICOS">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.GRAFICOS">
+              <MappingFragment StoreEntitySet="GRAFICOS">
+                <ScalarProperty Name="otroFormatoEjeX" ColumnName="otroFormatoEjeX" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idTrampaTipo" ColumnName="idTrampaTipo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="st_getTrampasOrdenTrabajo" FunctionName="FoodDefense_DevModel.Store.st_getTrampasOrdenTrabajo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDefense_DevModel.st_getTrampasOrdenTrabajo_Result">
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idTrampaClienteLocacionSector" ColumnName="idTrampaClienteLocacionSector" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="ORDEN_TRABAJO_DETALLE_ESTADO">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE_ESTADO">
+              <MappingFragment StoreEntitySet="ORDEN_TRABAJO_DETALLE_ESTADO">
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="idOrdenTrabajoDetalle" ColumnName="idOrdenTrabajoDetalle" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDEN_TRABAJO_DETALLE">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE">
+              <MappingFragment StoreEntitySet="ORDEN_TRABAJO_DETALLE">
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="cucaAmericana" ColumnName="cucaAmericana" />
+                <ScalarProperty Name="cucaGermanica" ColumnName="cucaGermanica" />
+                <ScalarProperty Name="insecto" ColumnName="insecto" />
+                <ScalarProperty Name="roedor" ColumnName="roedor" />
+                <ScalarProperty Name="cargado" ColumnName="cargado" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="minusculos" ColumnName="minusculos" />
+                <ScalarProperty Name="mariposas" ColumnName="mariposas" />
+                <ScalarProperty Name="polillas" ColumnName="polillas" />
+                <ScalarProperty Name="mosquitas" ColumnName="mosquitas" />
+                <ScalarProperty Name="moscas" ColumnName="moscas" />
+                <ScalarProperty Name="idAccion" ColumnName="idAccion" />
+                <ScalarProperty Name="idTrampaClienteLocacionSector" ColumnName="idTrampaClienteLocacionSector" />
+                <ScalarProperty Name="idOrdenTrabajo" ColumnName="idOrdenTrabajo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO_TIPO">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.USUARIO_TIPO">
+              <MappingFragment StoreEntitySet="USUARIO_TIPO">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAREA">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.TAREA">
+              <MappingFragment StoreEntitySet="TAREA">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idTipoTrampa" ColumnName="idTipoTrampa" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTROL_PLAGA">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.CONTROL_PLAGA">
+              <MappingFragment StoreEntitySet="CONTROL_PLAGA">
+                <ScalarProperty Name="valorCondicion" ColumnName="valorCondicion" />
+                <ScalarProperty Name="operadorCondicion" ColumnName="operadorCondicion" />
+                <ScalarProperty Name="campoCondicion" ColumnName="campoCondicion" />
+                <ScalarProperty Name="idTipoTrampa" ColumnName="idTipoTrampa" />
+                <ScalarProperty Name="idClienteLocacion" ColumnName="idClienteLocacion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fn_Fechas" FunctionName="FoodDefense_DevModel.Store.fn_Fechas" />
+          <FunctionImportMapping FunctionImportName="st_getCamposControlPlaga" FunctionName="FoodDefense_DevModel.Store.st_getCamposControlPlaga">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDefense_DevModel.st_getCamposControlPlaga_Result">
+                <ScalarProperty Name="idTrampaTipo" ColumnName="idTrampaTipo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="campo" ColumnName="campo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="st_getEmpListTask" FunctionName="FoodDefense_DevModel.Store.st_getEmpListTask">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDefense_DevModel.st_getEmpListTask_Result">
+                <ScalarProperty Name="CLIENTE_ID" ColumnName="CLIENTE_ID" />
+                <ScalarProperty Name="razonSocial" ColumnName="razonSocial" />
+                <ScalarProperty Name="SECTOR_ID" ColumnName="SECTOR_ID" />
+                <ScalarProperty Name="SECTOR" ColumnName="SECTOR" />
+                <ScalarProperty Name="TIPO_TRAMPA" ColumnName="TIPO_TRAMPA" />
+                <ScalarProperty Name="CNT" ColumnName="CNT" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CONTROL_PLAGA_DETALLE">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.CONTROL_PLAGA_DETALLE">
+              <MappingFragment StoreEntitySet="CONTROL_PLAGA_DETALLE">
+                <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+                <ScalarProperty Name="idControlPlaga" ColumnName="idControlPlaga" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA">
+              <MappingFragment StoreEntitySet="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA">
+                <ScalarProperty Name="realizado" ColumnName="realizado" />
+                <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+                <ScalarProperty Name="idOrdenTrabajoDetalle" ColumnName="idOrdenTrabajoDetalle" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="st_GetListAccionesTareas" FunctionName="FoodDefense_DevModel.Store.st_GetListAccionesTareas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDefense_DevModel.st_GetListAccionesTareas_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="realizado" ColumnName="realizado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="st_GetListaControlPlaga" FunctionName="FoodDefense_DevModel.Store.st_GetListaControlPlaga">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FoodDefense_DevModel.st_GetListaControlPlaga_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="razonSocial" ColumnName="razonSocial" />
+                <ScalarProperty Name="locacion" ColumnName="locacion" />
+                <ScalarProperty Name="trampa_tipo" ColumnName="trampa_tipo" />
+                <ScalarProperty Name="campocondicion" ColumnName="campocondicion" />
+                <ScalarProperty Name="operadorCondicion" ColumnName="operadorCondicion" />
+                <ScalarProperty Name="valorcondicion" ColumnName="valorcondicion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

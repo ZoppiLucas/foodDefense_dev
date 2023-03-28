@@ -1,0 +1,84 @@
+﻿@model List<FoodDefence.Models.OrdenesTrabajo_Result>
+
+<div>
+    <table class="table table-bordered table-sm">
+        <tr class="d-flex">
+            <th class="priority-1 col-md-1">
+                #
+            </th>
+            <th class="priority-1 col-md-2">
+                Cliente
+            </th>
+            <th class="priority-1 col-md-2">
+                Locación
+            </th>
+            <th class="priority-2 col-md-2">
+                Fecha Carga
+            </th>
+            <th class="priority-2 col-md-2">
+                Fecha Trabajo
+            </th>
+            <th class="priority-3 col-md-2" data-toggle="tooltip" title="Porcentaje de Trabajo Cargado">
+                % Trabajo Cargado
+            </th>
+            <th class="priority-1 col-md-1"></th>
+        </tr>
+        @for (int i = 0; i < Model.Count(); i++)        
+        {
+        <tr class="d-flex">
+            <td class="priority-1 col-md-1">
+                @Model[i].id
+            </td>
+            <td class="priority-1 col-md-2">
+                @Model[i].cliente
+            </td>
+            <td class="priority-1 col-md-2">
+                @Model[i].locacion
+            </td>
+            <td class="priority-2 col-md-2">
+                @string.Format("{0:dd/MM/yyyy}", @Model[i].fechaCargaOrden)
+            </td>
+            <td class="priority-3 col-md-2">
+                @string.Format("{0:dd/MM/yyyy}", @Model[i].fechaDeTrabajo)
+            </td>
+            <td class="priority-3 col-md-2">
+                <div class="progress" id="progressId_@Model[i].id" data-toggle="tooltip" title="Porcentaje de Trabajo Cargado">
+                    <div class="progress-bar" role="progressbar" style="width: @Model[i].porcentaje%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        @*@Model[i].porcentaje%*@
+                    </div>
+                    <span class="progress-completed">@Model[i].porcentaje%</span>
+                </div>
+            </td>
+            <td class="priority-1 col-md-1">
+                <div class="btn-group btn-group-primary">
+                    <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Aciones
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        @Html.ActionLink("Ver", "Details", "ORDEN_TRABAJO_CARGA", new { id = @Model[i].id, finalizar = "N" }, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Cargar Trabajo", "Create", "ORDEN_TRABAJO_CARGA", new { id = @Model[i].id }, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Finalizar", "Details", "ORDEN_TRABAJO_CARGA", new { id = @Model[i].id, finalizar = "S" }, new { @class = "dropdown-item" })
+                        
+                    </div>
+                </div>
+
+
+            </td>
+        </tr>
+        }
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+
+    //function cargarProgreso() {
+    //    $("#dynamic")
+    //        .css("width", current_progress + "%")
+    //        .attr("aria-valuenow", current_progress)
+    //        .text(current_progress + "% Complete");
+    //}
+</script>

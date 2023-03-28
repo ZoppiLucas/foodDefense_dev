@@ -1,0 +1,109 @@
+﻿@model FoodDefence.Models.objectModel.Responsable
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formResponsable" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.isEdit_Index)
+    @Html.HiddenFor(model => model.isEdit)
+    @Html.Hidden("hd_lstContactosResponsable")
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <p class="font-weight-bold">Apellido</p>
+                <div>
+                    @Html.DisplayFor(model => model.apellido)
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <p class="font-weight-bold">Nombre</p>
+                <div>
+                    @Html.DisplayFor(model => model.nombre)
+                </div>
+            </div>
+        </div>
+
+        @if (Model != null && !String.IsNullOrEmpty(Model.usuarioPortal))
+        {
+            <div class="form-row">
+                <div class="form-group col-md-6" id="divUsuario">
+                    <p class="font-weight-bold">Usuario portal</p>
+                    @Html.DisplayFor(model => model.usuarioPortal)                    
+                </div>
+                <div class="form-group col-md-6" id="divPassword">
+                    <p class="font-weight-bold">Contraseña portal</p>
+                    @Html.DisplayFor(model => model.clavePortal)                    
+                </div>
+            </div>
+        }
+        <div class="form-row">
+            <div class="form-group">
+                <p class="font-weight-bold">Contactos</p>
+            </div>
+            <div class="form-group row col-md-12 overflow-auto" style="height: 160px;">
+                <div id="div_tblDatosContacto" class="col-md-12">
+                    <table id="tblDatosContacto"></table>
+                    <div id="DatosContacto"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">            
+            <button type="button" id="modal-btn-cerrar" class="btn btn-outline-secondary">Cerrar</button>
+        </div>
+
+        
+    </div>
+}
+
+    <script type="text/javascript">
+        
+    $(document).ready(function () {
+
+        var datos = @(Html.Raw(Json.Encode(ViewBag.lstContactosResponsable)));
+        $('#hd_lstContactosResponsable').val(JSON.stringify(datos));
+        agregarContactoAmodel(datos);
+        });
+
+        function agregarContactoAmodel(lstContactos) {
+            $('#tblDatosContacto').remove();
+            $('#DatosContacto').remove();
+            if (lstContactos.length > 0) {
+                $('#div_tblDatosContacto').append(
+                    ' <table id="tblDatosContacto" class="table table-sm" align="center"> '
+                    + '<thead> '
+                    + ' <tr class="d-flex">'
+                    + ' <th scope="col" class="col-2">' + ' Tipo' + ' </th>'
+                    + ' <th scope="col" class="col-4">' + ' Valor' + ' </th>'
+                    + ' <th scope="col" class="col-6">' + ' Observacion' + ' </th>'                    
+                    + ' </thead>'
+                    + ' </table> ');
+
+                let listaContacto = "";                
+                for (var i = 0; i < lstContactos.length; i++) {
+                    //html
+                    let observaciones = "";
+                    if (lstContactos[i].observaciones == null) {
+                        observaciones = "";
+                    }
+                    else {
+                        observaciones = lstContactos[i].observaciones;
+                    }
+
+                    listaContacto = listaContacto + '<tr class="d-flex"> ' +
+                        '<td class="col-2">' + lstContactos[i].ContactoTipo + '</td> ' +
+                        '<td class="col-4">' + lstContactos[i].valor + '</td>' +
+                        '<td class="col-6" style="word-wrap: break-word;">' + observaciones + '</td>' +                        
+                        '</tr>';
+                    
+                }
+
+                $('#tblDatosContacto').append('<tbody>' + listaContacto + '</tbody>');
+               
+            }
+        }
+
+        $("#modal-btn-cerrar").click(function () {
+            $('#ResponsableModal').modal('hide');
+        });
+    </script>

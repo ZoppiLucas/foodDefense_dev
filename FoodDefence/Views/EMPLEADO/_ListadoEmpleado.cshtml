@@ -1,0 +1,56 @@
+﻿@model IEnumerable<FoodDefence.Models.EMPLEADO>
+
+<div>
+    <table class="table table-bordered table-sm">
+        <tr class="d-flex">
+            <th colspan="2" class="priority-1 col-md-4">
+                Documento
+            </th>
+            <th class="priority-1 col-md-5">
+                Apellido y Nombre
+            </th>            
+            <th class="priority-1 col-md-3"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="d-flex">
+                <td class="priority-1 col-md-2">
+                    @Html.DisplayFor(modelItem => item.DOCUMENTO_TIPO.descripcion)
+                </td>
+                <td class="priority-1 col-md-2">
+                    @Html.DisplayFor(modelItem => item.numeroDocumento)
+                </td>
+                <td class="priority-1 col-md-5">
+                    @Html.DisplayFor(modelItem => item.apellido)&nbsp;
+                    @Html.DisplayFor(modelItem => item.nombre)
+                    @if (item.baja == true)
+                    {
+                        <span class="badge badge-pill badge-danger">Inactivo</span>
+                    }
+
+                </td>
+                <td class="priority-1 col-md-3">
+                    @Html.ActionLink("Ver", "Details", "EMPLEADO", new { id = item.id }, new { @class = "btn btn-outline-dark" })
+                    @if (item.baja == false)
+                    {
+                        @Html.ActionLink("Editar", "Edit", "EMPLEADO", new { id = item.id }, new { @class = "btn btn-outline-dark" })
+                        @Html.ActionLink("Eliminar", "Delete", "EMPLEADO", new { id = item.id }, new { @class = "btn btn-outline-danger ml-1" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Reactivar", "Reactivar", "EMPLEADO", new { id = item.id }, new { @class = "btn btn-outline-primary" })
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#btnBuscar").html('Buscar').removeClass('disabled');
+        $("#btnBuscar").attr('disabled', false);
+    });
+</script>

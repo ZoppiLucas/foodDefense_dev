@@ -1,0 +1,47 @@
+﻿@model FoodDefence.Models.TRAMPA_TIPO
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="callout callout-primary">
+
+    <h4><i class="fa fa-trash"></i> ¿Esta seguro de eliminar este tipo de trampa?</h4>
+    <hr />
+
+
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Descripción
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.descripcion)
+            </dd>
+        </dl>
+
+        @if (Model.TRAMPA.Where(n => n.idTrampaEstado == 1).ToList().Count > 0)
+        {
+            <div class="alert alert-danger" role="alert">
+                No se puede dar de baja el tipo de trampa ya que tiene trampas en estado activo asociadass.
+            </div>
+        }
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <h2>&emsp;</h2>
+            <div class="form-actions no-color">
+                @if (Model.TRAMPA.Where(n => n.idTrampaEstado == 1).ToList().Count == 0)
+                {
+                    <input type="submit" value="Eliminar" class="btn btn-outline-danger" />
+                }
+                @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-outline-primary" })
+            </div>
+        }
+    </div>
+
+</div>

@@ -1,0 +1,502 @@
+﻿@model FoodDefence.Models.ORDEN_TRABAJO
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="@Url.Content("~/Scripts/jquery-ui.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/ViewsResources/orden_trabajo.css")" rel="stylesheet" type="text/css" />
+
+
+<div class="callout callout-primary">
+
+    <h4><i class="fa fa-list-alt"></i> Carga de Trabajo</h4>
+    <br />
+
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formCargaTrabajo" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.id, new { @id = "hd_idOrdenTrabajo" })
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <b>Fecha de carga</b>
+                    <div>
+                        @string.Format("{0:dd/MM/yyyy}", @Model.fechaCargaOrden)
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <b>Fecha de realización de trabajo</b>
+                    <div>
+                        @string.Format("{0:dd/MM/yyyy}", @Model.fechaDeTrabajo)
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <b>Técnico</b>
+                    <div>
+                        @ViewBag.Empleado
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <b>Cliente</b>
+                    <div>
+                        @ViewBag.Cliente
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <b>Locación</b>
+                    <div>
+                        @Html.DisplayFor(model => model.CLIENTE_LOCACION.descripcion)
+                        @Html.HiddenFor(model => model.CLIENTE_LOCACION.id, new { @id = "cmbClienteLocacion" })
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <div class="form-row">
+                    <b>Trampas</b>
+                </div>
+                <div class="form-row mb-2">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-primary border-white active" id="btnTodas">
+                            <span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" id="waitBotonTodas" style="display:none"></span>
+                            <input type="radio" name="options" id="rad1" onclick="cargarTrampas()" autocomplete="off"> Todas
+                        </label>
+                        <label class="btn btn-primary border-white" id="btnXtrampa">
+                            <input type="radio" name="options" id="rad2" onclick="cargarTrampasXtampa()" autocomplete="off"> Por Trampa
+                        </label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div id="div_tblDatosTrampas" class="col-md-12">
+                        <div id="tblDatosTrampas"></div>
+                    </div>
+                </div>
+                <div class="form-row" id="divXtrampa" style="display:none">
+                    <div id="divTipoTrama" class="form-group col-md-3">
+                        Tipo de Tampa
+                        <div>
+                            @Html.DropDownList("cmbTipoTrampa", Enumerable.Empty<SelectListItem>(), "Seleccione un tipo", htmlAttributes: new { @class = "form-control", @id = "cmbTipoTrampa" })
+                        </div>
+                    </div>
+                    <div id="divTrampa" class="form-group col-md-4">
+                        Tampa
+                        <div>
+                            <input type="text" name="txtNumeroTrampa" id="txtNumeroTrampa" value="" class="form-control" placeholder="Número de Trampa" />
+                        </div>
+                    </div>
+                    <div id="divAgregar" class="form-group col-md-2">
+                        <label></label>
+                        <div>
+                            <button type="button" id="btnBuscarXtrampa" onclick="buscarXtrampa();" class="btn btn-outline-primary">
+                                <span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" id="waitBotonXtrampa" style="display:none"></span>
+                                Cargar Trabajo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mt-3">
+                <button type="button" id="btnVolver" class="btn btn-outline-primary">Volver al listado</button>
+                
+            </div>
+
+            <div id="validaciones" class="alert alert-danger" style="display:none;" role="alert">
+                <button class="close" data-dismiss="alert"><span>&times;</span></button>
+                @ViewBag.ValidacionesOrdenTrabajo
+            </div>
+        </div>
+    }
+
+</div>
+
+<!-- Modal Carga Trabajo -->
+<div class="modal fade" data-backdrop="static" id="CargaTrabajoModal"  role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Carga de trabajo</h5>
+                <button type="button" class="close" data-dismiss="modal" data-wait="modal-btn" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="CargaTrabajoModalBody" class="modal-body">
+                Espere por favor......
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="modalAlert" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                <h4 class="modal-title">Atención</h4>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap Modal Confirm -->
+<div class="modal" tabindex="-1" role="dialog" id="modalConfirm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modalConfirmMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="modalConfirm-btn-si" class="btn btn-primary">Si</button>
+                <button type="button" id="modalConfirm-btn-no" class="btn btn-secondary" >No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- snackbars -->
+<div id="snackbarSuccess"></div>
+<div id="snackbarAlert"></div>
+<button class="btn btn-primary scroll-top" data-scroll="up" type="button">
+    <i class="fa fa-chevron-up"></i>
+</button>
+
+<script type="text/javascript">
+    var Ingreso = '@ViewBag.ValidacionesOrdenTrabajo';
+
+ $(document).ready(function () {
+        //controles
+        if (Ingreso != '') {
+            $("#validaciones").show();
+        }
+        else {
+            $("#validaciones").hide();
+        }
+     $('[data-toggle="tooltip"]').tooltip()
+
+     $(window).scroll(function () {
+         if ($(this).scrollTop() > 100) {
+             $('.scroll-top').fadeIn();
+         } else {
+             $('.scroll-top').fadeOut();
+         }
+     });
+
+     $('.scroll-top').click(function () {
+         $("html, body").animate({
+             scrollTop: 0
+         }, 100);
+         return false;
+     });
+
+  });
+
+    $("#formCargaTrabajo").bind("keypress", function (e) {
+        if (e.keyCode == 13) {
+        return false;
+        }
+     });
+
+    //$("#formCargaTrabajo").submit(function (event) {
+    //        if ($(this).valid()) {
+    //            $('#btnGuardar').html('<span class="spinner-border spinner-border-sm mr-2 text-primary" role="status" aria-hidden="true"></span>Volver al listado').addClass('disabled');
+    //            $("#btnGuardar").attr("disabled", true);
+    //            $("#btnVolver").attr("disabled", true);
+    //            $("#btnVolver").addClass('disabled');
+    //        }
+    //    });
+
+    function finalizar() {
+
+        var idOrdenTrabajo = $('#hd_idOrdenTrabajo').val();
+        let dataResponse = { idOrdenTrabajo: idOrdenTrabajo };
+        $.ajax({
+            url: '@Url.Action("finalizarTrabajo")'
+            , type:"POST"
+            , dataType: 'json'
+            , data: JSON.stringify(dataResponse)
+            , contentType: "application/json; charset=utf-8"
+            , beforeSend: function () {
+                $('#btnVolver').html('<span class="spinner-border spinner-border-sm mr-2 text-primary" role="status" aria-hidden="true"></span>Volver al listado').addClass('disabled').attr("disabled", true);
+            }
+            , success: function (data) {
+                $('#btnVolver').html('Volver al listado').removeClass('disabled').attr("disabled", false);
+                if (data == 'OK') {
+                        window.location.href = '@Url.Action("Index", "ORDEN_TRABAJO_CARGA")'
+                }
+                else {
+                    mostrarMensaje(data);
+                    return null;
+                }
+            }
+        });
+    }
+
+    $("#btnVolver").click(function () {
+        var idOrdenTrabajo = $('#hd_idOrdenTrabajo').val();
+        
+        $.ajax({
+            url: '@Url.Action("controlTrampasCargadas")'
+            , type:"GET"
+            , dataType: 'json'
+            , data: { idOrdenTrabajo: idOrdenTrabajo }
+            , beforeSend: function () {
+                $('#btnVolver').html('<span class="spinner-border spinner-border-sm mr-2 text-primary" role="status" aria-hidden="true"></span>Volver al listado').addClass('disabled').attr("disabled", true);
+            }
+            , success: function (data) {
+                $('#btnVolver').html('Volver al listado').removeClass('disabled').attr("disabled", false);
+                if (data == "FINALIZAR") {
+                    finalizarConfirm();
+                }
+                else {
+                    if (data == "SEGUIR") {
+                        window.location.href = '@Url.Action("Index", "ORDEN_TRABAJO_CARGA")'
+                    }
+                    else {
+                        mostrarMensaje(data);
+                    }
+                }
+            }
+        });
+    });
+
+    function finalizarConfirm() {
+        $('#modalConfirmMessage').html("El trabajo esta cargado completamente. ¿Desea finalizar la orden de trabajo?");
+        $('#modalConfirm-btn-si').off("click");
+        $('#modalConfirm-btn-si').on('click', function () {
+            $('#modalConfirm').modal('hide');
+            finalizar();
+        });
+        $('#modalConfirm-btn-no').off("click");
+        $('#modalConfirm-btn-no').on('click', function () {
+            $('#modalConfirm').modal('hide');
+            window.location.href = '@Url.Action("Index", "ORDEN_TRABAJO_CARGA")'
+        });
+        $('#modalConfirm').modal('show');
+    }
+
+    function waitBotonTodas() {
+        $('#btnTodas').addClass('disabled');
+        $("#btnTodas").attr("disabled", true);
+        $("#btnXtrampa").attr("disabled", true);
+        $("#btnXtrampa").addClass('disabled');
+        $("#waitBotonTodas").show();
+    }
+
+    function waitBotonXtrampa() {
+        $("#btnXtrampa").addClass('disabled');
+        $("#btnXtrampa").attr("disabled", true);
+        $("#btnTodas").attr("disabled", true);
+        $("#btnTodas").addClass('disabled');
+        $("#btnBuscarXtrampa").attr("disabled", true);
+        $("#btnBuscarXtrampa").addClass('disabled');
+        $("#waitBotonXtrampa").show();
+    }
+
+    function resetBoton() {
+        $("#btnXtrampa").attr("disabled", false);
+        $("#btnXtrampa").removeClass('disabled');
+        $("#btnTodas").attr("disabled", false);
+        $("#btnTodas").removeClass('disabled');
+        $("#btnBuscarXtrampa").attr("disabled", false);
+        $("#btnBuscarXtrampa").removeClass('disabled');
+        $("#waitBotonTodas").hide();
+        $("#waitBotonXtrampa").hide();
+    }
+
+    function cargarTrampas() {
+        var idOrdenTrabajo = $('#hd_idOrdenTrabajo').val();
+        $('#tblDatosTrampas').remove();
+        $('#divXtrampa').hide();
+
+        $.ajax({
+            url: '@Url.Action("getTrampas")'
+            , type:"GET"
+            , dataType: 'json'
+            , data: { idOrdenTrabajo: idOrdenTrabajo }
+            , beforeSend: function () {
+                waitBotonTodas();
+            }
+            , success: function (data) {
+                resetBoton();
+                if (data == "VACIO") { mostrarMensaje("Error no hay trampas");}
+                else {
+                    if (data == "ERROR") { mostrarMensaje("Error al cargar trampas"); }
+                    else { armarTrampas(data);}
+                }
+            }
+        });
+    }
+
+    function armarTrampas(data) {
+        if (data.length > 0) {
+            $('#div_tblDatosTrampas').append(
+                ' <div id="tblDatosTrampas" class="container"> </div>'
+                );
+
+            let cab = "";
+            for (var i = 0; i < data.length; i++) {
+                //DETALLE
+                let det = '<ul  class="list-group">';
+                for (var e = 0; e < data[i].trampas.length; e++) {
+                    let cargado = '  <span data-toggle="tooltip" data-cargado="N" title="Trabajo no cargado" class="badge badge-pill badge-danger" id="badgeTrabajo_' + data[i].trampas[e].idOrdenTrabajoDetalle + '">!</span>' 
+                    let isCargado = 'N';
+
+                    if (data[i].trampas[e].cargado == true) { 
+                        cargado = '  <span data-toggle="tooltip" data-cargado="S" style="display:none"  title="Trabajo no cargado" class="badge badge-pill badge-danger" id="badgeTrabajo_' + data[i].trampas[e].idOrdenTrabajoDetalle + '">!</span>' 
+                        isCargado = 'S';
+                    }
+
+                    det = det +
+                        '<li style="cursor:pointer" class="list-group-item">' +
+                        '<div class="d-flex w-100 justify-content-between">'+
+                       //'<h6 class="mb-0 mt-3">' + data[i].trampas[e].descripcion + ' <span class="badge badge-dark badge-pill">' + data[i].trampas[e].numero + '</span></h6>' +
+                       '<h6>' + data[i].trampas[e].descripcion + ' <span class="badge badge-primary">' + data[i].trampas[e].numero + '</span></h6>' +
+                        '<button  type="button" data-wait="btn" class="btn btn-outline-primary btn-sm" onClick="trampaCargarTrabajo(' + data[i].trampas[e].idOrdenTrabajoDetalle +  ')" id="btn_cargar_' + data[i].trampas[e].idOrdenTrabajoDetalle + '"' + '>' +                        
+                        'Cargar Trabajo' +
+                        cargado +
+                        '</button>' +
+                        '</div>' +
+                            '</li>'
+                }
+
+                det = det + '</ul>'
+
+                //CABECERA
+                 cab = cab +
+                    '<div class="card">' +
+                     '<div class="card-header collapsed" href="#cab' + data[i].idTipoTrampa + '" class="" data-toggle="collapse" data-target="#cab' + data[i].idTipoTrampa + '" aria-expanded="false">' +
+                        '<span class="title">' + data[i].descTipoTrampa  + '</span>' +
+                        '<span class="accicon"><i class="fa fa-chevron-down rotate-icon"></i></span>' +
+                     '</div> ' +
+                     '<div id="cab' + data[i].idTipoTrampa + '" class="collapse" data-parent="#tblDatosTrampas">' +
+                        '<div class="card-body">' + det + '</div>' +
+                     '</div>' +
+                    '</div>'
+            }
+
+            $('#tblDatosTrampas').append(cab);
+            $('[data-toggle="tooltip"]').tooltip()
+        }
+    }
+
+    $('#cmbTipoTrampa').change(function () {
+        $("#cmbTipoTrampa option[value='']").remove();
+    });
+
+    function cargarTrampasXtampa() {
+        $('#tblDatosTrampas').remove();
+        cargarComboTipoTrampa()
+
+    }
+
+    function cargarComboTipoTrampa() {
+
+        $.ajax({
+            url: '@Url.Action("ComboTipoTrampa")'
+            , success: function (data) {
+
+                $('#cmbTipoTrampa').empty();
+                $('#cmbTipoTrampa').append("<option value=''>Seleccione un tipo de trampa</option>");
+                $.each(data, function (index, row) {
+                    $('#cmbTipoTrampa').append("<option value='" + row.id + "'>" + row.descripcion + "</option>");
+                });
+                $('#divXtrampa').show();
+                $('#txtNumeroTrampa').val('');
+            }
+        });
+    }
+
+    function buscarXtrampa() {
+        var idOrdenTrabajo = $('#hd_idOrdenTrabajo').val();
+        var lNumeroTrampa = $('#txtNumeroTrampa').val();
+
+        var lTipo = $('#cmbTipoTrampa').val();
+        if (lTipo == '') {
+            mostrarMensaje("Ingrese un tipo de trampa");
+            return null;
+        }
+
+        $('#tblDatosTrampas').remove();
+        $.ajax({
+            url: '@Url.Action("getTrampasById")'
+            , type:"GET"
+            , dataType: 'json'
+            , data: { id: idOrdenTrabajo, pNumeroTrampa: lNumeroTrampa, pTipo: lTipo }
+            , beforeSend: function () {
+                waitBotonXtrampa();
+            }
+            , success: function (data) {
+                resetBoton();
+                if (data == "VACIO") { mostrarMensaje("No existe la trampa");}
+                else {
+                    if (data == "ERROR") { mostrarMensaje("Error al cargar trampas"); }
+                    else {
+                        trampaCargarTrabajoById(data.idOrdenTrabajoDetalle);
+                    }
+                }
+            }
+        });
+    }
+
+    function trampaCargarTrabajoById(idOrdenTrabajoDetalle) {        
+        waitBotonXtrampa();
+        var url = '@Url.Action("CargaTrabajo")' + '/' + idOrdenTrabajoDetalle
+
+        $.get(url, function(data) {
+            $('#CargaTrabajoModalBody').html(data);
+            resetBoton();
+            $('#CargaTrabajoModal').modal('show');
+        });
+    }
+
+    function trampaCargarTrabajo(idOrdenTrabajoDetalle) {        
+        debugger;
+        var isCargado = $('#badgeTrabajo_' + idOrdenTrabajoDetalle).data("cargado");
+        
+        let cargado = '  <span data-toggle="tooltip" data-cargado="N" title="Trabajo no cargado" class="badge badge-pill badge-danger" id="badgeTrabajo_' + idOrdenTrabajoDetalle + '">!</span>';
+        if (isCargado == 'S') {
+            cargado = '  <span data-toggle="tooltip" data-cargado="S"  style="display:none" title="Trabajo no cargado" class="badge badge-pill badge-danger" id="badgeTrabajo_' + idOrdenTrabajoDetalle + '">!</span>';
+        }
+        
+        $('#btn_cargar_' + idOrdenTrabajoDetalle).html('<span  class="spinner-border spinner-border-sm mr-2 text-primary" role="status" aria-hidden="true"></span>Cargar Trabajo' + cargado);
+        $('[data-wait="btn"]').attr("disabled", true);
+        $('[data-wait="btn"]').addClass('disabled');
+
+        var url = '@Url.Action("CargaTrabajo")' + '/' + idOrdenTrabajoDetalle
+
+        $.get(url, function(data) {
+            $('#CargaTrabajoModalBody').html(data);
+            $('#btn_cargar_' + idOrdenTrabajoDetalle).html('Cargar Trabajo' + cargado)                
+            $('[data-wait="btn"]').attr("disabled", false);
+            $('[data-wait="btn"]').removeClass('disabled');
+
+            $('#CargaTrabajoModal').modal('show');
+        });
+    }
+
+    function mostrarMensaje(mensaje) {
+        $("#modalMessage").html(mensaje);
+        $('#modalAlert').modal("show");
+    }
+
+</script>
+

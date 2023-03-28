@@ -1,0 +1,63 @@
+﻿@model FoodDefence.Models.TRAMPA_CLIENTE_LOCACION_SECTOR
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="callout callout-primary">
+    <h4><i class="fa fa-trash"></i> ¿Esta seguro de eliminar esta trampa del sector?</h4>
+    <hr />
+
+
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                Cliente
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CLIENTE_LOCACION_SECTOR.CLIENTE_LOCACION.CLIENTE.razonSocial)
+            </dd>
+
+            <dt>
+                Locación
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CLIENTE_LOCACION_SECTOR.CLIENTE_LOCACION.descripcion)
+            </dd>
+
+            <dt>
+                Sector
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CLIENTE_LOCACION_SECTOR.descripcion)
+            </dd>
+
+            <dt>
+                Tipo de trampa
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TRAMPA.TRAMPA_TIPO.descripcion)
+            </dd>
+
+            <dt>
+                Trampa
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TRAMPA.numero)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <h2>&emsp;</h2>
+            <div class="form-actions no-color">
+                <input type="submit" value="Eliminar" class="btn btn-outline-danger" />
+                @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-outline-primary" })
+            </div>
+        }
+    </div>
+
+</div>

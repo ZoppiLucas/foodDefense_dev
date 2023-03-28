@@ -1,0 +1,211 @@
+﻿
+@{
+    ViewBag.Title = "ExporData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="@Url.Content("~/Scripts/jquery-ui.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/jquery-ui.min.css")" rel="stylesheet" type="text/css" />
+
+<div class="callout callout-primary">
+
+    <h4><i class="fa fa-file-text"></i> Exportar Datos</h4>
+    <br />
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formExporData" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })            
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    Cliente
+                    <div>
+                        @Html.DropDownList("idCliente", null, "Seleccione un cliente", htmlAttributes: new { @class = "form-control", @id = "cmbCliente" })
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    Locación
+                    <div>
+                        @Html.DropDownList("cmbClienteLocacion", Enumerable.Empty<SelectListItem>(), "Primero seleccione un cliente", htmlAttributes: new { @class = "form-control", @id = "cmbClienteLocacion" })
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    Periodo
+                    <div>
+                        @Html.DropDownList("cmbPeriodo",null, "Seleccione un periodo", htmlAttributes: new { @class = "form-control",  @id = "cmbPeriodo" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" id="btnExportar" class="btn btn-outline-primary">Exportar</button>                
+            </div>                        
+        </div>
+    }
+
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="modalAlert" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                <h4 class="modal-title">Atención</h4>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap Modal Confirm -->
+<div class="modal" tabindex="-1" role="dialog" id="modalConfirm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-p"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="modal-btn-si" class="btn btn-primary">Si</button>
+                <button type="button" id="modal-btn-no" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- snackbars -->
+<div id="snackbarSuccess"></div>
+<div id="snackbarAlert"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+
+
+
+    });
+
+    
+    $("#btnExportar").click(function () {
+        if (validar()) {
+            //$('#btnExportar').html('<span class="spinner-border spinner-border-sm mr-2 text-primary" role="status" aria-hidden="true"></span>Exportar').addClass('disabled');
+            //$('#btnExportar').attr("disabled", true);
+            Exportar();
+        }
+
+    });
+
+    function validar() {
+        var lcliente = $('#cmbCliente').val();
+        var lLocacion = $('#cmbClienteLocacion').val();
+        var lperiodo = $('#cmbPeriodo').val();
+        
+        if (lcliente == '') {
+            mostrarMensaje("Ingrese un cliente");
+            return false;
+        }
+        if (lLocacion == '') {
+            mostrarMensaje("Ingrese una locación");
+            return false;
+        }
+        if (lperiodo == '') {
+            mostrarMensaje("Ingrese un periodo");
+            return false;
+        }
+        
+        return true;
+    }
+
+    function Exportar() {
+        var lCliente = $('#cmbCliente').val();
+        var lLocacion = $('#cmbClienteLocacion').val();
+        var lPeriodo = $('#cmbPeriodo').val();
+
+        var exportMyUrl = '@Url.Action("ExporDataCsv")';
+        exportMyUrl = exportMyUrl + '?pCliente=' + lCliente + '&pLocacion=' + lLocacion + '&pPeriodo=' + lPeriodo
+        window.open(exportMyUrl, "_blank ");
+
+        @*$.ajax({
+            url: '@Url.Action("ExporDataCsv", "ORDEN_TRABAJO")'
+            , type:"GET"
+            , dataType: 'json'
+            , data: { pCliente: lCliente, pLocacion: lLocacion, pPeriodo: lPeriodo}
+            , success: function (data) {
+                
+            }
+        });*@
+    }
+
+    $('#cmbCliente').change(function () {
+            $("#cmbCliente option[value='']").remove();
+            cargarComboLocacion();
+        });
+
+    $('#cmbClienteLocacion').change(function () {    
+        $("#cmbClienteLocacion option[value='']").remove();        
+    });
+
+    $('#cmbPeriodo').change(function () {
+        $("#cmbPeriodo option[value='']").remove();
+    });
+        
+    function cargarComboLocacion() {
+        var lcliente = $('#cmbCliente').val();
+        $.ajax({
+            url: '@Url.Action("ComboClienteLocacion", "CLIENTE_LOCACION_SECTOR")'
+            , type:"GET"
+            , dataType: 'json'
+            , data: {pCliente: lcliente}
+            , success: function (data) {
+                $('#cmbClienteLocacion').empty();
+                $('#cmbClienteLocacion').append("<option value=''>Seleccione una locación</option>");
+                $.each(data, function (index, row) {
+                    $('#cmbClienteLocacion').append("<option value='" + row.id + "'>" + row.descripcion + "</option>");
+                });
+            }
+        });
+    }
+    
+    function snackbarSuccessShow() {
+        var x = document.getElementById("snackbarSuccess");
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
+    }
+
+    function snackbarAlertShow() {
+        var x = document.getElementById("snackbarAlert");
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
+    }
+
+    function mostrarMensaje(mensaje) {
+        $("#modalMessage").html(mensaje);
+        $('#modalAlert').modal("show");
+    }
+
+    $('#modalConfirm' + ' #modal-btn-no').on('click', function () {
+        ocultarModalConfirm();
+    });
+
+    function ocultarModalConfirm() {
+        $('#modalConfirm').modal('hide');
+    }
+
+</script>
+
+

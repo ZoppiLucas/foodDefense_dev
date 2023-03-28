@@ -1,0 +1,72 @@
+﻿@model IEnumerable<FoodDefence.Models.TAREA>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="callout callout-primary">
+
+    <h4><i class="fa fa-id-card"></i> Tareas</h4>
+    <br />
+
+    <p>
+        @Html.ActionLink("Crear tarea", "Create", "TAREAs", null, new { @class = "btn btn-outline-primary" })
+    </p>
+
+    <div class="table-responsive-sm">
+        <table class="table-sm">
+            <tr>
+                <td colspan="2" width="60%">Descripción</td>
+                <td colspan="2" width="30%">Tipo Trampa</td>
+                <td width="10%"></td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.EditorFor(model => Model.FirstOrDefault().descripcion, new 
+                        { htmlAttributes = new { @class = "form-control", id = "txtDescripcion" } })
+                </td>
+                <td>
+                    @Html.DropDownList("idTrampaTipo", null, "Todos", htmlAttributes: new 
+                        { @class = "form-control", id = "cmbTipoTrampa" })
+                </td>
+                <td>
+                    <input type="button" id="btnBuscar" class="btn btn-outline-secondary" onclick="btnBuscar_onclic()" value="Buscar" />
+                </td>
+            </tr>
+
+
+        </table>
+    </div>
+
+    <div id="divTabla">
+
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        limpiar();
+    });
+
+    function limpiar() {
+        $("#cmbTipoTrampa").find('option:contains("' + "Todos" + '")').prop('selected', true);
+        $('#txtDescripcion').val('');
+        
+    }
+    function btnBuscar_onclic() {
+        var lTipoTrampa = $('#cmbTipoTrampa').val();
+        var lDescripcion = $('#txtDescripcion').val();
+
+        $.ajax({
+                url: '@Url.Action("ListadoTareas", "Tareas")'
+            , data: { pDescripcion: lDescripcion
+                        , pTipoTrampa: lTipoTrampa}
+            , success: function (data) { $("#divTabla").html(data);
+                                        limpiar();
+                                        }
+        });
+    }
+</script>

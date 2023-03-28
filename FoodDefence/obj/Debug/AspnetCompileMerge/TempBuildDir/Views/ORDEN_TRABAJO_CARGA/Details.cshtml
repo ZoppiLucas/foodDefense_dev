@@ -1,0 +1,317 @@
+﻿@model FoodDefence.Models.ORDEN_TRABAJO
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="@Url.Content("~/ViewsResources/orden_trabajo.css")" rel="stylesheet" type="text/css" />
+
+<div class="callout callout-primary">
+
+    <h4><i class="fa fa-list-alt"></i> Carga de Trabajo</h4>
+    <br />
+
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formCargaTrabajo" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.id, new { @id = "hd_idOrdenTrabajo" })
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <b>Fecha de carga</b>
+                    <div>
+                        @string.Format("{0:dd/MM/yyyy}", @Model.fechaCargaOrden)
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <b>Fecha de realización de trabajo</b>
+                    <div>
+                        @string.Format("{0:dd/MM/yyyy}", @Model.fechaDeTrabajo)
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <b>Técnico</b>
+                    <div>
+                        @ViewBag.Empleado
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <b>Cliente</b>
+                    <div>
+                        @ViewBag.Cliente
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <b>Locación</b>
+                    <div>
+                        @Html.DisplayFor(model => model.CLIENTE_LOCACION.descripcion)
+                        @Html.HiddenFor(model => model.CLIENTE_LOCACION.id, new { @id = "cmbClienteLocacion" })
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <div class="form-row">
+                    <b>Trampas</b>
+                </div>
+                <div style="display:none" id="waitTrampa" class="form-row">
+                    <div class="d-flex align-items-center col-md-4">
+                        <strong>Cargando trampas...</strong>
+                        <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div id="div_tblDatosTrampas" class="col-md-12">
+                        <div id="tblDatosTrampas"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mt-3">
+                @if (ViewBag.Finalizar == "S")
+                {
+                    <button type="button" id="btnFinalizar" data-wait="btn" class="btn btn-outline-success">Finalizar Carga de Trabajo</button>
+                }
+                @Html.ActionLink("Volver al listado", "Index", null, new { @class = "btn btn-outline-primary", @id = "btnVolver", @data_wait = "btn" })
+            </div>
+
+        </div>
+    }
+
+</div>
+
+<button class="btn btn-primary scroll-top" data-scroll="up" type="button">
+    <i class="fa fa-chevron-up"></i>
+</button>
+<!-- Modal Carga Trabajo -->
+<div class="modal fade" data-backdrop="static" id="VerTrabajoModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Carga de trabajo</h5>
+                <button type="button" class="close" data-dismiss="modal" data-wait="modal-btn" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="VerTrabajoModalBody" class="modal-body">
+                Espere por favor......
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap Modal Confirm -->
+<div class="modal" tabindex="-1" role="dialog" id="modalConfirm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modalConfirmMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="modalConfirm-btn-si" class="btn btn-primary">Si</button>
+                <button type="button" id="modalConfirm-btn-no" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="modalAlert" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                <h4 class="modal-title">Atención</h4>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('.scroll-top').fadeIn();
+            } else {
+                $('.scroll-top').fadeOut();
+            }
+        });
+
+        $('.scroll-top').click(function () {
+            $("html, body").animate({
+                scrollTop: 0
+            }, 100);
+            return false;
+        });
+
+         $('[data-toggle="tooltip"]').tooltip()
+         cargarTrampas();
+
+    });
+
+    $("#formCargaTrabajo").bind("keypress", function (e) {
+        if (e.keyCode == 13) {
+        return false;
+        }
+     });
+
+    function finalizar() {
+
+        var idOrdenTrabajo = $('#hd_idOrdenTrabajo').val();
+        $('#btnFinalizar').html('<span class="spinner-border spinner-border-sm mr-2 text-success" role="status" aria-hidden="true"></span>Finalizar Carga de Trabajo');
+        $('[data-wait="btn"]').attr("disabled", true).addClass('disabled');
+        let dataResponse = { idOrdenTrabajo: idOrdenTrabajo };
+        $.ajax({
+            url: '@Url.Action("finalizarTrabajo")'
+            , type:"POST"
+            , dataType: 'json'
+            , data: JSON.stringify(dataResponse)
+            , contentType: "application/json; charset=utf-8"
+            , success: function (data) {
+                if (data == 'OK') {
+                        window.location.href = '@Url.Action("Index", "ORDEN_TRABAJO_CARGA")'
+                }
+                else {
+                    mostrarMensaje(data);
+                    return null;
+                }
+            }
+        });
+    }
+
+    $("#btnFinalizar").click(function () {
+        $('#modalConfirmMessage').html("¿Desea finalizar el trabajo cargado?");
+        $('#modalConfirm-btn-si').off("click");
+        $('#modalConfirm-btn-si').on('click', function () {
+            $('#modalConfirm').modal('hide');
+            finalizar();
+        });
+        $('#modalConfirm').modal('show');
+    });
+    
+    function cargarTrampas() {
+        var idOrdenTrabajo = $('#hd_idOrdenTrabajo').val();
+        $('#tblDatosTrampas').remove();
+        $('#divXtrampa').hide();
+
+        $.ajax({
+            url: '@Url.Action("getTrampas")'
+            , type:"GET"
+            , dataType: 'json'
+            , data: { idOrdenTrabajo: idOrdenTrabajo }
+            , beforeSend: function () {
+                $('#waitTrampa').show();
+            }
+            , success: function (data) {
+                if (data == "VACIO") {
+                    $('#waitTrampa').hide();
+                    mostrarMensaje("Error no hay trampas");
+                }
+                else {
+                    if (data == "ERROR") {
+                        $('#waitTrampa').hide();
+                        mostrarMensaje("Error al cargar trampas");
+                    }
+                    else {
+                        armarTrampas(data);
+                        $('#waitTrampa').hide();
+                    }
+                }
+            }
+        });
+    }
+
+    function armarTrampas(data) {
+        if (data.length > 0) {
+            $('#div_tblDatosTrampas').append(
+                ' <div id="tblDatosTrampas" class="container"> </div>'
+                );
+
+            let cab = "";
+            for (var i = 0; i < data.length; i++) {
+                //DETALLE
+                let det = '<ul  class="list-group">';
+                for (var e = 0; e < data[i].trampas.length; e++) {
+                    let cargado = "";
+                    if (data[i].trampas[e].cargado == true) {
+                        cargado = '<button  type="button" data-wait="btn" class="btn btn-outline-primary btn-sm" onClick="trampaCargarTrabajo(' + data[i].trampas[e].idOrdenTrabajoDetalle + ')" id="btn_cargar_' + data[i].trampas[e].idOrdenTrabajoDetalle + '"' + '>' +
+                            'Ver Trabajo' +
+                            '</button>'
+                    }
+                    else {
+                        cargado = '<h5> <span class="badge badge-secondary" > Sin Trabajo Cargado</span ></h5 >';
+                    }
+
+                    det = det +
+                        '<li style="cursor:pointer" class="list-group-item">' +
+                        '<div class="d-flex w-100 justify-content-between">'+
+                       '<h6>' + data[i].trampas[e].descripcion + ' <span class="badge badge-primary">' + data[i].trampas[e].numero + '</span></h6>' +
+                        cargado +
+                        '</div>' +
+                            '</li>'
+                }
+
+                det = det + '</ul>'
+
+                //CABECERA
+                 cab = cab +
+                    '<div class="card">' +
+                     '<div class="card-header collapsed" href="#cab' + data[i].idTipoTrampa + '" class="" data-toggle="collapse" data-target="#cab' + data[i].idTipoTrampa + '" aria-expanded="false">' +
+                        '<span class="title">' + data[i].descTipoTrampa  + '</span>' +
+                        '<span class="accicon"><i class="fa fa-chevron-down rotate-icon"></i></span>' +
+                     '</div> ' +
+                     '<div id="cab' + data[i].idTipoTrampa + '" class="collapse" data-parent="#tblDatosTrampas">' +
+                        '<div class="card-body">' + det + '</div>' +
+                     '</div>' +
+                    '</div>'
+            }
+
+            $('#tblDatosTrampas').append(cab);
+            $('[data-toggle="tooltip"]').tooltip()
+        }
+    }
+
+
+    function trampaCargarTrabajo(idOrdenTrabajoDetalle) {
+
+        $('#btn_cargar_' + idOrdenTrabajoDetalle).html('<span  class="spinner-border spinner-border-sm mr-2 text-primary" role="status" aria-hidden="true"></span>Ver Trabajo');
+        $('[data-wait="btn"]').attr("disabled", true);
+        $('[data-wait="btn"]').addClass('disabled');
+
+        var url = '@Url.Action("VerTrabajo")' + '/' + idOrdenTrabajoDetalle
+
+        $.get(url, function(data) {
+            $('#VerTrabajoModalBody').html(data);
+            $('#btn_cargar_' + idOrdenTrabajoDetalle).html('Ver Trabajo')
+            $('[data-wait="btn"]').attr("disabled", false);
+            $('[data-wait="btn"]').removeClass('disabled');
+
+            $('#VerTrabajoModal').modal('show');
+        });
+    }
+
+    function mostrarMensaje(mensaje) {
+        $("#modalMessage").html(mensaje);
+        $('#modalAlert').modal("show");
+    }
+
+</script>

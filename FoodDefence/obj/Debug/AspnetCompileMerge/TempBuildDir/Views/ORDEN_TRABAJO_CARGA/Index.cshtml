@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="callout callout-primary">
+
+    <h4><i class="fa fa-list-alt"></i> Carga de trabajo</h4>
+    <br />
+        
+
+    <div class="table-responsive-sm">
+        <table class="table-sm">
+            <tr>
+                <td>Cliente</td>
+                <td>Técnico</td>                
+                <td>Fecha Carga Desde</td>
+                <td>Fecha Carga Hasta</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>                    
+                    <input type="text"  id="txtCliente"  name="txtCliente" value=""  class = "form-control" />
+                </td>
+                <td>                    
+                    <input type="text" id="txtEmpleado" name="txtEmpleado" value="" class="form-control" />
+                </td>
+                <td>                    
+                    <div style="position: relative">
+                        <input type="text" id="txtFechaDesde" name="txtFechaDesde" value="" class="form-control" />
+                    </div>
+                </td>
+                <td>
+                    <div style="position: relative">
+                        <input type="text" id="txtFechaHasta" name="txtFechaHasta" value="" class="form-control" />
+                    </div>                    
+                </td>
+                <td>
+                    <input type="button" id="btnBuscar" class="btn btn-outline-secondary" onclick="btnBuscar_onclic()" value="Buscar" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="divTabla">
+
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+        limpiar();
+        $(function () {
+            $('#txtFechaDesde').datetimepicker({
+                format: 'DD/MM/YYYY',
+                locale: 'es'
+            });
+            $('#txtFechaHasta').datetimepicker({
+                format: 'DD/MM/YYYY',
+                locale: 'es'
+            });
+        });
+    });
+
+    function limpiar() {
+        $('#txtCliente').val('');
+        $('#txtEmpleado').val('');
+        $('#txtFechaDesde').val('');
+        $('#txtFechaHasta').val('');
+
+    }
+
+    function btnBuscar_onclic() {
+        var lCliente = $('#txtCliente').val();
+        var lEmpleado = $('#txtEmpleado').val();
+        var lFechaDesde = $('#txtFechaDesde').val();
+        var lFechaHasta = $('#txtFechaHasta').val();
+
+
+        $.ajax({
+                url: '@Url.Action("ListadoOrdenesTrabajo", "ORDEN_TRABAJO_CARGA")'
+                , data: {
+                        pCliente: lCliente
+                        , pEmpleado: lEmpleado
+                        , pFechaDesde: lFechaDesde
+                        , pFechaHasta: lFechaHasta
+                        }
+            , success: function (data) {
+                                        $("#divTabla").html(data);
+                                        limpiar();
+                                       }
+        });
+    }
+</script>

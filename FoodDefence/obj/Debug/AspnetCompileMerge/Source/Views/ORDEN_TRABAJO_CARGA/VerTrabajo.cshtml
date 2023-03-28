@@ -1,0 +1,173 @@
+﻿@model FoodDefence.Models.objectModel.Trampas_OrdenTrabajoDetalle
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "formGuardarTrabajo" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.idOrdenTrabajoDetalle, new { @id = "idOrdenTrabajoDetalle" })
+    @Html.HiddenFor(model => model.is_idAccion, new { @id = "is_idAccion" })
+    @Html.HiddenFor(model => model.is_cantidad, new { @id = "is_cantidad" })
+    @Html.HiddenFor(model => model.is_idEstado, new { @id = "is_idEstado" })
+    @Html.HiddenFor(model => model.is_mariposas, new { @id = "is_mariposas" })
+    @Html.HiddenFor(model => model.is_minusculos, new { @id = "is_minusculos" })
+    @Html.HiddenFor(model => model.is_moscas, new { @id = "is_moscas" })
+    @Html.HiddenFor(model => model.is_mosquitas, new { @id = "is_mosquitas" })
+    @Html.HiddenFor(model => model.is_polillas, new { @id = "is_polillas" })
+    @Html.HiddenFor(model => model.is_cargado, new { @id = "is_cargado" })
+    @Html.HiddenFor(model => model.is_roedor, new { @id = "is_roedor" })
+    @Html.HiddenFor(model => model.is_insecto, new { @id = "is_insecto" })
+    @Html.HiddenFor(model => model.is_cucaAmericana, new { @id = "is_cucaAmericana" })
+    @Html.HiddenFor(model => model.is_cucaGermanica, new { @id = "is_cucaGermanica" })
+
+    <div class="form-horizontal">
+        <h5>
+            <span class="badge badge-primary">
+                @Model.descripcion
+            </span>
+        </h5>
+        <div class="form-row">
+            @if (@Model.is_idEstado == "S")
+            {
+                <div class="form-group col-md-10">
+                    <b>Estado</b>
+                    <div>
+                        @Model.descripcionEstado
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="form-row">
+            @if (@Model.is_idAccion == "S")
+            {
+                <div class="form-group col-md-10">
+                    <b>Acción</b>
+                    <div>
+                        @Model.descripcionAccion
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="form-row">
+            @if (@Model.is_moscas == "S")
+            {
+                <div class="form-group col-md-2">
+                    <b>Moscas</b>
+                    <div>
+                        @Model.moscas
+                    </div>
+                </div>
+            }
+            @if (@Model.is_mosquitas == "S")
+            {
+                <div class="form-group col-md-2">
+                    <b>Mosquitas</b>
+                    <div>
+                        @Model.mosquitas
+                    </div>
+                </div>
+            }
+            @if (@Model.is_polillas == "S")
+            {
+                <div class="form-group col-md-2">
+                    <b>Polillas</b>
+                    <div>
+                        @Model.polillas
+                    </div>
+                </div>
+            }
+            @if (@Model.is_roedor == "S")
+            {
+                <div class="form-group col-md-2">
+                    <b>Roedores</b>
+                    <div>
+                        @Model.roedor
+                    </div>
+                </div>
+            }
+            @if (@Model.is_insecto == "S")
+            {
+                <div class="form-group col-md-2">
+                    <b>Insectos</b>
+                    <div>
+                        @Model.insecto
+                    </div>
+                </div>
+            }
+            @if (@Model.is_cucaAmericana == "S")
+            {
+                <div class="form-group col-md-2">
+                    <b>C. Americana</b>
+                    <div>
+                        @Model.cucaAmericana
+                    </div>
+                </div>
+            }
+            @if (@Model.is_cucaGermanica == "S")
+            {
+                <div class="form-group col-md-2">
+                    <b>C. Germanica</b>
+                    <div>
+                        @Model.cucaGermanica
+                    </div>
+                </div>
+            }
+            @if (@Model.is_mariposas == "S")
+            {
+                <div class="form-group col-md-2">
+                    <b>Mariposas</b>
+                    <div>
+                        @Model.mariposas
+                    </div>
+                </div>
+            }
+            @if (@Model.is_minusculos == "S")
+            {
+                <div class="form-group col-md-2">
+                    <b>Minusculos</b>
+                    <div>
+                        @Model.minusculos
+                    </div>
+                </div>
+            }
+            @if (@Model.is_cantidad == "S")
+            {
+                <div class="form-group col-md-2">
+                    <b>Cantidad</b>
+                    <div>
+                        @Model.cantidad
+                    </div>
+                </div>
+            }
+        </div>
+        @if (@Model.observaciones != null && @Model.observaciones != "")
+        {
+            <div class="form-row">
+                <div class="form-group col-md-10">
+                    <b>Observacion</b>
+                    <div>
+                        @Model.observaciones
+                    </div>
+                </div>
+            </div>
+        }
+        <button type="button" id="modal-btn-cerrar" class="btn btn-outline-secondary">Cerrar</button>
+
+
+
+    </div>
+}
+
+
+
+<script type="text/javascript">
+
+
+    //$(document).ready(function () {
+
+    //});
+
+    $("#modal-btn-cerrar").click(function () {
+        $('#VerTrabajoModal').modal('hide');
+    });
+
+</script>
