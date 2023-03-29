@@ -187,10 +187,11 @@ namespace FoodDefence.Models.Repository
                                                         join t in db.TRAMPA on tcls.idTrampa equals t.id
                                                         join tt in db.TRAMPA_TIPO on t.idTrampaTipo equals tt.id
                                                         join cls in db.CLIENTE_LOCACION_SECTOR on tcls.idClienteLocacionSector equals cls.id
-                                                        // join tce in db.TRAMPA_CONTROL_ESTADO on otd.idEstado equals tce.id into otd_tce
+                                                        join otde in db.ORDEN_TRABAJO_DETALLE_ESTADO on otd.id equals otde.idOrdenTrabajoDetalle 
+                                                        join tce in db.TRAMPA_CONTROL_ESTADO on otde.idEstado equals tce.id 
                                                         // from tce in otd_tce.DefaultIfEmpty()
-                                                        join tca in db.TRAMPA_CONTROL_ACCION on otd.idAccion equals tca.id into otd_tca
-                                                        from tca in otd_tca.DefaultIfEmpty()
+                                                        join tca in db.TRAMPA_CONTROL_ACCION on otd.idAccion equals tca.id 
+                                                        //from tca in otd_tca.DefaultIfEmpty()
                                                         where otd.idOrdenTrabajo == idOrdenTrabajo
                                                         select new Trampas_OrdenTrabajoDetalle
                                                         {
@@ -198,7 +199,7 @@ namespace FoodDefence.Models.Repository
                                                             descripcion = cls.descripcion + " / " + t.numero,
                                                             descTipoTrampa = tt.descripcion,
                                                             idAccion = otd.idAccion,
-                                                            //idEstado = otd.idEstado,
+                                                            idEstado = otde.idEstado,
                                                             idOrdenTrabajo = otd.idOrdenTrabajo,
                                                             idOrdenTrabajoDetalle = otd.id,
                                                             idTipoTrampa = tt.id,
@@ -216,9 +217,9 @@ namespace FoodDefence.Models.Repository
                                                             numero = t.numero,
                                                             observaciones = otd.observaciones == null ? "" : otd.observaciones,
                                                             descripcionAccion = tca == null ? "" : tca.descripcion,
-                                                            //descripcionEstado = tce == null ? "" : tce.descripcion,
+                                                            descripcionEstado = tce == null ? "" : tce.descripcion,
                                                             descripcionAccionAbr = tca == null ? "" : tca.abreviatura,
-                                                            //descripcionEstadoAbr = tce == null ? "" : tce.abreviatura,
+                                                            descripcionEstadoAbr = tce == null ? "" : tce.abreviatura,
                                                             is_cargado = otd.cargado == true ? "S" : "N"
                                                         }).ToList();
 
