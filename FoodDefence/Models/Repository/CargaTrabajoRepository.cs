@@ -721,7 +721,7 @@ namespace FoodDefence.Models.Repository
             using (FoodDefense_DevEntities db = new FoodDefense_DevEntities())
             {
                 int idTrampaClienteLocacionSector = db.ORDEN_TRABAJO_DETALLE.Where(w => w.id == c.idOrdenTrabajoDetalle).Select(s => s.idTrampaClienteLocacionSector).First();
-                return db.st_control_cantidad_requerida_estado_trampa(idTrampaClienteLocacionSector,c.idAccion,1,c.moscas,c.mosquitas,
+                return db.st_control_cantidad_requerida_estado_trampa(idTrampaClienteLocacionSector,c.idAccion,c.idEstado,c.moscas,c.mosquitas,
                     c.polillas, c.mariposas, c.minusculos, c.cantidad, c.roedor, c.insecto, c.cucaGermanica, c.cucaAmericana,c.observaciones).First();
             }
         }
