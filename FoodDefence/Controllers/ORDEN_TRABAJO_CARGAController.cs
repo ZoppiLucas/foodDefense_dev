@@ -286,7 +286,7 @@ namespace FoodDefense.Controllers
                 ControlTrampaRequest modelControl = new ControlTrampaRequest();
                 modelControl = new ControlTrampaRequest {
                     idAccion = model.idAccion,
-                    // idEstado = model.idEstado,
+                    idEstado = model.idEstado,
                     idOrdenTrabajoDetalle = model.idOrdenTrabajoDetalle,
                     cucaAmericana = model.cucaAmericana,
                     cucaGermanica = model.cucaGermanica,

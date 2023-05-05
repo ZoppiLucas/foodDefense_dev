@@ -23,5 +23,6 @@ namespace FoodDefence.Models.objectModel
         public int cucaAmericana { get; set; }
         public int cucaGermanica { get; set; }
         public string observaciones { get; set; }
+        public string accionesPreventivas { get; set; }
     }
 }

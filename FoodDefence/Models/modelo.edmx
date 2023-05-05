@@ -2090,6 +2090,7 @@
           <Property Type="Int32" Name="OrdenIdtrampatipo" Nullable="false" />
           <Property Type="Int32" Name="OrdenNumero" Nullable="true" />
           <Property Type="String" Name="OrdenSubNumero" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="accionesPreventivas" Nullable="false" />
         </ComplexType>
         <ComplexType Name="validarTrampa_Result">
           <Property Type="Int32" Name="IdOrdenTrabajoDetalle" Nullable="false" />

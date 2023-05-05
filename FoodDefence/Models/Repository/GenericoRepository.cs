@@ -506,8 +506,6 @@ namespace FoodDefence.Models.Repository
                 return listP;
 
             }
-
-
         }
 
         #region CSV
@@ -537,7 +535,8 @@ namespace FoodDefence.Models.Repository
                                                          estado = otd.estado,
                                                          fechadetrabajo = otd.fechadetrabajo,
                                                          numero = otd.numero,
-                                                         observaciones = otd.observaciones
+                                                         observaciones = otd.observaciones,
+                                                         accionesPreventivas = otd.accionesPreventivas 
                                                      }).ToList();
 
                     string var = generar(fileCsv);

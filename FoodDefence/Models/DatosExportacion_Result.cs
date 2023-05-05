@@ -33,5 +33,6 @@ namespace FoodDefence.Models
         public int OrdenIdtrampatipo { get; set; }
         public Nullable<int> OrdenNumero { get; set; }
         public string OrdenSubNumero { get; set; }
+        public string accionesPreventivas { get; set; }
     }
 }
