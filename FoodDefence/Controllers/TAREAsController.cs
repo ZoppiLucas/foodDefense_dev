@@ -14,7 +14,7 @@ namespace FoodDefence.Controllers
     {
         private FoodDefense_DevEntities db = new FoodDefense_DevEntities();
 
-        // GET: TAREAs
+        // GET: TAREAs ---
         public ActionResult Index()
         {
             if (Session["idUsuario"] == null)
