@@ -240,7 +240,7 @@
     <NavigationProperty Name="TRAMPA_CONTROL_ESTADO" Relationship="Self.FK_TRAMPA_CONTROL_ESTADO_TRAMPA_TIPO" FromRole="TRAMPA_TIPO" ToRole="TRAMPA_CONTROL_ESTADO" />
     <Property Name="baja" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="GRAFICOS" Relationship="FoodDefense_DevModel.FK_GRAFICOS_TRAMPA_TIPO" FromRole="TRAMPA_TIPO" ToRole="GRAFICOS" />
-    <Property Name="multiSel" Type="Boolean" Nullable="false" />
+    <Property Name="multiSel" Type="Boolean" />
     <NavigationProperty Name="TAREA" Relationship="FoodDefense_DevModel.FK_TAREA_TRAMPA_TIPO" FromRole="TRAMPA_TIPO" ToRole="TAREA" />
     <NavigationProperty Name="CONTROL_PLAGA" Relationship="FoodDefense_DevModel.FK_CONTROL_PLAGA_TRAMPA_TIPO" FromRole="TRAMPA_TIPO" ToRole="CONTROL_PLAGA" />
   </EntityType>
@@ -800,6 +800,12 @@
       <Parameter Name="TipoTrampa" Mode="In" Type="Int32" />
       <Parameter Name="CamCond" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="ARCHIVOS_CABECERA" EntityType="FoodDefense_DevModel.ARCHIVOS_CABECERA" />
+    <EntitySet Name="ARCHIVOS_DETALLE" EntityType="FoodDefense_DevModel.ARCHIVOS_DETALLE" />
+    <AssociationSet Name="FK_ARCHIVOS_DETALLE" Association="FoodDefense_DevModel.FK_ARCHIVOS_DETALLE">
+      <End Role="ARCHIVOS_CABECERA" EntitySet="ARCHIVOS_CABECERA" />
+      <End Role="ARCHIVOS_DETALLE" EntitySet="ARCHIVOS_DETALLE" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="TRAMPA_CLIENTE_LOCACION_SECTOR">
     <Key>
@@ -1421,4 +1427,38 @@
     <Property Type="String" Name="operadorCondicion" Nullable="false" MaxLength="200" />
     <Property Type="Decimal" Name="valorcondicion" Nullable="false" Precision="10" Scale="2" />
   </ComplexType>
+  <EntityType Name="ARCHIVOS_CABECERA">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="arcVersion" Type="Int32" />
+    <Property Name="fechaCarga" Type="DateTime" Precision="3" />
+    <Property Name="cantRegistros" Type="Int32" />
+    <Property Name="fechaProceso" Type="DateTime" Precision="3" />
+    <Property Name="estado" Type="Int32" />
+    <Property Name="obs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ARCHIVOS_DETALLE" Relationship="FoodDefense_DevModel.FK_ARCHIVOS_DETALLE" FromRole="ARCHIVOS_CABECERA" ToRole="ARCHIVOS_DETALLE" />
+  </EntityType>
+  <EntityType Name="ARCHIVOS_DETALLE">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idArchivosCabecera" Type="Int32" />
+    <Property Name="datos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ARCHIVOS_CABECERA" Relationship="FoodDefense_DevModel.FK_ARCHIVOS_DETALLE" FromRole="ARCHIVOS_DETALLE" ToRole="ARCHIVOS_CABECERA" />
+  </EntityType>
+  <Association Name="FK_ARCHIVOS_DETALLE">
+    <End Type="FoodDefense_DevModel.ARCHIVOS_CABECERA" Role="ARCHIVOS_CABECERA" Multiplicity="0..1" />
+    <End Type="FoodDefense_DevModel.ARCHIVOS_DETALLE" Role="ARCHIVOS_DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ARCHIVOS_CABECERA">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ARCHIVOS_DETALLE">
+        <PropertyRef Name="idArchivosCabecera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

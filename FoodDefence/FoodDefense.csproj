@@ -185,6 +185,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ARCHIVOS_CABECERA.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ARCHIVOS_DETALLE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AutocompleteTrampas.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

@@ -29,7 +29,7 @@ namespace FoodDefence.Models
         public int id { get; set; }
         public string descripcion { get; set; }
         public bool baja { get; set; }
-        public bool multiSel { get; set; }
+        public Nullable<bool> multiSel { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA> CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA { get; set; }

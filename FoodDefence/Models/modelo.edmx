@@ -5,6 +5,26 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="FoodDefense_DevModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ARCHIVOS_CABECERA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="arcVersion" Type="int" />
+          <Property Name="fechaCarga" Type="datetime" />
+          <Property Name="cantRegistros" Type="int" />
+          <Property Name="fechaProceso" Type="datetime" />
+          <Property Name="estado" Type="int" />
+          <Property Name="obs" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ARCHIVOS_DETALLE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idArchivosCabecera" Type="int" />
+          <Property Name="datos" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA">
           <Key>
             <PropertyRef Name="id" />
@@ -182,7 +202,6 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idOrdenTrabajo" Type="int" Nullable="false" />
           <Property Name="idTrampaClienteLocacionSector" Type="int" Nullable="false" />
-          <Property Name="idEstado" Type="int" />
           <Property Name="idAccion" Type="int" />
           <Property Name="moscas" Type="numeric" Precision="10" Scale="2" />
           <Property Name="mosquitas" Type="numeric" Precision="10" Scale="2" />
@@ -291,7 +310,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="baja" Type="bit" Nullable="false" />
-          <Property Name="multiSel" Type="bit" Nullable="false" />
+          <Property Name="multiSel" Type="bit" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -312,7 +331,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK__USUARIO__idEmple__55BFB948">
+        <Association Name="FK__USUARIO__idEmple__2A6B46EF">
           <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="0..1" />
           <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
           <ReferentialConstraint>
@@ -324,7 +343,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__USUARIO__idUsuar__54CB950F">
+        <Association Name="FK__USUARIO__idUsuar__2B5F6B28">
           <End Role="USUARIO_TIPO" Type="Self.USUARIO_TIPO" Multiplicity="0..1" />
           <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
           <ReferentialConstraint>
@@ -333,6 +352,18 @@
             </Principal>
             <Dependent Role="USUARIO">
               <PropertyRef Name="idUsuarioTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARCHIVOS_DETALLE">
+          <End Role="ARCHIVOS_CABECERA" Type="Self.ARCHIVOS_CABECERA" Multiplicity="0..1" />
+          <End Role="ARCHIVOS_DETALLE" Type="Self.ARCHIVOS_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ARCHIVOS_CABECERA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ARCHIVOS_DETALLE">
+              <PropertyRef Name="idArchivosCabecera" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -652,18 +683,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO">
-          <End Role="TRAMPA_CONTROL_ESTADO" Type="Self.TRAMPA_CONTROL_ESTADO" Multiplicity="0..1" />
-          <End Role="ORDEN_TRABAJO_DETALLE" Type="Self.ORDEN_TRABAJO_DETALLE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TRAMPA_CONTROL_ESTADO">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ORDEN_TRABAJO_DETALLE">
-              <PropertyRef Name="idEstado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ORDEN_TRABAJO_EMPLEADO">
           <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="0..1" />
           <End Role="ORDEN_TRABAJO" Type="Self.ORDEN_TRABAJO" Multiplicity="*" />
@@ -883,12 +902,6 @@
           <Parameter Name="idTipoTrampa" Type="int" Mode="In" />
           <Parameter Name="idOrdenTrabajoDetalle" Type="int" Mode="In" />
         </Function>
-        <Function Name="st_GetListaControlPlaga" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Cliente" Type="varchar" Mode="In" />
-          <Parameter Name="CliLoca" Type="varchar" Mode="In" />
-          <Parameter Name="TipoTrampa" Type="int" Mode="In" />
-          <Parameter Name="CamCond" Type="varchar" Mode="In" />
-        </Function>
         <Function Name="st_getListadoTrampaClienteLocacionSector" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cliente" Type="varchar" Mode="In" />
           <Parameter Name="locacion" Type="varchar" Mode="In" />
@@ -922,6 +935,8 @@
           <Parameter Name="idEmpleado" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="FoodDefense_DevModelStoreContainer">
+          <EntitySet Name="ARCHIVOS_CABECERA" EntityType="Self.ARCHIVOS_CABECERA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ARCHIVOS_DETALLE" EntityType="Self.ARCHIVOS_DETALLE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" EntityType="Self.CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLIENTE_CONTACTO" EntityType="Self.CLIENTE_CONTACTO" Schema="dbo" store:Type="Tables" />
@@ -953,13 +968,17 @@
           <EntitySet Name="TRAMPA_TIPO" EntityType="Self.TRAMPA_TIPO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIO_TIPO" EntityType="Self.USUARIO_TIPO" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__USUARIO__idEmple__55BFB948" Association="Self.FK__USUARIO__idEmple__55BFB948">
+          <AssociationSet Name="FK__USUARIO__idEmple__2A6B46EF" Association="Self.FK__USUARIO__idEmple__2A6B46EF">
             <End Role="EMPLEADO" EntitySet="EMPLEADO" />
             <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
-          <AssociationSet Name="FK__USUARIO__idUsuar__54CB950F" Association="Self.FK__USUARIO__idUsuar__54CB950F">
+          <AssociationSet Name="FK__USUARIO__idUsuar__2B5F6B28" Association="Self.FK__USUARIO__idUsuar__2B5F6B28">
             <End Role="USUARIO_TIPO" EntitySet="USUARIO_TIPO" />
             <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARCHIVOS_DETALLE" Association="Self.FK_ARCHIVOS_DETALLE">
+            <End Role="ARCHIVOS_CABECERA" EntitySet="ARCHIVOS_CABECERA" />
+            <End Role="ARCHIVOS_DETALLE" EntitySet="ARCHIVOS_DETALLE" />
           </AssociationSet>
           <AssociationSet Name="FK_CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA_TRAMPA_TIPO" Association="Self.FK_CAMPO_REQUERIDO_CARGA_CONTROL_TRAMPA_TRAMPA_TIPO">
             <End Role="TRAMPA_TIPO" EntitySet="TRAMPA_TIPO" />
@@ -1063,10 +1082,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ACCION" Association="Self.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ACCION">
             <End Role="TRAMPA_CONTROL_ACCION" EntitySet="TRAMPA_CONTROL_ACCION" />
-            <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO" Association="Self.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO">
-            <End Role="TRAMPA_CONTROL_ESTADO" EntitySet="TRAMPA_CONTROL_ESTADO" />
             <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
           </AssociationSet>
           <AssociationSet Name="FK_ORDEN_TRABAJO_EMPLEADO" Association="Self.FK_ORDEN_TRABAJO_EMPLEADO">
@@ -1366,7 +1381,7 @@
           <NavigationProperty Name="TRAMPA_CONTROL_ESTADO" Relationship="Self.FK_TRAMPA_CONTROL_ESTADO_TRAMPA_TIPO" FromRole="TRAMPA_TIPO" ToRole="TRAMPA_CONTROL_ESTADO" />
           <Property Name="baja" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="GRAFICOS" Relationship="FoodDefense_DevModel.FK_GRAFICOS_TRAMPA_TIPO" FromRole="TRAMPA_TIPO" ToRole="GRAFICOS" />
-          <Property Name="multiSel" Type="Boolean" Nullable="false" />
+          <Property Name="multiSel" Type="Boolean" />
           <NavigationProperty Name="TAREA" Relationship="FoodDefense_DevModel.FK_TAREA_TRAMPA_TIPO" FromRole="TRAMPA_TIPO" ToRole="TAREA" />
           <NavigationProperty Name="CONTROL_PLAGA" Relationship="FoodDefense_DevModel.FK_CONTROL_PLAGA_TRAMPA_TIPO" FromRole="TRAMPA_TIPO" ToRole="CONTROL_PLAGA" />
         </EntityType>
@@ -1926,6 +1941,12 @@
             <Parameter Name="TipoTrampa" Mode="In" Type="Int32" />
             <Parameter Name="CamCond" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="ARCHIVOS_CABECERA" EntityType="FoodDefense_DevModel.ARCHIVOS_CABECERA" />
+          <EntitySet Name="ARCHIVOS_DETALLE" EntityType="FoodDefense_DevModel.ARCHIVOS_DETALLE" />
+          <AssociationSet Name="FK_ARCHIVOS_DETALLE" Association="FoodDefense_DevModel.FK_ARCHIVOS_DETALLE">
+            <End Role="ARCHIVOS_CABECERA" EntitySet="ARCHIVOS_CABECERA" />
+            <End Role="ARCHIVOS_DETALLE" EntitySet="ARCHIVOS_DETALLE" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="TRAMPA_CLIENTE_LOCACION_SECTOR">
           <Key>
@@ -2547,6 +2568,40 @@
           <Property Type="String" Name="operadorCondicion" Nullable="false" MaxLength="200" />
           <Property Type="Decimal" Name="valorcondicion" Nullable="false" Precision="10" Scale="2" />
         </ComplexType>
+        <EntityType Name="ARCHIVOS_CABECERA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="arcVersion" Type="Int32" />
+          <Property Name="fechaCarga" Type="DateTime" Precision="3" />
+          <Property Name="cantRegistros" Type="Int32" />
+          <Property Name="fechaProceso" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="obs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ARCHIVOS_DETALLE" Relationship="FoodDefense_DevModel.FK_ARCHIVOS_DETALLE" FromRole="ARCHIVOS_CABECERA" ToRole="ARCHIVOS_DETALLE" />
+        </EntityType>
+        <EntityType Name="ARCHIVOS_DETALLE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idArchivosCabecera" Type="Int32" />
+          <Property Name="datos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ARCHIVOS_CABECERA" Relationship="FoodDefense_DevModel.FK_ARCHIVOS_DETALLE" FromRole="ARCHIVOS_DETALLE" ToRole="ARCHIVOS_CABECERA" />
+        </EntityType>
+        <Association Name="FK_ARCHIVOS_DETALLE">
+          <End Type="FoodDefense_DevModel.ARCHIVOS_CABECERA" Role="ARCHIVOS_CABECERA" Multiplicity="0..1" />
+          <End Type="FoodDefense_DevModel.ARCHIVOS_DETALLE" Role="ARCHIVOS_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ARCHIVOS_CABECERA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ARCHIVOS_DETALLE">
+              <PropertyRef Name="idArchivosCabecera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2935,7 +2990,6 @@
           <EntitySetMapping Name="ORDEN_TRABAJO_DETALLE">
             <EntityTypeMapping TypeName="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE">
               <MappingFragment StoreEntitySet="ORDEN_TRABAJO_DETALLE">
-                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
                 <ScalarProperty Name="cucaAmericana" ColumnName="cucaAmericana" />
                 <ScalarProperty Name="cucaGermanica" ColumnName="cucaGermanica" />
                 <ScalarProperty Name="insecto" ColumnName="insecto" />
@@ -3035,19 +3089,28 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="st_GetListaControlPlaga" FunctionName="FoodDefense_DevModel.Store.st_GetListaControlPlaga">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="FoodDefense_DevModel.st_GetListaControlPlaga_Result">
+          <EntitySetMapping Name="ARCHIVOS_CABECERA">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.ARCHIVOS_CABECERA">
+              <MappingFragment StoreEntitySet="ARCHIVOS_CABECERA">
+                <ScalarProperty Name="obs" ColumnName="obs" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fechaProceso" ColumnName="fechaProceso" />
+                <ScalarProperty Name="cantRegistros" ColumnName="cantRegistros" />
+                <ScalarProperty Name="fechaCarga" ColumnName="fechaCarga" />
+                <ScalarProperty Name="arcVersion" ColumnName="arcVersion" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="razonSocial" ColumnName="razonSocial" />
-                <ScalarProperty Name="locacion" ColumnName="locacion" />
-                <ScalarProperty Name="trampa_tipo" ColumnName="trampa_tipo" />
-                <ScalarProperty Name="campocondicion" ColumnName="campocondicion" />
-                <ScalarProperty Name="operadorCondicion" ColumnName="operadorCondicion" />
-                <ScalarProperty Name="valorcondicion" ColumnName="valorcondicion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ARCHIVOS_DETALLE">
+            <EntityTypeMapping TypeName="FoodDefense_DevModel.ARCHIVOS_DETALLE">
+              <MappingFragment StoreEntitySet="ARCHIVOS_DETALLE">
+                <ScalarProperty Name="datos" ColumnName="datos" />
+                <ScalarProperty Name="idArchivosCabecera" ColumnName="idArchivosCabecera" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

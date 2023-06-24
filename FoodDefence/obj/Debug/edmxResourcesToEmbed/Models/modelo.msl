@@ -383,7 +383,6 @@
     <EntitySetMapping Name="ORDEN_TRABAJO_DETALLE">
       <EntityTypeMapping TypeName="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE">
         <MappingFragment StoreEntitySet="ORDEN_TRABAJO_DETALLE">
-          <ScalarProperty Name="idEstado" ColumnName="idEstado" />
           <ScalarProperty Name="cucaAmericana" ColumnName="cucaAmericana" />
           <ScalarProperty Name="cucaGermanica" ColumnName="cucaGermanica" />
           <ScalarProperty Name="insecto" ColumnName="insecto" />
@@ -483,18 +482,27 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="st_GetListaControlPlaga" FunctionName="FoodDefense_DevModel.Store.st_GetListaControlPlaga">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="FoodDefense_DevModel.st_GetListaControlPlaga_Result">
+    <EntitySetMapping Name="ARCHIVOS_CABECERA">
+      <EntityTypeMapping TypeName="FoodDefense_DevModel.ARCHIVOS_CABECERA">
+        <MappingFragment StoreEntitySet="ARCHIVOS_CABECERA">
+          <ScalarProperty Name="obs" ColumnName="obs" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="fechaProceso" ColumnName="fechaProceso" />
+          <ScalarProperty Name="cantRegistros" ColumnName="cantRegistros" />
+          <ScalarProperty Name="fechaCarga" ColumnName="fechaCarga" />
+          <ScalarProperty Name="arcVersion" ColumnName="arcVersion" />
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="razonSocial" ColumnName="razonSocial" />
-          <ScalarProperty Name="locacion" ColumnName="locacion" />
-          <ScalarProperty Name="trampa_tipo" ColumnName="trampa_tipo" />
-          <ScalarProperty Name="campocondicion" ColumnName="campocondicion" />
-          <ScalarProperty Name="operadorCondicion" ColumnName="operadorCondicion" />
-          <ScalarProperty Name="valorcondicion" ColumnName="valorcondicion" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ARCHIVOS_DETALLE">
+      <EntityTypeMapping TypeName="FoodDefense_DevModel.ARCHIVOS_DETALLE">
+        <MappingFragment StoreEntitySet="ARCHIVOS_DETALLE">
+          <ScalarProperty Name="datos" ColumnName="datos" />
+          <ScalarProperty Name="idArchivosCabecera" ColumnName="idArchivosCabecera" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

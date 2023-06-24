@@ -58,6 +58,8 @@ namespace FoodDefence.Models
         public virtual DbSet<CONTROL_PLAGA> CONTROL_PLAGA { get; set; }
         public virtual DbSet<CONTROL_PLAGA_DETALLE> CONTROL_PLAGA_DETALLE { get; set; }
         public virtual DbSet<ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA> ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA { get; set; }
+        public virtual DbSet<ARCHIVOS_CABECERA> ARCHIVOS_CABECERA { get; set; }
+        public virtual DbSet<ARCHIVOS_DETALLE> ARCHIVOS_DETALLE { get; set; }
     
         public virtual ObjectResult<DetalleTrampasOrdenTrabajo_Result> st_getDetalleTrampasOrdenTrabajo(Nullable<int> idOrdenTrabajo)
         {
