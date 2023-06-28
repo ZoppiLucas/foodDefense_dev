@@ -166,6 +166,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\rArchivosController.cs" />
     <Compile Include="Controllers\CLIENTEController.cs" />
     <Compile Include="Controllers\CLIENTE_LOCACIONController.cs" />
     <Compile Include="Controllers\CLIENTE_LOCACION_SECTORController.cs" />
@@ -280,6 +281,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>modelo.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\objectModel\ArchivoBase.cs" />
+    <Compile Include="Models\objectModel\ArchivosSecurity.cs" />
     <Compile Include="Models\objectModel\ControlPlagaOperadores.cs" />
     <Compile Include="Models\objectModel\WorkListTareasInsert.cs" />
     <Compile Include="Models\objectModel\WorkListTareasData.cs" />
@@ -321,6 +324,7 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Repository\CargaTrabajoRepository.cs" />
+    <Compile Include="Models\Repository\Security.cs" />
     <Compile Include="Models\Repository\GenericoRepository.cs" />
     <Compile Include="Models\Repository\UsuarioRepository.cs" />
     <Compile Include="Models\Request\ControlTrampaRequest.cs" />

@@ -18,7 +18,6 @@ namespace FoodDefence.Models
         public TRAMPA_CONTROL_ESTADO()
         {
             this.ORDEN_TRABAJO_DETALLE_ESTADO = new HashSet<ORDEN_TRABAJO_DETALLE_ESTADO>();
-            this.ORDEN_TRABAJO_DETALLE = new HashSet<ORDEN_TRABAJO_DETALLE>();
         }
     
         public int id { get; set; }
@@ -30,7 +29,5 @@ namespace FoodDefence.Models
         public virtual TRAMPA_TIPO TRAMPA_TIPO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDEN_TRABAJO_DETALLE_ESTADO> ORDEN_TRABAJO_DETALLE_ESTADO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ORDEN_TRABAJO_DETALLE> ORDEN_TRABAJO_DETALLE { get; set; }
     }
 }

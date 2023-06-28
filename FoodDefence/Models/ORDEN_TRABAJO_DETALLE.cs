@@ -37,7 +37,6 @@ namespace FoodDefence.Models
         public Nullable<int> insecto { get; set; }
         public Nullable<int> cucaGermanica { get; set; }
         public Nullable<int> cucaAmericana { get; set; }
-        public Nullable<int> idEstado { get; set; }
     
         public virtual ORDEN_TRABAJO ORDEN_TRABAJO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -46,6 +45,5 @@ namespace FoodDefence.Models
         public virtual TRAMPA_CONTROL_ACCION TRAMPA_CONTROL_ACCION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA> ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA { get; set; }
-        public virtual TRAMPA_CONTROL_ESTADO TRAMPA_CONTROL_ESTADO { get; set; }
     }
 }

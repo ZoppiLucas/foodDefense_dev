@@ -218,7 +218,6 @@
     <NavigationProperty Name="TRAMPA_TIPO" Relationship="Self.FK_TRAMPA_CONTROL_ESTADO_TRAMPA_TIPO" FromRole="TRAMPA_CONTROL_ESTADO" ToRole="TRAMPA_TIPO" />
     <Property Name="orden" Type="Byte" />
     <NavigationProperty Name="ORDEN_TRABAJO_DETALLE_ESTADO" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_ESTADO_TRAMPA_CONTROL_ESTADO" FromRole="TRAMPA_CONTROL_ESTADO" ToRole="ORDEN_TRABAJO_DETALLE_ESTADO" />
-    <NavigationProperty Name="ORDEN_TRABAJO_DETALLE" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO" FromRole="TRAMPA_CONTROL_ESTADO" ToRole="ORDEN_TRABAJO_DETALLE" />
   </EntityType>
   <EntityType Name="TRAMPA_ESTADO">
     <Key>
@@ -790,10 +789,6 @@
       <Parameter Name="idTipoTrampa" Mode="In" Type="Int32" />
       <Parameter Name="idOrdenTrabajoDetalle" Mode="In" Type="Int32" />
     </FunctionImport>
-    <AssociationSet Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO" Association="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO">
-      <End Role="TRAMPA_CONTROL_ESTADO" EntitySet="TRAMPA_CONTROL_ESTADO" />
-      <End Role="ORDEN_TRABAJO_DETALLE" EntitySet="ORDEN_TRABAJO_DETALLE" />
-    </AssociationSet>
     <FunctionImport Name="st_GetListaControlPlaga" ReturnType="Collection(FoodDefense_DevModel.st_GetListaControlPlaga_Result)">
       <Parameter Name="Cliente" Mode="In" Type="String" />
       <Parameter Name="CliLoca" Mode="In" Type="String" />
@@ -1159,8 +1154,6 @@
     <NavigationProperty Name="TRAMPA_CLIENTE_LOCACION_SECTOR" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CLIENTE_LOCACION_SECTOR" FromRole="ORDEN_TRABAJO_DETALLE" ToRole="TRAMPA_CLIENTE_LOCACION_SECTOR" />
     <NavigationProperty Name="TRAMPA_CONTROL_ACCION" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ACCION" FromRole="ORDEN_TRABAJO_DETALLE" ToRole="TRAMPA_CONTROL_ACCION" />
     <NavigationProperty Name="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE" FromRole="ORDEN_TRABAJO_DETALLE" ToRole="ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" />
-    <Property Name="idEstado" Type="Int32" />
-    <NavigationProperty Name="TRAMPA_CONTROL_ESTADO" Relationship="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO" FromRole="ORDEN_TRABAJO_DETALLE" ToRole="TRAMPA_CONTROL_ESTADO" />
   </EntityType>
   <Association Name="FK_ORDEN_TRABAJO_DETALLE_ORDEN_TRABAJO">
     <End Type="FoodDefense_DevModel.ORDEN_TRABAJO" Role="ORDEN_TRABAJO" Multiplicity="1" />
@@ -1406,18 +1399,6 @@
     <Property Type="String" Name="descripcion" Nullable="false" MaxLength="2500" />
     <Property Type="Int32" Name="realizado" Nullable="true" />
   </ComplexType>
-  <Association Name="FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO">
-    <End Type="FoodDefense_DevModel.TRAMPA_CONTROL_ESTADO" Role="TRAMPA_CONTROL_ESTADO" Multiplicity="0..1" />
-    <End Type="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE" Role="ORDEN_TRABAJO_DETALLE" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TRAMPA_CONTROL_ESTADO">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="ORDEN_TRABAJO_DETALLE">
-        <PropertyRef Name="idEstado" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <ComplexType Name="st_GetListaControlPlaga_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="razonSocial" Nullable="false" MaxLength="300" />

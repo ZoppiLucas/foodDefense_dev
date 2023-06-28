@@ -57,9 +57,9 @@
         <EntityTypeShape EntityType="FoodDefense_DevModel.GRAFICOS" Width="1.5" PointX="4" PointY="17.5" />
         <AssociationConnector Association="FoodDefense_DevModel.FK_GRAFICOS_TRAMPA_TIPO" />
         <AssociationConnector Association="FoodDefense_DevModel.FK_USUARIO_CLIENTE" />
-        <EntityTypeShape EntityType="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE_ESTADO" Width="2.75" PointX="10.5" PointY="12.5" />
+        <EntityTypeShape EntityType="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE_ESTADO" Width="2.75" PointX="9.125" PointY="12.75" />
         <AssociationConnector Association="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_ESTADO_TRAMPA_CONTROL_ESTADO" />
-        <EntityTypeShape EntityType="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE" Width="2.75" PointX="14.5" PointY="9" />
+        <EntityTypeShape EntityType="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE" PointX="14.625" PointY="8.875" Width="2.75" IsExpanded="true" />
         <AssociationConnector Association="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_ORDEN_TRABAJO" />
         <AssociationConnector Association="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_ESTADO_ORDEN_TRABAJO_DETALLE" />
         <AssociationConnector Association="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CLIENTE_LOCACION_SECTOR" />
@@ -74,10 +74,9 @@
         <EntityTypeShape EntityType="FoodDefense_DevModel.CONTROL_PLAGA_DETALLE" Width="3.125" PointX="15.75" PointY="3.625" />
         <AssociationConnector Association="FoodDefense_DevModel.FK_CONTROL_PLAGA" />
         <AssociationConnector Association="FoodDefense_DevModel.FK_TAREA" />
-        <EntityTypeShape EntityType="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Width="4" PointX="20.375" PointY="9.5" />
+        <EntityTypeShape EntityType="FoodDefense_DevModel.ORDEN_TRABAJO_DETALLE_CONTROL_PLAGA" Width="4" PointX="18.5" PointY="9.25" />
         <AssociationConnector Association="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE" />
         <AssociationConnector Association="FoodDefense_DevModel.FK_TAREA_DETALLE" />
-        <AssociationConnector Association="FoodDefense_DevModel.FK_ORDEN_TRABAJO_DETALLE_TRAMPA_CONTROL_ESTADO" />
         <EntityTypeShape EntityType="FoodDefense_DevModel.ARCHIVOS_CABECERA" Width="2.75" PointX="17.375" PointY="19" />
         <EntityTypeShape EntityType="FoodDefense_DevModel.ARCHIVOS_DETALLE" Width="2.875" PointX="21" PointY="19.375" />
         <AssociationConnector Association="FoodDefense_DevModel.FK_ARCHIVOS_DETALLE" />
